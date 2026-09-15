@@ -1,7 +1,7 @@
 # Dinno — landing de conversão
 
-Página única, estática, cujo único trabalho é levar o visitante para
-<https://dinno-app.vercel.app/>.
+Página única, estática, publicada em <https://dinnoapp.forjadev.app.br/>, cujo
+único trabalho é levar o visitante para <https://dinno-app.vercel.app/>.
 
 **Não faz parte do app Next.js.** É HTML + CSS puro: sem build, sem framework,
 sem `npm install`. O motivo é o deploy — ela publica no GitHub Pages sem
@@ -10,12 +10,24 @@ pipeline, e mexer nela nunca derruba nem reimplanta o produto.
 ```
 index.html              a página inteira
 assets/css/styles.css   TODO o visual
+assets/js/main.js       o ÚNICO script: o campo de estrelas em warp
 assets/img/             logo, mascote, favicons e o cartão de compartilhamento
+robots.txt              libera a indexação e aponta o sitemap
+sitemap.xml             a única URL deste site
+CNAME                   o domínio próprio servido pelo GitHub Pages
 ```
 
-Não existe `assets/js/`: nada na página precisa de JavaScript. O FAQ é
-`<details>`/`<summary>` nativo. Isso é de propósito — é uma página de conversão,
-e o melhor script é o que não existe.
+`assets/js/main.js` é a única linha de JavaScript da página, e ela existe só
+para o fundo animado do herói e da chamada final — o mesmo efeito da tela de
+login do app (`components/login/fundo-warp.tsx`), reimplementado em JS puro
+porque os dois repositórios não compartilham build. Fora dele, nada precisa de
+script: o FAQ é `<details>`/`<summary>` nativo.
+
+**Com `prefers-reduced-motion: reduce`, nada é inicializado** — nem canvas, nem
+`requestAnimationFrame`, nem listener — e a página cai no campo de estrelas
+estático em CSS que sempre existiu. Sem JavaScript, o mesmo. Os dois céus nunca
+aparecem juntos: quem monta o canvas marca a seção com `.ceu--animado`, e é essa
+classe que desliga o estático.
 
 ## Rodar local
 
@@ -35,8 +47,12 @@ regras. Um rebranding é reescrever aquele bloco.
 O que **não** está lá e precisa de mão:
 
 - as imagens em `assets/img/`;
-- o `<title>`, a `meta description` e as tags Open Graph no `<head>`;
+- o `<title>`, a `meta description`, as tags Open Graph e o JSON-LD no `<head>`;
 - a palavra "Dinno" no cabeçalho, no rodapé e na copy.
+
+Duas exceções no `:root` que **não** são da marca Dinno e não devem ser
+reescritas num rebranding: `--cor-forjadev-corpo` e `--cor-forjadev-faisca`,
+que pertencem à marca de quem desenvolve (ver abaixo).
 
 A paleta atual não foi inventada: são os tokens reais do app (`app/globals.css`,
 tema escuro) cruzados com as cores dominantes amostradas das próprias imagens do
@@ -73,6 +89,18 @@ paralelo. Abrir o app em aba nova deixa o visitante com duas abas e nenhuma
 sensação de ter avançado — em celular, que é a maioria do tráfego aqui, é pior
 ainda. Os links mantêm `rel="noopener"` mesmo sem `target="_blank"`, que é
 inofensivo e sobrevive a alguém acrescentar o `target` depois.
+
+## Crédito de desenvolvimento no rodapé
+
+O símbolo ao lado de "Desenvolvido por ForjaDev" é a marca de outra empresa e
+segue o guia dela, não este arquivo:
+
+- é a **versão reduzida, de 2 faíscas** — a única autorizada abaixo de 32px;
+- corpo **branco** porque o rodapé é escuro, faísca **laranja `#FF6A00`**
+  intocada (trocar a cor da faísca é proibido);
+- sem rotação, sombra, contorno ou gradiente: a inclinação de −18° já está na
+  geometria;
+- grafia oficial `ForjaDev`, uma palavra, F e D maiúsculos.
 
 ## Publicar de novo
 

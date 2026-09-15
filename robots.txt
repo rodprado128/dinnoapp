@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dinnoapp.forjadev.app.br/sitemap.xml

@@ -50,6 +50,17 @@
   --cor-ciano: #35e0e8;
   --cor-sucesso: #6fe9a9;
 
+  /* Cor das estrelas do campo em warp (`assets/js/main.js`). Fica aqui, e não
+     no JS, para o rebranding continuar sendo a troca de um bloco só. */
+  --cor-estrela: #e2dcff;
+
+  /* --- Laranja da faísca da ForjaDev, no crédito do rodapé ---------------
+     NÃO é cor da marca Dinno: é a cor da marca de quem desenvolve, e o guia
+     da ForjaDev proíbe trocá-la. Por isso mora num token à parte, fora da
+     paleta que um rebranding do Dinno reescreveria. */
+  --cor-forjadev-corpo: #ffffff;
+  --cor-forjadev-faisca: #ff6a00;
+
   /* --- Forma: peça de plástico injetado, gorda e com espessura ----------- */
   --raio: 0.75rem;
   --raio-lg: 1rem;
@@ -309,8 +320,13 @@ a {
     radial-gradient(42rem 30rem at 50% 100%, color-mix(in srgb, var(--cor-acento) 18%, transparent), transparent 70%);
 }
 
-/* Campo de estrelas: dois planos de pontos, feitos só com radial-gradient
-   repetido. Custa zero request e zero JS. */
+/* Campo de estrelas ESTÁTICO: pontos feitos só com radial-gradient repetido.
+   Custa zero request e zero JS.
+
+   É o que a página mostra quando o campo animado não entra em cena — sob
+   `prefers-reduced-motion: reduce`, sem JavaScript, ou em navegador sem canvas.
+   Quando `assets/js/main.js` monta o canvas, ele marca a seção com
+   `.ceu--animado` e este plano sai. Os dois nunca aparecem juntos. */
 .ceu::after {
   content: "";
   position: absolute;
@@ -337,6 +353,25 @@ a {
   to {
     opacity: 0.7;
   }
+}
+
+/* Campo em warp (canvas). Mesma camada do campo estático: fica acima do
+   gradiente cósmico (-2) e abaixo de todo o conteúdo da seção. */
+.ceu__estrelas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Estrela é enfeite: o texto do herói passa por cima dela, então o campo
+     inteiro fica abaixo da opacidade máxima para nunca disputar leitura. */
+  opacity: 0.6;
+}
+
+/* Com o canvas no ar, o campo estático sai — senão seriam dois céus. */
+.ceu--animado::after {
+  display: none;
 }
 
 /* ==========================================================================
@@ -675,15 +710,64 @@ a {
   gap: var(--esp-md);
 }
 
-.rodape__aviso {
-  margin-top: var(--esp-md);
-  max-width: 40rem;
-}
-
 .rodape a {
   min-height: var(--toque);
   display: inline-flex;
   align-items: center;
+}
+
+/* --- Crédito de desenvolvimento e localização --------------------------
+   O símbolo abaixo é a marca de OUTRA empresa e segue o guia dela, não este
+   arquivo: versão reduzida de 2 faíscas (a única autorizada abaixo de 32px),
+   corpo branco sobre fundo escuro, faísca laranja intocada, sem sombra,
+   contorno, rotação ou distorção. Não troque a cor da faísca. */
+.rodape__credito {
+  margin-top: var(--esp-lg);
+  padding-top: var(--esp-md);
+  border-top: var(--borda) solid var(--cor-contorno);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-xs) var(--esp-lg);
+}
+
+.forjadev {
+  display: inline-flex;
+  align-items: center;
+  /* Espaço de proteção do símbolo: nada encosta nele. */
+  gap: var(--esp-sm);
+  color: var(--cor-texto);
+  text-decoration: none;
+}
+
+.forjadev span {
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 120ms ease-out;
+}
+
+.forjadev:hover span {
+  text-decoration-color: currentColor;
+}
+
+.forjadev__icone {
+  flex: none;
+  width: 28px;
+  height: 28px;
+}
+
+.forjadev__corpo {
+  fill: var(--cor-forjadev-corpo);
+}
+
+.forjadev__faisca {
+  fill: var(--cor-forjadev-faisca);
+}
+
+.rodape__local {
+  margin: 0;
 }
 
 /* ==========================================================================

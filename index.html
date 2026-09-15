@@ -9,7 +9,7 @@
       name="description"
       content="Transforme as tarefas de casa em missões com valor em Starcoin. Seu filho cumpre e envia a foto, você aprova e a recompensa entra na carteira dele. Comece grátis."
     />
-    <link rel="canonical" href="https://rodprado128.github.io/dinno-landing/" />
+    <link rel="canonical" href="https://dinnoapp.forjadev.app.br/" />
     <meta name="theme-color" content="#140f26" />
     <meta name="color-scheme" content="dark" />
 
@@ -18,13 +18,13 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Dinno" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:url" content="https://rodprado128.github.io/dinno-landing/" />
+    <meta property="og:url" content="https://dinnoapp.forjadev.app.br/" />
     <meta property="og:title" content="Dinno — a mesada que vira missão espacial" />
     <meta
       property="og:description"
       content="Missões com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
     />
-    <meta property="og:image" content="https://rodprado128.github.io/dinno-landing/assets/img/og-dinno.png" />
+    <meta property="og:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="O mascote do Dinno, um dinossauro astronauta azul, segurando uma moeda Starcoin dourada." />
@@ -34,7 +34,7 @@
       name="twitter:description"
       content="Missões com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
     />
-    <meta name="twitter:image" content="https://rodprado128.github.io/dinno-landing/assets/img/og-dinno.png" />
+    <meta name="twitter:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
 
     <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180" />
@@ -47,6 +47,23 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
+
+    <!-- Dado estruturado: só o que a página mostra de fato. Sem nota, sem
+         preço, sem contagem de usuário — nada disso está escrito aqui. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Dinno",
+        "url": "https://dinnoapp.forjadev.app.br/",
+        "installUrl": "https://dinno-app.vercel.app/",
+        "applicationCategory": "LifestyleApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "pt-BR",
+        "image": "https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png",
+        "description": "Aplicativo de mesada gamificada: o responsável cria missões com valor em Starcoin, a criança cumpre e envia a foto do comprovante, o responsável aprova e a recompensa entra na carteira dela. O pagamento em dinheiro acontece fora do app."
+      }
+    </script>
   </head>
 
   <body>
@@ -487,11 +504,49 @@
           <a href="https://dinno-app.vercel.app/" rel="noopener">Abrir o app</a>
           <span>© <time datetime="2026">2026</time> Dinno</span>
         </div>
-        <p class="rodape__aviso">
-          O Dinno é um projeto em evolução: a marca, o mascote e as telas ainda vão mudar. O que está
-          descrito nesta página é o que funciona hoje.
-        </p>
+
+        <!-- Crédito de desenvolvimento. O símbolo é a marca da ForjaDev e
+             segue o guia dela: versão reduzida de 2 faíscas (a única
+             autorizada abaixo de 32px), corpo branco porque o fundo é escuro,
+             faísca laranja intocada. Sem rotação, sombra ou contorno. -->
+        <div class="rodape__credito">
+          <a class="forjadev" href="https://forjadev.app.br/" rel="noopener">
+            <svg
+              class="forjadev__icone"
+              viewBox="0 0 512 512"
+              width="28"
+              height="28"
+              fill="none"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path
+                class="forjadev__corpo"
+                d="M20.48 162.71 L34.18 137.72 L243.14 69.83 L268.91 81.99 L294.19 159.77 L280.49 184.75 L71.52 252.65 L45.75 240.49 Z"
+              />
+              <path
+                class="forjadev__corpo"
+                d="M140.86 221.14 L205.87 200.01 L272.66 401.63 L269.38 427.09 L222.95 442.17 L205.33 423.51 Z"
+              />
+              <path
+                class="forjadev__faisca"
+                d="M324.70 201.65 L372.23 220.85 L412.93 120.13 L365.40 100.92 Z"
+              />
+              <path
+                class="forjadev__faisca"
+                d="M413.81 161.37 L461.34 180.57 L491.52 105.88 L443.99 86.67 Z"
+              />
+            </svg>
+            <span>Desenvolvido por <strong>ForjaDev</strong></span>
+          </a>
+          <p class="rodape__local">Orgulhosamente feito em Maringá.</p>
+        </div>
       </div>
     </footer>
+
+    <!-- Único JavaScript da página: o campo de estrelas em warp. `defer`
+         porque ele mede as seções já montadas, e a página inteira funciona
+         sem ele — sem JS, o céu volta a ser o campo estático em CSS. -->
+    <script src="assets/js/main.js" defer></script>
   </body>
 </html>
