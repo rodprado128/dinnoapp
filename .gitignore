@@ -1,0 +1,17 @@
+node_modules/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Sobras de otimização de imagem (os scripts rodam FORA deste repo, mas às
+# vezes o arquivo intermediário cai aqui).
+*.tmp
+*.bak
+*-original.*
+*.log
+
+# Nunca, em hipótese alguma.
+.env
+.env.*
+*.pem
+*.key
