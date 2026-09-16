@@ -10,9 +10,8 @@
       content="Você cria a missão, seu filho cumpre e manda a foto, você aprova e o Starcoin cai na carteira dele na hora. Instala como app no celular em 30 segundos. Comece grátis."
     />
     <link rel="canonical" href="https://dinnoapp.forjadev.app.br/" />
-    <meta name="theme-color" content="#140f26" media="(prefers-color-scheme: dark)" />
-    <meta name="theme-color" content="#f6f5ff" media="(prefers-color-scheme: light)" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#140f26" />
+    <meta name="color-scheme" content="dark" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Dinno App" />
@@ -75,8 +74,12 @@
   </head>
 
   <body>
-    <!-- Camada decorativa de fundo. `fixed`, sem interação, atrás de tudo. -->
+    <!-- Camadas decorativas de fundo, as duas `fixed`, sem interação, atrás
+         de tudo. A `.estrelas` é o campo ESTÁTICO: é o que se vê sem
+         JavaScript e sob prefers-reduced-motion. Quando `main.js` monta o
+         canvas em warp, ele marca o <html> com `js-warp` e esta camada sai. -->
     <div class="aurora" aria-hidden="true"></div>
+    <div class="estrelas" aria-hidden="true"></div>
 
     <!-- Todo CTA abre na MESMA aba: a página existe para converter. -->
     <header class="cabecalho">

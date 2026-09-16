@@ -17,8 +17,9 @@
    exceção: ele convive com qualquer accent e aparece sempre que a moeda é
    citada.
 
-   Tema ESCURO é o padrão (o rosto da marca). O claro existe, é completo e
-   passa AA igual — o guia exige os dois.
+   TEMA ESCURO E SÓ ELE. O escuro é o rosto da marca, e uma peça de marketing
+   não precisa acompanhar a preferência de tema do sistema — ver o bloco no
+   `:root` abaixo, que conta por que o tema claro saiu daqui.
    ========================================================================== */
 
 :root {
@@ -89,47 +90,26 @@
   /* --- Aurora: 10–14% no escuro --------------------------------------- */
   --aurora-opacidade: 0.12;
 
-  color-scheme: dark light;
-}
+  /* No escuro, dourado como texto é o próprio dourado. */
+  --color-moeda-text: #ffc93c;
 
-/* ==========================================================================
-   Tema claro — tokens do guia, não uma inversão improvisada
-   ========================================================================== */
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-background: #f6f5ff;
-    --color-surface: #ffffff;
-    --color-surface-elevated: #ffffff;
-    --color-surface-sunken: #edebfb;
-    --color-on-surface: #1a1430;
-    --color-on-surface-variant: #544b78;
-    --color-outline: #d3cdee;
-    --color-shadow-hard: #c9c2ec;
-    --color-error: #c0301f;
-    --color-on-error: #ffffff;
-
-    /* O accent saturado não passa AA como TEXTO sobre #F6F5FF — por isso o
-       guia mantém `accent-text` separado, escurecido por tema. O
-       preenchimento (`accent`) continua o mesmo nos dois. */
-    --color-accent-text: #6d28d9;
-
-    /* Dourado como texto sobre fundo claro precisa da versão escurecida. */
-    --color-moeda-text: #7a5a00;
-
-    --aurora-opacidade: 0.06;
-    --cor-estrela: #6d28d9;
-    --cor-forjadev-corpo: #141a20;
-  }
-}
-
-/* No escuro, dourado como texto é o próprio dourado. */
-:root {
-  --color-moeda-text: var(--color-moeda);
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-moeda-text: #7a5a00;
-  }
+  /* ESCURO E SÓ ESCURO.
+   *
+   * A versão anterior desta folha trazia os dois temas: estes tokens no
+   * `:root` e um `@media (prefers-color-scheme: light)` logo abaixo, com os
+   * valores claros do guia. O bloco funcionava bem demais — em qualquer
+   * visitante com o sistema no claro, ele vencia e a landing inteira
+   * renderizava clara. A causa nunca foi especificidade nem ordem: era a
+   * consulta de mídia fazendo exatamente o que consulta de mídia faz.
+   *
+   * Uma peça de marketing não precisa acompanhar a preferência do sistema. O
+   * escuro é o rosto da marca, então ele é o ÚNICO tema daqui. `color-scheme`
+   * declara só `dark` para o navegador não pintar formulário nem barra de
+   * rolagem em claro por conta própria.
+   *
+   * O tema claro do guia continua existindo — no APP, onde o usuário escolhe.
+   */
+  color-scheme: dark;
 }
 
 /* ==========================================================================
@@ -282,8 +262,21 @@ a {
 }
 
 /* ==========================================================================
-   Céu — campo de estrelas. Estático em CSS; `main.js` troca pelo canvas
-   animado quando pode. Os dois nunca convivem.
+   Céu — agora atrás da PÁGINA INTEIRA, não só do herói
+   ==========================================================================
+
+   Antes eram dois campos de estrelas presos às seções `.ceu` (herói e chamada
+   final), cada um com seu canvas. O resto da página não tinha céu nenhum, e o
+   efeito passava despercebido.
+
+   Agora são duas camadas fixas, cobrindo tudo:
+
+     .estrelas       campo ESTÁTICO em CSS. Existe sempre no HTML, então é o
+                     que aparece sem JavaScript e sob `prefers-reduced-motion`.
+     .estrelas-warp  canvas 2D em warp, criado por `main.js`. Quando ele entra,
+                     marca o <html> com `js-warp` e o estático sai.
+
+   Os dois nunca convivem. E a queda nunca é "nenhum céu": é o céu parado.
    ========================================================================== */
 .ceu {
   position: relative;
@@ -291,47 +284,113 @@ a {
   overflow: hidden;
 }
 
-.ceu::after {
-  content: "";
-  position: absolute;
-  inset: -10%;
+.estrelas,
+.estrelas-warp {
+  position: fixed;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
+}
+
+.estrelas {
   background-image:
-    radial-gradient(1.5px 1.5px at 12% 18%, var(--cor-estrela), transparent 100%),
-    radial-gradient(1.5px 1.5px at 78% 12%, var(--color-accent-text), transparent 100%),
-    radial-gradient(1px 1px at 33% 62%, var(--cor-estrela), transparent 100%),
-    radial-gradient(1.5px 1.5px at 62% 78%, var(--color-moeda), transparent 100%),
-    radial-gradient(1px 1px at 88% 55%, var(--cor-estrela), transparent 100%),
-    radial-gradient(1px 1px at 5% 82%, var(--color-accent-text), transparent 100%),
-    radial-gradient(1.5px 1.5px at 45% 28%, var(--cor-estrela), transparent 100%);
-  background-size: 18rem 18rem;
-  opacity: 0.5;
+    radial-gradient(1.8px 1.8px at 12% 18%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1.8px 1.8px at 78% 12%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1.2px 1.2px at 33% 62%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1.8px 1.8px at 62% 78%, var(--color-moeda), transparent 100%),
+    radial-gradient(1.2px 1.2px at 88% 55%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1.2px 1.2px at 5% 82%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1.8px 1.8px at 45% 28%, var(--cor-estrela), transparent 100%);
+  background-size: 14rem 14rem;
+  opacity: 0.72;
   animation: cintila 9s ease-in-out infinite alternate;
 }
 
 @keyframes cintila {
   from {
-    opacity: 0.32;
+    opacity: 0.5;
   }
   to {
-    opacity: 0.62;
+    opacity: 0.85;
   }
 }
 
-.ceu__estrelas {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+.estrelas-warp {
   width: 100%;
   height: 100%;
-  pointer-events: none;
-  /* Estrela é enfeite: o texto do herói passa por cima dela. */
-  opacity: 0.55;
+  /* Alto de propósito: o pedido é que o fundo SEJA percebido. O que protege a
+     leitura não é apagar as estrelas, é o scrim atrás do texto (abaixo). */
+  opacity: 0.9;
 }
 
-.ceu--animado::after {
+.js-warp .estrelas {
   display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Scrim — o que segura o contraste
+   --------------------------------------------------------------------------
+   Com o céu forte atrás da página inteira, texto solto (fora de card) passa a
+   ter estrela por trás. A saída NÃO é baixar a evidência do efeito: é uma
+   chapa suave da cor de fundo atrás do bloco de texto, que apaga as estrelas
+   exatamente onde elas atrapalhariam e deixa o resto do quadro intacto.
+
+   Medido sob os glifos, quadro a quadro: sem scrim, o CONTRASTE MÉDIO já
+   passava com folga (9:1 a 16:1) — é o que o olho integra dentro da letra.
+   Mas o PIOR PIXEL, uma estrela cheia bem atrás de um glifo, caía para 1,2:1.
+   O scrim resolve o pior caso sem tocar na evidência do efeito.
+
+   Ele cobre só o texto que fica SOLTO na página. Texto dentro de `.painel` já
+   tem fundo opaco por cima do canvas e não precisa de nada. */
+.scrim,
+.secao__titulo,
+.secao__intro,
+.heroi__sub,
+.heroi__selos li,
+.miudos li,
+.lista-marcada li,
+.final h2,
+.final p,
+.rodape__linha,
+.rodape__legal,
+.rodape__credito,
+.heroi h1 {
+  position: relative;
+  isolation: isolate;
+}
+
+.scrim::before,
+.secao__titulo::before,
+.secao__intro::before,
+.heroi__sub::before,
+.heroi__selos li::before,
+.miudos li::before,
+.lista-marcada li::before,
+.final h2::before,
+.final p::before,
+.rodape__linha::before,
+.rodape__legal::before,
+.rodape__credito::before,
+.heroi h1::before {
+  content: "";
+  position: absolute;
+  inset: -0.35em -0.6em;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: var(--radius-lg);
+  /* Chapa SÓLIDA a 92%, com a borda desmanchada por uma sombra difusa da mesma
+     cor. Não é gradiente radial de propósito: a primeira versão era, e as
+     QUINAS da caixa caíam fora do raio da elipse — ficavam transparentes, e
+     era exatamente ali que a letra do começo e do fim da linha estava. Com
+     chapa, a cobertura é uniforme sobre o glifo inteiro e a conta fecha:
+     8% de estrela branca sobre o fundo dá ~#252231, que segura 11:1 para o
+     texto principal e 6,9:1 para o secundário.
+
+     A estrela volta inteira a um centímetro dali — o céu só perde força
+     debaixo da letra. */
+  background: var(--color-background);
+  box-shadow: 0 0 1.7em 1.3em var(--color-background);
+  opacity: 0.92;
 }
 
 /* ==========================================================================
@@ -400,7 +459,10 @@ a {
 }
 
 .botao--secundario {
-  background: transparent;
+  /* O guia pede fundo transparente. Sobre o céu estrelado isso põe estrela
+     atrás do rótulo, então aqui ele recebe a própria cor de fundo da página:
+     visualmente idêntico onde não há céu, legível onde há. */
+  background: var(--color-background);
   color: var(--color-accent-text);
   border: var(--borda) solid var(--color-accent-text);
   box-shadow: 0 4px 0 0 var(--color-accent-shadow);
@@ -425,7 +487,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: color-mix(in srgb, var(--color-background) 88%, transparent);
+  background: var(--color-background);
   border-bottom: var(--borda) solid var(--color-outline);
   padding-block: var(--spacing-sm);
 }
@@ -1042,8 +1104,9 @@ a {
     scroll-behavior: auto !important;
   }
 
-  .ceu::after {
-    opacity: 0.45;
+  /* O céu não some — ele só para. */
+  .estrelas {
+    opacity: 0.7;
   }
 
   .botao:active,

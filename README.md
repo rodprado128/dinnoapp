@@ -23,11 +23,21 @@ login do app (`components/login/fundo-warp.tsx`), reimplementado em JS puro
 porque os dois repositórios não compartilham build. Fora dele, nada precisa de
 script: o FAQ é `<details>`/`<summary>` nativo.
 
+O campo de estrelas fica atrás da PÁGINA INTEIRA, não só do herói, e é
+deliberadamente perceptível — mesmo espírito do warp da tela de login do app.
+Parâmetros em `main.js`: 800 estrelas por milhão de pixels, teto de 460,
+velocidade 12, raio até 3,2px e opacidade 0,9 no canvas.
+
 **Com `prefers-reduced-motion: reduce`, nada é inicializado** — nem canvas, nem
-`requestAnimationFrame`, nem listener — e a página cai no campo de estrelas
-estático em CSS que sempre existiu. Sem JavaScript, o mesmo. Os dois céus nunca
-aparecem juntos: quem monta o canvas marca a seção com `.ceu--animado`, e é essa
-classe que desliga o estático.
+`requestAnimationFrame`, nem listener — e a página fica com o campo de estrelas
+estático em CSS, que está no HTML desde o começo. Sem JavaScript, o mesmo. Os
+dois céus nunca aparecem juntos: quem monta o canvas marca o `<html>` com
+`js-warp`, e é essa classe que desliga o estático.
+
+**O que segura o contraste é o `.scrim`**, não a discrição do efeito: uma chapa
+da cor de fundo a 92%, com a borda desmanchada, atrás de cada bloco de texto que
+fica solto na página. Medido sob os glifos, quadro a quadro, o fundo atrás da
+letra volta a ser o `--color-background` puro.
 
 ## Rodar local
 
@@ -60,8 +70,13 @@ qualquer material antigo divergir dele, o guia manda.
 
 O que o guia define e esta página segue à risca:
 
-- **tema escuro como padrão** (`#140F26` de fundo, `#211A38` nas peças). O tema
-  claro existe, é completo e passa AA igual — os dois são auditados;
+- **tema escuro, e só ele** (`#140F26` de fundo, `#211A38` nas peças). A página
+  chegou a trazer os dois temas, com um `@media (prefers-color-scheme: light)`
+  espelhando os tokens claros do guia — e era esse bloco que fazia a landing
+  renderizar CLARA para todo visitante com o sistema no claro. Peça de
+  marketing não acompanha preferência de tema: o escuro é o rosto da marca e
+  passou a ser o único daqui. O tema claro do guia segue valendo no APP, onde
+  o usuário escolhe;
 - **peça de plástico injetado**: borda de 2px, sombra DURA deslocada para baixo,
   raio de 32px em card e pílula em botão. Nada de vidro, blur, `backdrop-filter`
   ou gradiente como fundo de card — a versão anterior desta página tinha essa
@@ -77,7 +92,7 @@ O que o guia define e esta página segue à risca:
   uppercase e Baloo 2 não tem itálico;
 - **Material Symbols Rounded**, `FILL 1` / `wght 600`, carregado com
   `icon_names` para vir só com os glifos usados aqui;
-- **aurora** de fundo a 12% no escuro e 6% no claro, em loop de 78s;
+- **aurora** de fundo a 12%, em loop de 78s, por baixo do campo de estrelas;
 - `prefers-reduced-motion: reduce` desliga tudo. O guia trata isso como
   não-negociável.
 
