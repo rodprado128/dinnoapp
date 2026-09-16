@@ -1,102 +1,140 @@
 /* ==========================================================================
-   Dinno — landing de conversão
+   Dinno App — landing de conversão
    ==========================================================================
 
-   A MARCA INTEIRA MORA NO :root ABAIXO.
+   FONTE DE VERDADE VISUAL: `BRANDING_DINNO.md`. Todo token aqui é cópia literal
+   do guia — não há hex inventado nesta folha, e onde um material antigo
+   divergir, o guia manda.
 
-   "Dinno", o mascote e esta paleta são TEMPORÁRIOS: um rebranding total está
-   previsto. Por isso não existe um único hex solto no meio das regras — tudo
-   passa por var(). Trocar a identidade é reescrever um bloco, não caçar cor
-   pelo arquivo.
+   O conceito é "brinquedo de plástico injetado no espaço": peça sólida, borda
+   de 2px, sombra DURA deslocada para baixo, raio generoso. Nada de vidro,
+   blur, backdrop-filter ou gradiente como fundo de card — a versão anterior
+   desta página tinha essa estética e ela saiu por inteiro.
 
-   As cores não foram inventadas: são os tokens reais do app
-   (`app/globals.css`, tema escuro) cruzados com as cores dominantes amostradas
-   das próprias imagens do mascote — azul #0090e0, lima #90ff50, roxo #7050ff.
-   A landing é mais vibrante que o app, mas é o mesmo produto.
+   ACCENT DA PEÇA: `missoes` (#9A6BFF). Uma peça = uma seção = um accent,
+   conforme o guia. A missão é a metáfora central do produto, então é o accent
+   que a landing inteira usa. O dourado do Starcoin (#FFC93C) é a única
+   exceção: ele convive com qualquer accent e aparece sempre que a moeda é
+   citada.
+
+   Tema ESCURO é o padrão (o rosto da marca). O claro existe, é completo e
+   passa AA igual — o guia exige os dois.
    ========================================================================== */
 
 :root {
-  /* --- Paleta base (tema escuro do app) --------------------------------- */
-  --cor-fundo: #140f26;
-  --cor-fundo-alt: #1a1233;
-  --cor-superficie: #211a38;
-  --cor-superficie-alta: #2c2350;
-  --cor-superficie-funda: #0e0a1c;
-  --cor-texto: #f2edff;
-  --cor-texto-suave: #cbc2e4;
-  --cor-contorno: #3d3363;
-  --cor-sombra-dura: #0a0716;
+  /* --- Superfície — tema escuro (padrão da marca) ----------------------- */
+  --color-background: #140f26;
+  --color-surface: #211a38;
+  --color-surface-elevated: #2c2350;
+  --color-surface-sunken: #0e0a1c;
+  --color-on-surface: #f2edff;
+  --color-on-surface-variant: #b9afd6;
+  --color-outline: #3d3363;
+  --color-shadow-hard: #0a0716;
+  --color-error: #ff6b6b;
+  --color-on-error: #2b0505;
+  --color-success: #6fe9a9;
 
-  /* --- Acento da marca (roxo) -------------------------------------------
-     `-tinta` é a cor que vai EM CIMA do preenchimento saturado; `-texto` é o
-     roxo usado como texto solto sobre o fundo escuro, que precisa ser mais
-     claro para passar AA. Mesma separação do app. */
-  --cor-acento: #9a6bff;
-  --cor-acento-tinta: #1e0b45;
-  --cor-acento-sombra: #5c33c4;
-  --cor-acento-texto: #d0bcff;
+  /* --- Moeda — Starcoin, livre em qualquer seção ------------------------ */
+  --color-moeda: #ffc93c;
+  --color-moeda-on: #2a1f00;
+  --color-moeda-shadow: #c4900a;
 
-  /* --- Starcoin (dourado) ----------------------------------------------- */
-  --cor-moeda: #ffc93c;
-  --cor-moeda-tinta: #2a1f00;
-  --cor-moeda-sombra: #c4900a;
+  /* --- Accent da peça: seção `missoes` ---------------------------------- */
+  --color-accent: #9a6bff;
+  --color-accent-on: #1e0b45;
+  --color-accent-shadow: #5c33c4;
+  --color-accent-text: #d0bcff;
 
-  /* --- Lima do letreiro e dos espinhos do mascote ------------------------ */
-  --cor-lima: #a6f03c;
-  --cor-lima-tinta: #14240a;
-  --cor-lima-sombra: #6daf15;
+  /* --- Wordmark: quatro fills FIXOS, não seguem o accent ---------------- */
+  --wm-dinno: #88ff55;
+  --wm-a: #0088ff;
+  --wm-p1: #6e52ff;
+  --wm-p2: #c1f120;
 
-  /* --- Ciano do traje / órbita ------------------------------------------- */
-  --cor-ciano: #35e0e8;
-  --cor-sucesso: #6fe9a9;
+  /* --- Estrelas do campo em warp (assets/js/main.js) -------------------- */
+  --cor-estrela: #f2edff;
 
-  /* Cor das estrelas do campo em warp (`assets/js/main.js`). Fica aqui, e não
-     no JS, para o rebranding continuar sendo a troca de um bloco só. */
-  --cor-estrela: #e2dcff;
-
-  /* --- Laranja da faísca da ForjaDev, no crédito do rodapé ---------------
-     NÃO é cor da marca Dinno: é a cor da marca de quem desenvolve, e o guia
-     da ForjaDev proíbe trocá-la. Por isso mora num token à parte, fora da
-     paleta que um rebranding do Dinno reescreveria. */
+  /* --- Marca de quem desenvolve. NÃO é paleta do Dinno: um rebranding do
+         Dinno não reescreve estas duas. ---------------------------------- */
   --cor-forjadev-corpo: #ffffff;
   --cor-forjadev-faisca: #ff6a00;
 
-  /* --- Forma: peça de plástico injetado, gorda e com espessura ----------- */
-  --raio: 0.75rem;
-  --raio-lg: 1rem;
-  --raio-xl: 1.5rem;
-  --raio-2xl: 2rem;
-  --raio-pill: 9999px;
+  /* --- Forma ------------------------------------------------------------ */
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
+  --radius-full: 9999px;
   --borda: 2px;
-  --sombra-peca: 0 5px 0 0 var(--cor-sombra-dura);
-  --sombra-peca-alta: 0 8px 0 0 var(--cor-sombra-dura), 0 16px 32px -8px rgb(0 0 0 / 0.45);
+  --sombra-painel: 0 5px 0 0 var(--color-shadow-hard);
+  --sombra-painel-elevado: 0 8px 0 0 var(--color-shadow-hard), 0 16px 32px -8px rgb(0 0 0 / 0.45);
+  --sombra-botao: 0 4px 0 0 var(--color-accent-shadow);
 
-  /* --- Tipografia -------------------------------------------------------- */
-  --fonte: "Baloo 2", ui-rounded, "Trebuchet MS", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --peso-normal: 500;
-  --peso-forte: 700;
-  --peso-titulo: 800;
+  /* --- Tipografia — Baloo 2, sem itálico, sentence case ----------------- */
+  --fonte: "Baloo 2", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* --- Ritmo ------------------------------------------------------------- */
-  --esp-xs: 0.25rem;
-  --esp-sm: 0.5rem;
-  --esp-md: 1rem;
-  --esp-lg: 1.5rem;
-  --esp-xl: 2.5rem;
-  --esp-2xl: 4rem;
-  --gutter: 1.25rem;
+  /* --- Ritmo ------------------------------------------------------------ */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 56px;
+  --gutter: 20px;
   --largura-max: 68rem;
 
-  /* --- Alvo de toque mínimo (WCAG 2.5.5) --------------------------------- */
+  /* --- Alvo de toque mínimo (guia: 44px) -------------------------------- */
   --toque: 44px;
 
-  color-scheme: dark;
+  /* --- Aurora: 10–14% no escuro --------------------------------------- */
+  --aurora-opacidade: 0.12;
+
+  color-scheme: dark light;
+}
+
+/* ==========================================================================
+   Tema claro — tokens do guia, não uma inversão improvisada
+   ========================================================================== */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-background: #f6f5ff;
+    --color-surface: #ffffff;
+    --color-surface-elevated: #ffffff;
+    --color-surface-sunken: #edebfb;
+    --color-on-surface: #1a1430;
+    --color-on-surface-variant: #544b78;
+    --color-outline: #d3cdee;
+    --color-shadow-hard: #c9c2ec;
+    --color-error: #c0301f;
+    --color-on-error: #ffffff;
+
+    /* O accent saturado não passa AA como TEXTO sobre #F6F5FF — por isso o
+       guia mantém `accent-text` separado, escurecido por tema. O
+       preenchimento (`accent`) continua o mesmo nos dois. */
+    --color-accent-text: #6d28d9;
+
+    /* Dourado como texto sobre fundo claro precisa da versão escurecida. */
+    --color-moeda-text: #7a5a00;
+
+    --aurora-opacidade: 0.06;
+    --cor-estrela: #6d28d9;
+    --cor-forjadev-corpo: #141a20;
+  }
+}
+
+/* No escuro, dourado como texto é o próprio dourado. */
+:root {
+  --color-moeda-text: var(--color-moeda);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-moeda-text: #7a5a00;
+  }
 }
 
 /* ==========================================================================
    Reset curto
    ========================================================================== */
-
 *,
 *::before,
 *::after {
@@ -105,19 +143,18 @@
 
 html {
   scroll-behavior: smooth;
-  /* O cabeçalho é sticky: sem isto a âncora encosta o título embaixo dele. */
   scroll-padding-top: 5.5rem;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
   margin: 0;
-  background: var(--cor-fundo);
-  color: var(--cor-texto);
+  background: var(--color-background);
+  color: var(--color-on-surface);
   font-family: var(--fonte);
-  font-weight: var(--peso-normal);
-  font-size: 1rem;
-  line-height: 1.6;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
   overflow-x: hidden;
 }
 
@@ -127,14 +164,34 @@ img {
   display: block;
 }
 
+/* Escala tipográfica do guia. Peso 800 nos displays, 700 nos títulos,
+   500 no corpo, 600 no label. Sentence case em tudo — a marca não tem
+   uppercase. */
 h1,
 h2,
 h3 {
   margin: 0;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  font-weight: var(--peso-titulo);
   text-wrap: balance;
+}
+
+h1 {
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
 }
 
 p {
@@ -143,154 +200,249 @@ p {
 }
 
 a {
-  color: var(--cor-acento-texto);
+  color: var(--color-accent-text);
+  text-underline-offset: 3px;
 }
 
-/* Foco visível em TUDO que recebe foco, nunca só no hover. */
 :focus-visible {
-  outline: 3px solid var(--cor-texto);
-  outline-offset: 3px;
-  border-radius: var(--raio-xs, 4px);
+  outline: 3px solid var(--color-on-surface);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 /* ==========================================================================
-   Esqueleto
+   Ícones — Material Symbols Rounded, FILL 1 / wght 600 (guia)
    ========================================================================== */
+.material-symbols-rounded {
+  font-family: "Material Symbols Rounded";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+  font-size: 24px;
+  display: inline-block;
+  vertical-align: middle;
+}
 
+/* ==========================================================================
+   Envelope e ritmo de seção
+   ========================================================================== */
 .envelope {
   width: 100%;
   max-width: var(--largura-max);
-  margin-inline: auto;
-  /* Gutter lateral de no mínimo 20px em qualquer largura. */
+  margin: 0 auto;
   padding-inline: var(--gutter);
 }
 
 .secao {
-  padding-block: var(--esp-xl);
-}
-
-.secao--alt {
-  background: var(--cor-fundo-alt);
-  border-block: var(--borda) solid var(--cor-contorno);
+  padding-block: var(--spacing-2xl);
+  position: relative;
 }
 
 .secao__titulo {
-  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem);
-  margin-bottom: var(--esp-sm);
+  margin-bottom: var(--spacing-sm);
 }
 
 .secao__intro {
-  color: var(--cor-texto-suave);
-  font-size: 1.0625rem;
-  max-width: 44rem;
-  margin-bottom: var(--esp-lg);
-}
-
-.etiqueta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--esp-xs);
-  font-size: 0.8125rem;
-  font-weight: var(--peso-forte);
-  color: var(--cor-lima);
-  background: color-mix(in srgb, var(--cor-lima) 14%, transparent);
-  border: var(--borda) solid color-mix(in srgb, var(--cor-lima) 45%, transparent);
-  border-radius: var(--raio-pill);
-  padding: 0.25rem 0.75rem;
-  margin-bottom: var(--esp-md);
+  color: var(--color-on-surface-variant);
+  font-size: 18px;
+  line-height: 26px;
+  max-width: 46rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 /* ==========================================================================
-   Botões — peça sólida que afunda ao apertar (mesma mecânica do app)
+   Aurora — a única animação que não responde a uma ação do usuário
    ========================================================================== */
+.aurora {
+  position: fixed;
+  inset: -10%;
+  z-index: -2;
+  pointer-events: none;
+  opacity: var(--aurora-opacidade);
+  background:
+    radial-gradient(38rem 38rem at 18% 12%, var(--color-accent), transparent 65%),
+    radial-gradient(32rem 32rem at 82% 28%, var(--color-moeda), transparent 62%),
+    radial-gradient(44rem 44rem at 50% 96%, var(--color-accent), transparent 68%);
+  animation: aurora-deriva 78s ease-in-out infinite alternate;
+}
 
+@keyframes aurora-deriva {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(2%, 2%, 0) scale(1.06);
+  }
+}
+
+/* ==========================================================================
+   Céu — campo de estrelas. Estático em CSS; `main.js` troca pelo canvas
+   animado quando pode. Os dois nunca convivem.
+   ========================================================================== */
+.ceu {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.ceu::after {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1.5px 1.5px at 78% 12%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1px 1px at 33% 62%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1.5px 1.5px at 62% 78%, var(--color-moeda), transparent 100%),
+    radial-gradient(1px 1px at 88% 55%, var(--cor-estrela), transparent 100%),
+    radial-gradient(1px 1px at 5% 82%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 28%, var(--cor-estrela), transparent 100%);
+  background-size: 18rem 18rem;
+  opacity: 0.5;
+  animation: cintila 9s ease-in-out infinite alternate;
+}
+
+@keyframes cintila {
+  from {
+    opacity: 0.32;
+  }
+  to {
+    opacity: 0.62;
+  }
+}
+
+.ceu__estrelas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  /* Estrela é enfeite: o texto do herói passa por cima dela. */
+  opacity: 0.55;
+}
+
+.ceu--animado::after {
+  display: none;
+}
+
+/* ==========================================================================
+   Peças sólidas — borda 2px + sombra dura. A sombra É a espessura.
+   ========================================================================== */
+.painel {
+  background: var(--color-surface);
+  border: var(--borda) solid var(--color-outline);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--sombra-painel);
+}
+
+.painel-elevado {
+  background: var(--color-surface-elevated);
+  border: var(--borda) solid var(--color-outline);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--sombra-painel-elevado);
+}
+
+.painel-accent {
+  border-color: var(--color-accent-shadow);
+}
+
+.painel-moeda {
+  border-color: var(--color-moeda-shadow);
+}
+
+/* Press 3D do guia: translateY(3px) scale(.985) em 90ms. */
+.pressavel {
+  transition: transform 90ms ease-out, box-shadow 90ms ease-out;
+}
+
+.pressavel:active {
+  transform: translateY(3px) scale(0.985);
+}
+
+/* ==========================================================================
+   Botões — pílula, mesma mecânica do app
+   ========================================================================== */
 .botao {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--esp-sm);
+  gap: var(--spacing-sm);
   min-height: var(--toque);
-  min-width: var(--toque);
-  padding: 0.625rem 1.5rem;
-  border-radius: var(--raio-pill);
-  font-family: inherit;
-  font-size: 1rem;
-  font-weight: var(--peso-forte);
+  padding: 10px var(--spacing-lg);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   transition: transform 90ms ease-out, box-shadow 90ms ease-out;
 }
 
-.botao:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 0 currentColor;
-}
-
 .botao--principal {
-  background: var(--cor-lima);
-  color: var(--cor-lima-tinta);
-  border: var(--borda) solid var(--cor-lima-sombra);
-  box-shadow: 0 4px 0 0 var(--cor-lima-sombra);
+  background: var(--color-accent);
+  color: var(--color-accent-on);
+  border: var(--borda) solid var(--color-accent-shadow);
+  box-shadow: var(--sombra-botao);
 }
 
 .botao--principal:active {
-  box-shadow: 0 0 0 0 var(--cor-lima-sombra);
+  transform: translateY(4px);
+  box-shadow: 0 0 0 0 var(--color-accent-shadow);
 }
 
 .botao--secundario {
   background: transparent;
-  color: var(--cor-acento-texto);
-  border: var(--borda) solid var(--cor-acento-texto);
-  box-shadow: 0 4px 0 0 var(--cor-acento-sombra);
+  color: var(--color-accent-text);
+  border: var(--borda) solid var(--color-accent-text);
+  box-shadow: 0 4px 0 0 var(--color-accent-shadow);
 }
 
 .botao--secundario:active {
-  box-shadow: 0 0 0 0 var(--cor-acento-sombra);
+  transform: translateY(4px);
+  box-shadow: 0 0 0 0 var(--color-accent-shadow);
 }
 
 .botao--grande {
-  font-size: 1.125rem;
-  padding: 0.875rem 2rem;
+  font-size: 18px;
+  line-height: 26px;
+  padding: 14px var(--spacing-xl);
+  min-height: 56px;
 }
 
 /* ==========================================================================
    Cabeçalho
    ========================================================================== */
-
-/* Fundo OPACO, não translúcido.
-   A barra é sticky e não usa `backdrop-filter` (nem o app usa). Com 94% de
-   opacidade, a linha de texto que passava por baixo aparecia atrás do
-   logotipo e do CTA. Mesma regra do drawer do app: o que fica por cima tem de
-   ganhar do que está embaixo. */
 .cabecalho {
   position: sticky;
   top: 0;
-  z-index: 50;
-  background: var(--cor-fundo);
-  border-bottom: var(--borda) solid var(--cor-contorno);
-  /* A barra encosta no topo: em telas com entalhe, o recorte come o conteúdo. */
-  padding-top: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: color-mix(in srgb, var(--color-background) 88%, transparent);
+  border-bottom: var(--borda) solid var(--color-outline);
+  padding-block: var(--spacing-sm);
 }
 
 .cabecalho__linha {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--esp-md);
-  min-height: 4rem;
-  padding-block: var(--esp-sm);
+  gap: var(--spacing-md);
 }
 
 .marca {
   display: inline-flex;
   align-items: center;
-  gap: var(--esp-sm);
-  min-height: var(--toque);
+  gap: var(--spacing-sm);
   text-decoration: none;
-  color: var(--cor-texto);
-  font-size: 1.375rem;
-  font-weight: var(--peso-titulo);
-  letter-spacing: -0.02em;
+  min-height: var(--toque);
 }
 
 .marca img {
@@ -299,267 +451,242 @@ a {
   object-fit: contain;
 }
 
-/* ==========================================================================
-   Fundo cósmico — gradientes + estrelas, tudo em CSS. Nenhuma imagem extra.
-   ========================================================================== */
-
-.ceu {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
+/* Wordmark: quatro fills fixos. É a única peça da marca que não troca de cor
+   por contexto — nem pelo accent, nem pelo tema. */
+.wordmark {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-size: 22px;
+  white-space: nowrap;
 }
 
-.ceu::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-  background:
-    radial-gradient(48rem 34rem at 15% 0%, color-mix(in srgb, var(--cor-acento) 26%, transparent), transparent 65%),
-    radial-gradient(38rem 32rem at 88% 22%, color-mix(in srgb, var(--cor-ciano) 16%, transparent), transparent 62%),
-    radial-gradient(42rem 30rem at 50% 100%, color-mix(in srgb, var(--cor-acento) 18%, transparent), transparent 70%);
+.wm-d {
+  color: var(--wm-dinno);
 }
-
-/* Campo de estrelas ESTÁTICO: pontos feitos só com radial-gradient repetido.
-   Custa zero request e zero JS.
-
-   É o que a página mostra quando o campo animado não entra em cena — sob
-   `prefers-reduced-motion: reduce`, sem JavaScript, ou em navegador sem canvas.
-   Quando `assets/js/main.js` monta o canvas, ele marca a seção com
-   `.ceu--animado` e este plano sai. Os dois nunca aparecem juntos. */
-.ceu::after {
-  content: "";
-  position: absolute;
-  inset: -10%;
-  z-index: -1;
-  pointer-events: none;
-  background-image:
-    radial-gradient(1.5px 1.5px at 12% 18%, var(--cor-texto-suave), transparent 100%),
-    radial-gradient(1.5px 1.5px at 78% 12%, var(--cor-lima), transparent 100%),
-    radial-gradient(1px 1px at 33% 62%, var(--cor-texto), transparent 100%),
-    radial-gradient(1.5px 1.5px at 62% 78%, var(--cor-ciano), transparent 100%),
-    radial-gradient(1px 1px at 88% 55%, var(--cor-moeda), transparent 100%),
-    radial-gradient(1px 1px at 5% 82%, var(--cor-texto-suave), transparent 100%),
-    radial-gradient(1.5px 1.5px at 45% 28%, var(--cor-texto), transparent 100%);
-  background-size: 18rem 18rem;
-  opacity: 0.55;
-  animation: cintila 9s ease-in-out infinite alternate;
+.wm-a {
+  color: var(--wm-a);
 }
-
-@keyframes cintila {
-  from {
-    opacity: 0.35;
-  }
-  to {
-    opacity: 0.7;
-  }
+.wm-p1 {
+  color: var(--wm-p1);
 }
-
-/* Campo em warp (canvas). Mesma camada do campo estático: fica acima do
-   gradiente cósmico (-2) e abaixo de todo o conteúdo da seção. */
-.ceu__estrelas {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  /* Estrela é enfeite: o texto do herói passa por cima dela, então o campo
-     inteiro fica abaixo da opacidade máxima para nunca disputar leitura. */
-  opacity: 0.6;
-}
-
-/* Com o canvas no ar, o campo estático sai — senão seriam dois céus. */
-.ceu--animado::after {
-  display: none;
+.wm-p2 {
+  color: var(--wm-p2);
 }
 
 /* ==========================================================================
    Herói
    ========================================================================== */
-
 .heroi {
-  padding-block: var(--esp-xl) var(--esp-2xl);
+  padding-block: var(--spacing-2xl) var(--spacing-2xl);
 }
 
 .heroi__grade {
   display: grid;
-  gap: var(--esp-xl);
+  gap: var(--spacing-xl);
   align-items: center;
 }
 
-.heroi h1 {
-  font-size: clamp(2.25rem, 1.4rem + 3.8vw, 3.75rem);
-  margin-bottom: var(--esp-md);
-}
-
-.heroi h1 em {
-  font-style: normal;
-  color: var(--cor-lima);
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-accent-shadow);
+  background: color-mix(in srgb, var(--color-accent) 15%, var(--color-surface));
+  color: var(--color-accent-text);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  padding: 6px 14px;
+  margin-bottom: var(--spacing-md);
 }
 
 .heroi__sub {
-  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem);
-  color: var(--cor-texto-suave);
+  color: var(--color-on-surface-variant);
+  font-size: 18px;
+  line-height: 26px;
+  margin-top: var(--spacing-md);
   max-width: 34rem;
-  margin-bottom: var(--esp-lg);
 }
 
-/* No celular os dois CTAs ocupam a linha inteira e ficam do MESMO tamanho:
-   empilhados com larguras diferentes, o secundário parecia mais importante que
-   o primário só por ser mais largo. */
 .heroi__acoes {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: var(--esp-md);
-  margin-bottom: var(--esp-lg);
-}
-
-@media (min-width: 480px) {
-  .heroi__acoes {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-  }
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
 }
 
 .heroi__selos {
+  list-style: none;
+  padding: 0;
+  margin: var(--spacing-lg) 0 0;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--esp-sm) var(--esp-lg);
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 0.9375rem;
-  color: var(--cor-texto-suave);
+  gap: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
 }
 
 .heroi__selos li {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--esp-xs);
+  gap: var(--spacing-xs);
+}
+
+.heroi__selos .material-symbols-rounded {
+  font-size: 18px;
+  color: var(--color-accent-text);
 }
 
 .heroi__arte {
   justify-self: center;
   max-width: 26rem;
   width: 100%;
-  filter: drop-shadow(0 18px 36px rgb(0 0 0 / 0.5));
 }
 
 /* ==========================================================================
-   Cartões
+   Prova social — três números, estáticos
    ========================================================================== */
-
-.peca {
-  background: var(--cor-superficie);
-  border: var(--borda) solid var(--cor-contorno);
-  border-radius: var(--raio-2xl);
-  box-shadow: var(--sombra-peca);
-  padding: var(--esp-lg);
+.numeros {
+  display: grid;
+  gap: var(--spacing-md);
+  grid-template-columns: 1fr;
 }
 
+.numero {
+  padding: var(--spacing-lg);
+  text-align: center;
+}
+
+.numero__valor {
+  display: block;
+  font-size: 40px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  color: var(--color-accent-text);
+}
+
+.numero--moeda .numero__valor {
+  color: var(--color-moeda-text);
+}
+
+.numero__rotulo {
+  display: block;
+  margin-top: var(--spacing-xs);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.numero .material-symbols-rounded {
+  font-size: 32px;
+  color: var(--color-accent-text);
+  margin-bottom: var(--spacing-xs);
+}
+
+.numero--moeda .material-symbols-rounded {
+  color: var(--color-moeda);
+}
+
+/* ==========================================================================
+   Grades de card
+   ========================================================================== */
 .grade {
   display: grid;
-  gap: var(--esp-md);
+  gap: var(--spacing-md);
+  grid-template-columns: 1fr;
+}
+
+.peca {
+  padding: var(--spacing-lg);
+}
+
+.peca h3 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.peca p {
+  color: var(--color-on-surface-variant);
 }
 
 .passo__numero {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: var(--raio-pill);
-  background: var(--cor-acento);
-  color: var(--cor-acento-tinta);
-  border: var(--borda) solid var(--cor-acento-sombra);
-  font-weight: var(--peso-titulo);
-  font-size: 1.125rem;
-  margin-bottom: var(--esp-sm);
-}
-
-.peca h3 {
-  font-size: 1.1875rem;
-  font-weight: var(--peso-forte);
-  margin-bottom: var(--esp-xs);
-}
-
-.peca p {
-  color: var(--cor-texto-suave);
-  font-size: 0.9875rem;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-accent-on);
+  border: var(--borda) solid var(--color-accent-shadow);
+  box-shadow: 0 3px 0 0 var(--color-accent-shadow);
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: var(--spacing-md);
 }
 
 .recurso__icone {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  border-radius: var(--raio-lg);
-  background: var(--cor-superficie-funda);
-  border: var(--borda) solid var(--cor-contorno);
-  color: var(--cor-ciano);
-  margin-bottom: var(--esp-sm);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface));
+  border: var(--borda) solid var(--color-accent-shadow);
+  margin-bottom: var(--spacing-md);
 }
 
-.recurso__icone svg {
-  width: 1.375rem;
-  height: 1.375rem;
+.recurso__icone .material-symbols-rounded {
+  color: var(--color-accent-text);
+  font-size: 26px;
 }
 
-/* Aviso honesto dentro da seção "como funciona". */
 .nota {
-  margin-top: var(--esp-lg);
-  border-left: 4px solid var(--cor-moeda);
-  background: var(--cor-superficie-funda);
-  border-radius: var(--raio-lg);
-  padding: var(--esp-md);
-  color: var(--cor-texto-suave);
-  font-size: 0.9375rem;
+  margin-top: var(--spacing-xl);
+  padding: var(--spacing-lg);
+  color: var(--color-on-surface-variant);
 }
 
 .nota strong {
-  color: var(--cor-moeda);
+  color: var(--color-on-surface);
 }
 
-/* Faixa de itens menores ("e ainda"). */
 .miudos {
-  display: grid;
-  gap: var(--esp-sm);
   list-style: none;
-  margin: var(--esp-lg) 0 0;
   padding: 0;
+  margin: var(--spacing-xl) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm) var(--spacing-lg);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
 }
 
 .miudos li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--esp-sm);
-  background: var(--cor-superficie-funda);
-  border: var(--borda) solid var(--cor-contorno);
-  border-radius: var(--raio-pill);
-  padding: 0.625rem 1rem;
-  font-size: 0.9375rem;
-  color: var(--cor-texto-suave);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
-.miudos svg {
-  width: 1.125rem;
-  height: 1.125rem;
-  flex: none;
-  margin-top: 0.2rem;
-  color: var(--cor-lima);
+.miudos .material-symbols-rounded {
+  font-size: 18px;
+  color: var(--color-accent-text);
 }
 
 /* ==========================================================================
-   Blocos com imagem ao lado
+   Blocos de duas colunas
    ========================================================================== */
-
 .dupla {
   display: grid;
-  gap: var(--esp-xl);
+  gap: var(--spacing-xl);
   align-items: center;
 }
 
@@ -569,73 +696,111 @@ a {
   width: 100%;
 }
 
-/* Teto de ALTURA, não só de largura.
-   `mascote-em-pe` é um retrato de 535x1043: limitado só pela largura, ele sai
-   com 800px de altura e engole a coluna de texto ao lado. O teto de altura com
-   `width: auto` deixa a proporção intacta e resolve os dois casos — a dupla,
-   que é deitada, nem chega a encostar nele. */
-.dupla__arte img {
-  max-height: 26rem;
-  width: auto;
-  margin-inline: auto;
-}
-
 .lista-marcada {
   list-style: none;
-  margin: var(--esp-lg) 0 0;
   padding: 0;
-  display: grid;
-  gap: var(--esp-md);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 }
 
 .lista-marcada li {
   display: flex;
-  align-items: flex-start;
-  gap: var(--esp-sm);
-  color: var(--cor-texto-suave);
-}
-
-.lista-marcada svg {
-  width: 1.375rem;
-  height: 1.375rem;
-  flex: none;
-  margin-top: 0.15rem;
-  color: var(--cor-lima);
+  gap: var(--spacing-sm);
+  color: var(--color-on-surface-variant);
 }
 
 .lista-marcada strong {
-  color: var(--cor-texto);
-  font-weight: var(--peso-forte);
+  color: var(--color-on-surface);
+}
+
+.lista-marcada .material-symbols-rounded {
+  flex: none;
+  font-size: 22px;
+  color: var(--color-accent-text);
 }
 
 /* ==========================================================================
-   FAQ — <details> nativo, sem uma linha de JS
+   Instalar na tela inicial — abas por navegador
    ========================================================================== */
-
-.faq {
+.instalar__abas {
   display: grid;
-  gap: var(--esp-sm);
-  max-width: 48rem;
+  gap: var(--spacing-lg);
+  grid-template-columns: 1fr;
+}
+
+.navegador {
+  padding: var(--spacing-lg);
+}
+
+.navegador__cabeca {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.navegador__cabeca h3 {
+  margin: 0;
+}
+
+/* Mockup esquemático e ORIGINAL de barra de navegador. Não é captura de tela
+   nem reprodução de logo de terceiro — é um desenho genérico, rotulado por
+   texto, só para situar onde fica o menu. */
+.mockup {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+  margin-bottom: var(--spacing-md);
+}
+
+.passos {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  color: var(--color-on-surface-variant);
+}
+
+.passos strong {
+  color: var(--color-on-surface);
+}
+
+.passos li::marker {
+  color: var(--color-accent-text);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   FAQ — <details> nativo, sem JavaScript
+   ========================================================================== */
+.faq {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 }
 
 .faq details {
-  background: var(--cor-superficie);
-  border: var(--borda) solid var(--cor-contorno);
-  border-radius: var(--raio-xl);
-  box-shadow: var(--sombra-peca);
-  overflow: hidden;
+  background: var(--color-surface);
+  border: var(--borda) solid var(--color-outline);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--sombra-painel);
+  padding: var(--spacing-md) var(--spacing-lg);
 }
 
 .faq summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 26px;
+  min-height: var(--toque);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--esp-md);
-  min-height: var(--toque);
-  padding: var(--esp-md);
-  cursor: pointer;
-  font-weight: var(--peso-forte);
-  font-size: 1.0625rem;
+  gap: var(--spacing-sm);
   list-style: none;
 }
 
@@ -644,62 +809,64 @@ a {
 }
 
 .faq summary::after {
-  content: "";
-  flex: none;
-  width: 0.7rem;
-  height: 0.7rem;
-  border-right: 3px solid var(--cor-acento-texto);
-  border-bottom: 3px solid var(--cor-acento-texto);
-  transform: rotate(45deg) translate(-2px, -2px);
-  transition: transform 160ms ease-out;
+  content: "expand_more";
+  font-family: "Material Symbols Rounded";
+  font-variation-settings: "FILL" 1, "wght" 600;
+  margin-left: auto;
+  color: var(--color-accent-text);
+  transition: transform 150ms ease-out;
 }
 
 .faq details[open] summary::after {
-  transform: rotate(-135deg) translate(-2px, -2px);
+  transform: rotate(180deg);
 }
 
-.faq details p {
-  padding: 0 var(--esp-md) var(--esp-md);
-  color: var(--cor-texto-suave);
+.faq p {
+  color: var(--color-on-surface-variant);
+  padding-top: var(--spacing-sm);
 }
 
 /* ==========================================================================
-   Chamada final e rodapé
+   Chamada final
    ========================================================================== */
-
 .final {
-  background: var(--cor-superficie-alta);
-  border-block: var(--borda) solid var(--cor-contorno);
-  padding-block: var(--esp-2xl);
+  padding-block: var(--spacing-2xl);
   text-align: center;
 }
 
 .final__grade {
-  display: grid;
-  gap: var(--esp-lg);
-  justify-items: center;
-}
-
-.final h2 {
-  font-size: clamp(1.875rem, 1.2rem + 3vw, 2.75rem);
-}
-
-.final p {
-  color: var(--cor-texto-suave);
-  font-size: 1.0625rem;
-  max-width: 34rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
 }
 
 .final__arte {
-  max-width: 15rem;
+  max-width: 13rem;
   width: 100%;
 }
 
+.final p {
+  color: var(--color-on-surface-variant);
+  font-size: 18px;
+  line-height: 26px;
+  max-width: 34rem;
+}
+
+.final .botao {
+  margin-top: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
 .rodape {
-  padding-block: var(--esp-xl);
-  border-top: var(--borda) solid var(--cor-contorno);
-  color: var(--cor-texto-suave);
-  font-size: 0.9375rem;
+  padding-block: var(--spacing-xl);
+  border-top: var(--borda) solid var(--color-outline);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
 }
 
 .rodape__linha {
@@ -707,7 +874,7 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--esp-md);
+  gap: var(--spacing-md);
 }
 
 .rodape a {
@@ -716,28 +883,34 @@ a {
   align-items: center;
 }
 
+.rodape__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs) var(--spacing-lg);
+  margin-top: var(--spacing-sm);
+}
+
 /* --- Crédito de desenvolvimento e localização --------------------------
    O símbolo abaixo é a marca de OUTRA empresa e segue o guia dela, não este
    arquivo: versão reduzida de 2 faíscas (a única autorizada abaixo de 32px),
-   corpo branco sobre fundo escuro, faísca laranja intocada, sem sombra,
-   contorno, rotação ou distorção. Não troque a cor da faísca. */
+   corpo claro sobre fundo escuro (escuro sobre fundo claro), faísca laranja
+   intocada, sem sombra, contorno, rotação ou distorção. */
 .rodape__credito {
-  margin-top: var(--esp-lg);
-  padding-top: var(--esp-md);
-  border-top: var(--borda) solid var(--cor-contorno);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-md);
+  border-top: var(--borda) solid var(--color-outline);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--esp-xs) var(--esp-lg);
+  gap: var(--spacing-xs) var(--spacing-lg);
 }
 
 .forjadev {
   display: inline-flex;
   align-items: center;
-  /* Espaço de proteção do símbolo: nada encosta nele. */
-  gap: var(--esp-sm);
-  color: var(--cor-texto);
+  gap: var(--spacing-sm);
+  color: var(--color-on-surface);
   text-decoration: none;
 }
 
@@ -771,34 +944,53 @@ a {
 }
 
 /* ==========================================================================
+   Revelação no scroll — leve, e só uma vez por elemento
+   ========================================================================== */
+/* O estado escondido só existe quando o JS está no ar e vai mesmo revelar:
+   `main.js` marca o <html> com `.js-revela` antes de qualquer pintura. Sem
+   JavaScript, ou se o script falhar, o conteúdo nasce visível — esconder
+   conteúdo esperando um script que pode não rodar é como se perde uma página
+   inteira. */
+.js-revela .revela {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 420ms ease-out, transform 420ms ease-out;
+}
+
+.js-revela .revela.visivel {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
    Pontos de quebra — mobile primeiro
    ========================================================================== */
-
 @media (min-width: 640px) {
   :root {
-    --gutter: 1.5rem;
+    --gutter: 24px;
   }
 
-  .grade--3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .numeros {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .grade--2,
+  .grade--3,
   .grade--6 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .miudos {
+  .instalar__abas {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  h1 {
+    font-size: 48px;
+    line-height: 52px;
   }
 }
 
 @media (min-width: 1024px) {
-  :root {
-    --esp-xl: 3.5rem;
-    --esp-2xl: 5.5rem;
-    --gutter: 2rem;
-  }
-
   .heroi__grade {
     grid-template-columns: 1.05fr 0.95fr;
   }
@@ -815,12 +1007,8 @@ a {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .miudos {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
   .dupla {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1.1fr 0.9fr;
   }
 
   .dupla--invertida .dupla__arte {
@@ -828,14 +1016,18 @@ a {
   }
 
   .dupla__arte {
-    max-width: 26rem;
+    max-width: 24rem;
+  }
+
+  h1 {
+    font-size: 56px;
+    line-height: 60px;
   }
 }
 
 /* ==========================================================================
-   Menos movimento — desliga TODA a decoração animada
+   Menos movimento — obrigatório pelo guia, sem exceção
    ========================================================================== */
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -847,13 +1039,22 @@ a {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 
   .ceu::after {
-    opacity: 0.5;
+    opacity: 0.45;
   }
 
-  .botao:active {
+  .botao:active,
+  .pressavel:active {
+    transform: none;
+  }
+
+  /* Sem movimento, o conteúdo nasce visível — nunca escondido esperando
+     uma animação que não vai rodar. */
+  .js-revela .revela {
+    opacity: 1;
     transform: none;
   }
 }

@@ -25,6 +25,46 @@
    É a única linha de JavaScript da página. O FAQ segue em `<details>` nativo.
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   Revelação no scroll — leve, uma vez por elemento.
+   --------------------------------------------------------------------------
+   Vem ANTES do campo de estrelas de propósito: é a parte que mexe em conteúdo
+   de verdade, e quanto antes a classe entrar no <html>, menor a chance de o
+   usuário ver o conteúdo aparecer e sumir.
+
+   A marca `.js-revela` é o contrato com o CSS: só com ela o estado escondido
+   existe. Sem JavaScript, sem `IntersectionObserver` ou com
+   `prefers-reduced-motion`, a classe nunca entra e a página fica visível do
+   jeito que sempre esteve.
+   -------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+
+  var reduzido =
+    typeof window.matchMedia === "function" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (reduzido || typeof window.IntersectionObserver !== "function") return;
+
+  var alvos = document.querySelectorAll(".revela");
+  if (!alvos.length) return;
+
+  document.documentElement.classList.add("js-revela");
+
+  var observador = new IntersectionObserver(
+    function (entradas) {
+      for (var i = 0; i < entradas.length; i++) {
+        if (!entradas[i].isIntersecting) continue;
+        entradas[i].target.classList.add("visivel");
+        observador.unobserve(entradas[i].target);
+      }
+    },
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
+  );
+
+  for (var j = 0; j < alvos.length; j++) observador.observe(alvos[j]);
+})();
+
 (function () {
   "use strict";
 

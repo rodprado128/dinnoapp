@@ -4,61 +4,69 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Dinno — a mesada que vira missão espacial</title>
+    <title>Dinno App — a mesada que vira missão espacial</title>
     <meta
       name="description"
-      content="Transforme as tarefas de casa em missões com valor em Starcoin. Seu filho cumpre e envia a foto, você aprova e a recompensa entra na carteira dele. Comece grátis."
+      content="Você cria a missão, seu filho cumpre e manda a foto, você aprova e o Starcoin cai na carteira dele na hora. Instala como app no celular em 30 segundos. Comece grátis."
     />
     <link rel="canonical" href="https://dinnoapp.forjadev.app.br/" />
-    <meta name="theme-color" content="#140f26" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#140f26" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f6f5ff" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
 
-    <!-- Open Graph / Twitter: o cartão é composto das próprias imagens do
-         mascote e da logo, nada gerado do nada. -->
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Dinno" />
+    <meta property="og:site_name" content="Dinno App" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:url" content="https://dinnoapp.forjadev.app.br/" />
-    <meta property="og:title" content="Dinno — a mesada que vira missão espacial" />
+    <meta property="og:title" content="Dinno App — a mesada que vira missão espacial" />
     <meta
       property="og:description"
-      content="Missões com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
+      content="Missão com prazo e valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
     />
     <meta property="og:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="O mascote do Dinno, um dinossauro astronauta azul, segurando uma moeda Starcoin dourada." />
+    <meta
+      property="og:image:alt"
+      content="O mascote do Dinno, um dinossauro astronauta azul, erguendo uma moeda Starcoin dourada sobre o fundo roxo-escuro da marca."
+    />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dinno — a mesada que vira missão espacial" />
+    <meta name="twitter:title" content="Dinno App — a mesada que vira missão espacial" />
     <meta
       name="twitter:description"
-      content="Missões com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
+      content="Missão com prazo e valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
     />
     <meta name="twitter:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
 
     <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180" />
 
-    <!-- Baloo 2 é a MESMA família do app (next/font/google no root layout). -->
+    <!-- Baloo 2 é a MESMA família do app. Material Symbols Rounded é a família
+         de ícone da marca — carregada com `icon_names`, que entrega só os
+         glifos usados aqui em vez da fonte variável inteira. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0&icon_names=account_balance_wallet,bolt,check_circle,expand_more,gavel,group,install_mobile,lock,military_tech,photo_camera,rocket_launch,savings,stars,thumb_up,verified&display=block"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
     <!-- Dado estruturado: só o que a página mostra de fato. Sem nota, sem
-         preço, sem contagem de usuário — nada disso está escrito aqui. -->
+         preço — a assinatura ainda não existe e a página não anuncia nenhum. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        "name": "Dinno",
+        "name": "Dinno App",
         "url": "https://dinnoapp.forjadev.app.br/",
         "installUrl": "https://dinno-app.vercel.app/",
         "applicationCategory": "LifestyleApplication",
-        "operatingSystem": "Web",
+        "operatingSystem": "Web, Android, iOS",
         "inLanguage": "pt-BR",
         "image": "https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png",
         "description": "Aplicativo de mesada gamificada: o responsável cria missões com valor em Starcoin, a criança cumpre e envia a foto do comprovante, o responsável aprova e a recompensa entra na carteira dela. O pagamento em dinheiro acontece fora do app."
@@ -67,21 +75,20 @@
   </head>
 
   <body>
-    <!-- Todo CTA abre na MESMA aba: conversão. Ver README. -->
+    <!-- Camada decorativa de fundo. `fixed`, sem interação, atrás de tudo. -->
+    <div class="aurora" aria-hidden="true"></div>
+
+    <!-- Todo CTA abre na MESMA aba: a página existe para converter. -->
     <header class="cabecalho">
       <div class="envelope cabecalho__linha">
-        <a class="marca" href="#topo">
+        <a class="marca" href="#topo" aria-label="Dinno App — ir para o topo">
           <picture>
             <source srcset="assets/img/logo-marca.webp" type="image/webp" />
-            <img
-              src="assets/img/logo-marca.png"
-              alt="Dinno"
-              width="160"
-              height="134"
-              fetchpriority="high"
-            />
+            <img src="assets/img/logo-marca.png" alt="" width="160" height="134" fetchpriority="high" />
           </picture>
-          <span>Dinno</span>
+          <span class="wordmark" aria-hidden="true">
+            <span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span>
+          </span>
         </a>
         <a class="botao botao--principal" href="https://dinno-app.vercel.app/" rel="noopener">Entrar</a>
       </div>
@@ -94,37 +101,39 @@
       <section class="ceu heroi">
         <div class="envelope heroi__grade">
           <div>
-            <span class="etiqueta">Mesada com propósito</span>
-            <h1>A mesada virou <em>missão espacial</em>.</h1>
+            <span class="etiqueta">
+              <span class="material-symbols-rounded" aria-hidden="true">rocket_launch</span>
+              Mesada com propósito
+            </span>
+            <h1>A mesada virou missão espacial.</h1>
             <p class="heroi__sub">
-              O Dinno transforma as tarefas do dia a dia em missões que valem Starcoin. Seu filho
-              cumpre e manda a foto, você aprova, e a recompensa entra na carteira dele na hora.
+              Você cria a missão com prazo e valor em Starcoin. Seu filho cumpre e manda a foto. Você
+              aprova, e a recompensa cai na carteira dele na hora. Sem cobrança, sem discussão.
             </p>
             <div class="heroi__acoes">
               <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">
-                Começar agora
+                Criar a primeira missão
               </a>
               <a class="botao botao--secundario botao--grande" href="#como-funciona">Ver como funciona</a>
             </div>
             <ul class="heroi__selos">
               <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
                 Grátis para começar
               </li>
               <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
                 Sem anúncios
               </li>
               <li>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                Instala como app no celular
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+                Instala como app em 30 segundos
               </li>
             </ul>
           </div>
 
           <!-- `sizes` segue os tetos reais de `.heroi__arte` no CSS: 26rem até
-               1024px, 32rem acima disso. Num celular o navegador baixa a versão
-               de 560px, não a de 1000px. -->
+               1024px, 32rem acima disso. -->
           <picture class="heroi__arte">
             <source
               type="image/webp"
@@ -138,7 +147,7 @@
             />
             <img
               src="assets/img/mascote-moeda.png"
-              alt="Dinno, o dinossauro astronauta azul, saindo de um planeta roxo e erguendo uma moeda Starcoin dourada."
+              alt="Dinno, o dinossauro astronauta azul de traje branco, saindo de um planeta roxo e erguendo uma moeda Starcoin dourada."
               width="1000"
               height="885"
               fetchpriority="high"
@@ -148,9 +157,37 @@
       </section>
 
       <!-- =================================================================
+           Prova social — números estáticos, atualizados à mão
+           ================================================================= -->
+      <section class="secao" aria-labelledby="titulo-numeros">
+        <div class="envelope">
+          <h2 class="secao__titulo" id="titulo-numeros">Já tem gente em órbita</h2>
+          <p class="secao__intro">Números de quem está usando o Dinno App agora.</p>
+
+          <div class="numeros">
+            <div class="painel numero revela">
+              <span class="material-symbols-rounded" aria-hidden="true">group</span>
+              <span class="numero__valor">38</span>
+              <span class="numero__rotulo">usuários</span>
+            </div>
+            <div class="painel numero revela">
+              <span class="material-symbols-rounded" aria-hidden="true">verified</span>
+              <span class="numero__valor">+300</span>
+              <span class="numero__rotulo">tarefas criadas por semana</span>
+            </div>
+            <div class="painel painel-moeda numero numero--moeda revela">
+              <span class="material-symbols-rounded" aria-hidden="true">stars</span>
+              <span class="numero__valor">4.500</span>
+              <span class="numero__rotulo">Starcoin gerados nos últimos 30 dias</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
            Como funciona
            ================================================================= -->
-      <section class="secao secao--alt" id="como-funciona">
+      <section class="secao" id="como-funciona">
         <div class="envelope">
           <h2 class="secao__titulo">Como funciona</h2>
           <p class="secao__intro">
@@ -158,32 +195,31 @@
           </p>
 
           <div class="grade grade--3">
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="passo__numero" aria-hidden="true">1</span>
-              <h3>Você cria as missões</h3>
+              <h3>Você cria a missão</h3>
               <p>
-                Arrumar a cama, estudar, passear com o cachorro. Você escreve a missão, escolhe o
-                prazo e define quanto ela vale em Starcoin. Dá para repetir nos dias da semana que
-                quiser.
+                Arrumar a cama, estudar, passear com o cachorro. Você escreve, escolhe o prazo e
+                define quanto vale em Starcoin. Dá para repetir nos dias da semana que quiser.
               </p>
             </article>
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="passo__numero" aria-hidden="true">2</span>
               <h3>Seu filho aceita e cumpre</h3>
               <p>
                 A missão aparece na tela dele com o prazo correndo. Ao terminar, ele manda a foto do
-                que fez como comprovante — nada de "já fiz, pode confiar".
+                que fez — nada de "já fiz, pode confiar".
               </p>
             </article>
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="passo__numero" aria-hidden="true">3</span>
               <h3>Você aprova — ou não</h3>
               <p>
-                Você recebe a foto e decide. Aprovou, a recompensa cai na carteira dele na hora.
-                Não ficou bom, você reprova dizendo o motivo, e ele sabe exatamente o que refazer.
+                Você recebe a foto e decide. Aprovou, a recompensa cai na carteira dele na hora. Não
+                ficou bom, você reprova dizendo o motivo, e ele sabe o que refazer.
               </p>
             </article>
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="passo__numero" aria-hidden="true">4</span>
               <h3>O saque é pedido, o Pix é seu</h3>
               <p>
@@ -193,11 +229,11 @@
             </article>
           </div>
 
-          <p class="nota">
-            <strong>Para ficar claro:</strong> o Dinno não é banco, não é investimento e não
+          <p class="painel nota revela">
+            <strong>Para ficar claro:</strong> o Dinno App não é banco, não é investimento e não
             movimenta dinheiro nenhum. Não existe conta, cartão ou saldo real dentro do app — ele
-            registra o combinado e organiza a conta. A transferência acontece fora, entre você e
-            seu filho.
+            registra o combinado e organiza a conta. A transferência acontece fora, entre você e seu
+            filho.
           </p>
         </div>
       </section>
@@ -209,13 +245,13 @@
         <div class="envelope">
           <h2 class="secao__titulo">O que já está pronto</h2>
           <p class="secao__intro">
-            Tudo aqui funciona hoje, no app que você abre pelo botão lá em cima.
+            Tudo aqui funciona hoje, no app que abre pelo botão lá em cima.
           </p>
 
           <div class="grade grade--6">
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" /></svg>
+                <span class="material-symbols-rounded">verified</span>
               </span>
               <h3>Missões com prazo e valor</h3>
               <p>
@@ -224,20 +260,20 @@
               </p>
             </article>
 
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                <span class="material-symbols-rounded">photo_camera</span>
               </span>
               <h3>Comprovante em foto</h3>
               <p>
-                Cada missão concluída chega com a foto do que foi feito. Você vê antes de aprovar,
-                de onde estiver.
+                Cada missão concluída chega com a foto do que foi feito. Você vê antes de aprovar, de
+                onde estiver.
               </p>
             </article>
 
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.3a2 2 0 0 0 2-1.7l1.4-9a2 2 0 0 0-2-2.3z" /><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" /></svg>
+                <span class="material-symbols-rounded">thumb_up</span>
               </span>
               <h3>Aprovação com motivo</h3>
               <p>
@@ -246,9 +282,9 @@
               </p>
             </article>
 
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z" /><path d="M12 9v4" /><path d="M12 17h.01" /></svg>
+                <span class="material-symbols-rounded">gavel</span>
               </span>
               <h3>Multas quando o combinado quebra</h3>
               <p>
@@ -257,9 +293,9 @@
               </p>
             </article>
 
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="14" rx="2" /><path d="M2 10h20" /><circle cx="17" cy="15" r="1.6" /></svg>
+                <span class="material-symbols-rounded">account_balance_wallet</span>
               </span>
               <h3>Carteira com extrato</h3>
               <p>
@@ -268,9 +304,9 @@
               </p>
             </article>
 
-            <article class="peca">
+            <article class="painel peca pressavel revela">
               <span class="recurso__icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20" /><path d="M17 6.5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
+                <span class="material-symbols-rounded">savings</span>
               </span>
               <h3>Saque pedido por ele</h3>
               <p>
@@ -282,20 +318,20 @@
 
           <ul class="miudos">
             <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
               Até dois responsáveis, com os mesmos poderes
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-              Notificações no celular a cada missão enviada
+              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+              Notificação no celular a cada missão enviada
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
               Ranking de amigos por missões aprovadas
             </li>
             <li>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-              Vira app na tela de início, sem loja
+              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+              Entrada com Google, em um toque
             </li>
           </ul>
         </div>
@@ -304,27 +340,30 @@
       <!-- =================================================================
            Para a criança
            ================================================================= -->
-      <section class="secao secao--alt" id="para-a-crianca">
+      <section class="secao" id="para-a-crianca">
         <div class="envelope dupla">
           <div>
-            <span class="etiqueta">Do outro lado da tela</span>
+            <span class="etiqueta">
+              <span class="material-symbols-rounded" aria-hidden="true">military_tech</span>
+              Do outro lado da tela
+            </span>
             <h2 class="secao__titulo">Aqui a tarefa vira conquista</h2>
             <p class="secao__intro">
-              Nada de lista de afazeres. Do lado da criança, o Dinno é uma tripulação, uma patente
-              para subir e uma turma para acompanhar.
+              Nada de lista de afazeres. Do lado da criança, o Dinno App é uma tripulação, uma
+              patente para subir e uma turma para acompanhar.
             </p>
             <ul class="lista-marcada">
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                <span><strong>Junte Starcoin</strong> a cada missão aprovada e veja o saldo crescer.</span>
+                <span class="material-symbols-rounded" aria-hidden="true">stars</span>
+                <span><strong>Junte Starcoin</strong> a cada missão aprovada e veja o saldo subir na tela.</span>
               </li>
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                <span><strong>Escolha o seu apelido</strong> — é por ele que seus amigos te acham no Dinno, sem ninguém precisar saber seu e-mail.</span>
+                <span class="material-symbols-rounded" aria-hidden="true">bolt</span>
+                <span><strong>Mantenha a ofensiva</strong> de dias seguidos e suba de patente, de tripulante a almirante.</span>
               </li>
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                <span><strong>Compare missões com a turma</strong> no ranking e mantenha a ofensiva de dias seguidos.</span>
+                <span class="material-symbols-rounded" aria-hidden="true">group</span>
+                <span><strong>Escolha seu apelido</strong> — é por ele que seus amigos te acham no Dinno, sem ninguém precisar saber seu e-mail.</span>
               </li>
             </ul>
           </div>
@@ -333,12 +372,12 @@
             <source
               type="image/webp"
               srcset="assets/img/mascote-dupla@520.webp 520w, assets/img/mascote-dupla.webp 900w"
-              sizes="(min-width: 1024px) 416px, (min-width: 420px) 352px, 100vw"
+              sizes="(min-width: 1024px) 384px, (min-width: 420px) 352px, 100vw"
             />
             <source
               type="image/png"
               srcset="assets/img/mascote-dupla@520.png 520w, assets/img/mascote-dupla.png 900w"
-              sizes="(min-width: 1024px) 416px, (min-width: 420px) 352px, 100vw"
+              sizes="(min-width: 1024px) 384px, (min-width: 420px) 352px, 100vw"
             />
             <img
               src="assets/img/mascote-dupla.png"
@@ -352,31 +391,122 @@
       </section>
 
       <!-- =================================================================
+           Instalar na tela inicial
+           ================================================================= -->
+      <section class="secao" id="instalar">
+        <div class="envelope">
+          <span class="etiqueta">
+            <span class="material-symbols-rounded" aria-hidden="true">install_mobile</span>
+            Sem loja de aplicativos
+          </span>
+          <h2 class="secao__titulo">Coloque o Dinno na tela inicial</h2>
+          <p class="secao__intro">
+            O Dinno App abre direto no navegador. Instalar é opcional, leva meio minuto e deixa o
+            ícone na tela inicial com notificação funcionando — igual a qualquer app.
+          </p>
+
+          <div class="instalar__abas">
+            <article class="painel navegador revela">
+              <div class="navegador__cabeca">
+                <h3>Google Chrome</h3>
+              </div>
+
+              <!-- Mockup esquemático e original: um telefone genérico com a
+                   barra de endereço e o menu de três pontos no ALTO, que é
+                   onde o Chrome para Android põe o menu. Não é captura de
+                   tela nem reprodução de marca de terceiro. -->
+              <svg
+                class="mockup"
+                viewBox="0 0 320 150"
+                role="img"
+                aria-label="Desenho de um celular com a barra de endereço no topo e o botão de menu de três pontos no canto superior direito."
+              >
+                <rect x="8" y="8" width="304" height="134" rx="18" fill="var(--color-surface)" stroke="var(--color-outline)" stroke-width="2" />
+                <rect x="24" y="26" width="228" height="26" rx="13" fill="var(--color-surface-sunken)" stroke="var(--color-outline)" stroke-width="2" />
+                <text x="40" y="44" font-family="inherit" font-size="13" font-weight="600" fill="var(--color-on-surface-variant)">dinno-app.vercel.app</text>
+                <circle cx="278" cy="31" r="3" fill="var(--color-accent)" />
+                <circle cx="278" cy="39" r="3" fill="var(--color-accent)" />
+                <circle cx="278" cy="47" r="3" fill="var(--color-accent)" />
+                <rect x="266" y="20" width="24" height="39" rx="12" fill="none" stroke="var(--color-accent)" stroke-width="2" />
+                <rect x="24" y="70" width="180" height="10" rx="5" fill="var(--color-outline)" />
+                <rect x="24" y="90" width="256" height="10" rx="5" fill="var(--color-outline)" />
+                <rect x="24" y="110" width="128" height="10" rx="5" fill="var(--color-outline)" />
+              </svg>
+
+              <ol class="passos">
+                <li>Abra <strong>dinno-app.vercel.app</strong> no Chrome.</li>
+                <li>Toque no menu de <strong>três pontos</strong>, no canto superior direito.</li>
+                <li>
+                  Toque em <strong>Instalar app</strong>. Dependendo da versão do Chrome, a opção
+                  aparece como <strong>Adicionar à tela inicial</strong>.
+                </li>
+                <li>Confirme em <strong>Instalar</strong>. O ícone aparece junto dos seus outros apps.</li>
+              </ol>
+            </article>
+
+            <article class="painel navegador revela">
+              <div class="navegador__cabeca">
+                <h3>Microsoft Edge</h3>
+              </div>
+
+              <!-- Mesmo desenho esquemático, com o menu embaixo: é onde o Edge
+                   para Android põe a barra de navegação. -->
+              <svg
+                class="mockup"
+                viewBox="0 0 320 150"
+                role="img"
+                aria-label="Desenho de um celular com a barra de endereço no topo e o botão de menu de três pontos na barra inferior, à direita."
+              >
+                <rect x="8" y="8" width="304" height="134" rx="18" fill="var(--color-surface)" stroke="var(--color-outline)" stroke-width="2" />
+                <rect x="24" y="24" width="272" height="24" rx="12" fill="var(--color-surface-sunken)" stroke="var(--color-outline)" stroke-width="2" />
+                <text x="40" y="41" font-family="inherit" font-size="13" font-weight="600" fill="var(--color-on-surface-variant)">dinno-app.vercel.app</text>
+                <rect x="24" y="62" width="180" height="10" rx="5" fill="var(--color-outline)" />
+                <rect x="24" y="82" width="230" height="10" rx="5" fill="var(--color-outline)" />
+                <line x1="8" y1="108" x2="312" y2="108" stroke="var(--color-outline)" stroke-width="2" />
+                <circle cx="60" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
+                <circle cx="120" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
+                <circle cx="180" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
+                <circle cx="256" cy="125" r="3" fill="var(--color-accent)" />
+                <circle cx="266" cy="125" r="3" fill="var(--color-accent)" />
+                <circle cx="276" cy="125" r="3" fill="var(--color-accent)" />
+                <rect x="244" y="113" width="44" height="24" rx="12" fill="none" stroke="var(--color-accent)" stroke-width="2" />
+              </svg>
+
+              <ol class="passos">
+                <li>Abra <strong>dinno-app.vercel.app</strong> no Edge.</li>
+                <li>Toque no menu de <strong>três pontos</strong>, na barra de baixo, à direita.</li>
+                <li>Toque em <strong>Adicionar à tela inicial</strong>.</li>
+                <li>Confirme o nome e toque em <strong>Adicionar</strong>.</li>
+              </ol>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================
            Privacidade
            ================================================================= -->
       <section class="secao" id="privacidade">
         <div class="envelope dupla dupla--invertida">
           <div>
             <h2 class="secao__titulo">Privacidade que dá para conferir</h2>
-            <p class="secao__intro">
-              É a vida financeira de uma criança. A gente trata assim.
-            </p>
+            <p class="secao__intro">É a vida financeira de uma criança. A gente trata assim.</p>
             <ul class="lista-marcada">
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                <span>O ranking mostra <strong>só quantas missões</strong> cada amigo concluiu. Saldo e transações não aparecem para ninguém.</span>
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+                <span>O ranking mostra <strong>só quantas missões</strong> cada amigo concluiu. Saldo e extrato não aparecem para ninguém.</span>
               </li>
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
                 <span>Cada família enxerga <strong>apenas os próprios dados</strong>. Missão, carteira e extrato não atravessam a porta de casa.</span>
               </li>
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                <span class="material-symbols-rounded" aria-hidden="true">lock</span>
                 <span>A proteção está <strong>nas regras do banco de dados</strong>, não só no que a tela deixa de mostrar.</span>
               </li>
               <li>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
-                <span><strong>Sem anúncios e sem rastreadores.</strong> Esta página não usa cookie nem script de terceiro.</span>
+                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
+                <span><strong>Você apaga a conta quando quiser</strong>, pelo próprio app, com senha. Some o perfil, o histórico e as fotos.</span>
               </li>
             </ul>
           </div>
@@ -397,7 +527,7 @@
       <!-- =================================================================
            FAQ — <details> nativo, sem JavaScript
            ================================================================= -->
-      <section class="secao secao--alt" id="perguntas">
+      <section class="secao" id="perguntas">
         <div class="envelope">
           <h2 class="secao__titulo">Perguntas que todo pai faz</h2>
           <p class="secao__intro">As respostas curtas, sem rodeio.</p>
@@ -406,9 +536,9 @@
             <details>
               <summary>O Dinno mexe no meu dinheiro?</summary>
               <p>
-                Não. O Dinno não é banco, não é investimento e não movimenta um centavo. Ele registra
-                as missões, calcula o saldo e avisa quando seu filho pede um saque. A transferência
-                você faz por fora, por Pix ou como preferir.
+                Não. O Dinno App não é banco, não é investimento e não movimenta um centavo. Ele
+                registra as missões, calcula o saldo e avisa quando seu filho pede um saque. A
+                transferência você faz por fora, por Pix ou como preferir.
               </p>
             </details>
 
@@ -423,16 +553,16 @@
             <details>
               <summary>Preciso instalar alguma coisa?</summary>
               <p>
-                Não. O Dinno abre direto no navegador do celular ou do computador. Se quiser, dá para
-                adicionar à tela de início e usar como um aplicativo, com notificações — sem passar
-                por loja nenhuma.
+                Não. O Dinno App abre direto no navegador do celular ou do computador. Se quiser
+                deixar o ícone na tela inicial e receber notificação, o passo a passo está aqui em
+                cima — e não passa por loja nenhuma.
               </p>
             </details>
 
             <details>
               <summary>Podem existir dois responsáveis?</summary>
               <p>
-                Podem, até dois, e com exatamente os mesmos poderes: os dois criam missões, aprovam,
+                Podem, até dois, com exatamente os mesmos poderes: os dois criam missões, aprovam,
                 aplicam multas e marcam saques como pagos. Um convida o outro por link.
               </p>
             </details>
@@ -440,8 +570,8 @@
             <details>
               <summary>Meu filho vê o saldo dos amigos?</summary>
               <p>
-                Não. O ranking mostra apenas quantas missões cada um teve aprovadas. Saldo, extrato
-                e transações são visíveis só dentro da própria família.
+                Não. O ranking mostra apenas quantas missões cada um teve aprovadas. Saldo, extrato e
+                transações são visíveis só dentro da própria família.
               </p>
             </details>
 
@@ -450,6 +580,16 @@
               <p>
                 Pelo apelido que ela mesma escolhe. Ninguém precisa saber o e-mail de ninguém, e quem
                 ainda não escolheu um apelido simplesmente não aparece em busca nenhuma.
+              </p>
+            </details>
+
+            <details>
+              <summary>Dá para apagar a conta depois?</summary>
+              <p>
+                Dá, pelo próprio app, em Perfil. Você confirma com a senha e a conta some junto com o
+                perfil, o histórico e as fotos. Duas travas protegem a família: quem é o único
+                responsável de uma criança precisa adicionar outro antes, e quem tem saque pendente
+                resolve o saque primeiro.
               </p>
             </details>
 
@@ -485,7 +625,7 @@
             foto de comprovante esperando sua aprovação.
           </p>
           <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">
-            Criar minha conta
+            Criar minha conta grátis
           </a>
         </div>
       </section>
@@ -494,21 +634,28 @@
     <footer class="rodape">
       <div class="envelope">
         <div class="rodape__linha">
-          <a class="marca" href="#topo">
+          <a class="marca" href="#topo" aria-label="Dinno App — ir para o topo">
             <picture>
               <source srcset="assets/img/logo-marca.webp" type="image/webp" />
-              <img src="assets/img/logo-marca.png" alt="Dinno" width="160" height="134" loading="lazy" />
+              <img src="assets/img/logo-marca.png" alt="" width="160" height="134" loading="lazy" />
             </picture>
-            <span>Dinno</span>
+            <span class="wordmark" aria-hidden="true">
+              <span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span>
+            </span>
           </a>
           <a href="https://dinno-app.vercel.app/" rel="noopener">Abrir o app</a>
-          <span>© <time datetime="2026">2026</time> Dinno</span>
+          <span>© <time datetime="2026">2026</time> Dinno App</span>
         </div>
+
+        <nav class="rodape__legal" aria-label="Documentos legais">
+          <a href="https://rodprado128.github.io/dinno-privacy-policy/">Política de Privacidade</a>
+          <a href="https://rodprado128.github.io/dinno-terms-of-service/">Termos de Serviço</a>
+        </nav>
 
         <!-- Crédito de desenvolvimento. O símbolo é a marca da ForjaDev e
              segue o guia dela: versão reduzida de 2 faíscas (a única
-             autorizada abaixo de 32px), corpo branco porque o fundo é escuro,
-             faísca laranja intocada. Sem rotação, sombra ou contorno. -->
+             autorizada abaixo de 32px), faísca laranja intocada. Sem rotação,
+             sombra ou contorno. -->
         <div class="rodape__credito">
           <a class="forjadev" href="https://forjadev.app.br/" rel="noopener">
             <svg
@@ -544,9 +691,9 @@
       </div>
     </footer>
 
-    <!-- Único JavaScript da página: o campo de estrelas em warp. `defer`
-         porque ele mede as seções já montadas, e a página inteira funciona
-         sem ele — sem JS, o céu volta a ser o campo estático em CSS. -->
+    <!-- Único JavaScript da página: o campo de estrelas em warp e a revelação
+         no scroll. `defer` porque ele mede seções já montadas, e a página
+         inteira funciona sem ele. -->
     <script src="assets/js/main.js" defer></script>
   </body>
 </html>
