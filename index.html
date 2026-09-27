@@ -4,11 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 
-    <title>Dinno App — a mesada que vira missão espacial</title>
+    <title>Dinno App: mesada com missões para crianças e família</title>
     <meta
       name="description"
-      content="Você cria a missão, seu filho cumpre e manda a foto, você aprova e o Starcoin cai na carteira dele na hora. Instala como app no celular em 30 segundos. Comece grátis."
+      content="App de mesada para a família: você cria missões e tarefas com valor em Starcoin, a criança manda a foto e você aprova. Educação financeira na prática."
     />
+    <meta name="author" content="ForjaDev" />
     <link rel="canonical" href="https://dinnoapp.forjadev.app.br/" />
     <meta name="theme-color" content="#140f26" />
     <meta name="color-scheme" content="dark" />
@@ -17,32 +18,28 @@
     <meta property="og:site_name" content="Dinno App" />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:url" content="https://dinnoapp.forjadev.app.br/" />
-    <meta property="og:title" content="Dinno App — a mesada que vira missão espacial" />
+    <meta property="og:title" content="Dinno App: a mesada que vira missão espacial" />
     <meta
       property="og:description"
-      content="Missão com prazo e valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
+      content="Missões e tarefas com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada e o pagamento continua com você."
     />
     <meta property="og:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="O mascote do Dinno, um dinossauro astronauta azul, erguendo uma moeda Starcoin dourada sobre o fundo roxo-escuro da marca."
-    />
+    <meta property="og:image:alt" content="O wordmark do Dinno App e a frase A mesada virou missão espacial, ao lado do mascote dino astronauta erguendo uma moeda Starcoin e de um card de aprovação de missão com o botão Aprovar." />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Dinno App — a mesada que vira missão espacial" />
+    <meta name="twitter:title" content="Dinno App: a mesada que vira missão espacial" />
     <meta
       name="twitter:description"
-      content="Missão com prazo e valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada; o Pix continua sendo seu."
+      content="Missões e tarefas com valor em Starcoin, comprovante em foto e aprovação sua. O Dinno organiza a mesada e o pagamento continua com você."
     />
     <meta name="twitter:image" content="https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png" />
+    <meta name="twitter:image:alt" content="O wordmark do Dinno App e a frase A mesada virou missão espacial, ao lado do mascote dino astronauta erguendo uma moeda Starcoin e de um card de aprovação de missão com o botão Aprovar." />
 
     <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" sizes="180x180" />
 
-    <!-- Baloo 2 é a MESMA família do app. Material Symbols Rounded é a família
-         de ícone da marca — carregada com `icon_names`, que entrega só os
-         glifos usados aqui em vez da fonte variável inteira. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -50,431 +47,894 @@
       rel="stylesheet"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0&icon_names=account_balance_wallet,bolt,check_circle,expand_more,gavel,group,install_mobile,lock,military_tech,photo_camera,rocket_launch,savings,stars,thumb_up,verified&display=block"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,0..1,0&icon_names=check,check_circle,close,database,done_all,edit_note,event_available,event_repeat,expand_more,explore,flag,group,groups,info,install_mobile,local_fire_department,lock,login,menu,military_tech,notifications,person_remove,photo_camera,redeem,replay,rocket_launch,savings,shield_person,stars,timer_off,tour,trending_up,visibility_off&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/styles.css" />
 
-    <!-- Dado estruturado: só o que a página mostra de fato. Sem nota, sem
-         preço — a assinatura ainda não existe e a página não anuncia nenhum. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Dinno App",
-        "url": "https://dinnoapp.forjadev.app.br/",
-        "installUrl": "https://dinno-app.vercel.app/",
-        "applicationCategory": "LifestyleApplication",
-        "operatingSystem": "Web, Android, iOS",
-        "inLanguage": "pt-BR",
-        "image": "https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png",
-        "description": "Aplicativo de mesada gamificada: o responsável cria missões com valor em Starcoin, a criança cumpre e envia a foto do comprovante, o responsável aprova e a recompensa entra na carteira dela. O pagamento em dinheiro acontece fora do app."
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://forjadev.app.br/#organizacao",
+            "name": "ForjaDev",
+            "url": "https://forjadev.app.br/",
+            "description": "Sistemas, plataformas e produtos digitais em código próprio, construídos para operar sob carga, escalar sem reescrita e trocar de fornecedor sem prejuízo.",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Maringá",
+              "addressRegion": "PR",
+              "addressCountry": "BR"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://dinnoapp.forjadev.app.br/#app",
+            "name": "Dinno App",
+            "url": "https://dinno-app.vercel.app/",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Web",
+            "inLanguage": "pt-BR",
+            "image": "https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png",
+            "description": "App de mesada para a família: o responsável cria missões com valor em Starcoin, a criança cumpre e envia a foto do comprovante, o responsável aprova e o Starcoin entra na carteira. O pagamento em dinheiro acontece fora do app.",
+            "creator": {
+              "@id": "https://forjadev.app.br/#organizacao"
+            },
+            "publisher": {
+              "@id": "https://forjadev.app.br/#organizacao"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://dinnoapp.forjadev.app.br/#site",
+            "url": "https://dinnoapp.forjadev.app.br/",
+            "name": "Dinno App",
+            "inLanguage": "pt-BR",
+            "publisher": {
+              "@id": "https://forjadev.app.br/#organizacao"
+            }
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://dinnoapp.forjadev.app.br/#pagina",
+            "url": "https://dinnoapp.forjadev.app.br/",
+            "name": "Dinno App: mesada com missões para crianças e família",
+            "description": "App de mesada para a família: você cria missões e tarefas com valor em Starcoin, a criança manda a foto e você aprova. Educação financeira na prática.",
+            "inLanguage": "pt-BR",
+            "isPartOf": {
+              "@id": "https://dinnoapp.forjadev.app.br/#site"
+            },
+            "about": {
+              "@id": "https://dinnoapp.forjadev.app.br/#app"
+            },
+            "publisher": {
+              "@id": "https://forjadev.app.br/#organizacao"
+            },
+            "primaryImageOfPage": {
+              "@type": "ImageObject",
+              "url": "https://dinnoapp.forjadev.app.br/assets/img/og-dinno.png",
+              "width": 1200,
+              "height": 630
+            }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://dinnoapp.forjadev.app.br/#perguntas",
+            "url": "https://dinnoapp.forjadev.app.br/",
+            "inLanguage": "pt-BR",
+            "isPartOf": {
+              "@id": "https://dinnoapp.forjadev.app.br/#site"
+            },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "O Dinno mexe no meu dinheiro?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Não. O Dinno App não é banco nem investimento e não movimenta nenhum centavo. Ele registra as missões, calcula o saldo e avisa quando a criança pede um saque. A transferência você faz por fora, por Pix ou como preferir."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quanto vale um Starcoin?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "100 Starcoin = R$ 10,00. É a taxa que o app usa para mostrar o saldo da carteira em reais e o valor de cada saque."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Preciso instalar alguma coisa?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Não. O Dinno App abre no navegador do celular ou do computador. Se quiser o ícone na tela inicial, o passo a passo está logo acima e não passa por loja nenhuma."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Podem existir dois responsáveis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Podem, até dois por criança, com os mesmos poderes: os dois criam missões, aprovam, aplicam multas e marcam saques como pagos. Um convida o outro por link."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Dá para mandar a mesma missão para várias crianças?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dá. Crie a missão como aberta e escolha quem pode pegar. Em \"Só a primeira que aceitar\", a primeira criança fica com ela. Em \"Todas as crianças\", cada uma faz a sua e ganha o valor inteiro."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "O que acontece quando o prazo vence?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "O prazo é opcional e segue a hora de Brasília. Se ele passar sem envio, a missão avulsa expira: sai da lista e ninguém mais pega. O que já foi enviado antes do prazo continua esperando a sua aprovação."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Como funciona a mesada fixa?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Você define o valor e a frequência, toda semana ou todo mês. O crédito entra sozinho na carteira às 08:00 de Brasília, no dia escolhido. Dá para desligar quando quiser, e o que já caiu fica."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Como funciona a loja de recompensas?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Você cadastra a recompensa com foto, preço em Starcoin e estoque. A criança compra com o saldo livre, e você recebe o aviso da compra. Sem saldo, a tela mostra quanto falta e sugere missões para chegar lá."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "O que é a Meta?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "É o cofrinho da criança. Com a Meta ligada por você, a criança escolhe um alvo em Starcoin e guarda de 10% a 50% de cada missão aprovada. Quando chega lá, o valor guardado entra na carteira, com um bônus se você tiver ligado essa opção."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "A criança vê o saldo dos amigos?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Não. O ranking mostra só quantas missões cada um teve aprovadas. Saldo, extrato e comprovantes ficam dentro da família."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Como uma criança encontra a outra?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Pelo apelido que cada uma escolhe. Ninguém precisa saber o e-mail de ninguém, e quem ainda não tem apelido não aparece na busca."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Dá para apagar a conta depois?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dá, pelo próprio app, em Perfil, confirmando com a senha. Saem o perfil, a foto de perfil e os comprovantes enviados. Duas travas protegem a família: quem é o único responsável de uma criança precisa adicionar outro antes, e quem tem saque pendente resolve o saque primeiro."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Serve para qual idade?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Foi pensado para a faixa de 10 a 13 anos, que já entende prazo, combinado e valor. Quem conhece a criança é você."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
   </head>
 
   <body>
-    <!-- Camadas decorativas de fundo, as duas `fixed`, sem interação, atrás
-         de tudo. A `.estrelas` é o campo ESTÁTICO: é o que se vê sem
-         JavaScript e sob prefers-reduced-motion. Quando `main.js` monta o
-         canvas em warp, ele marca o <html> com `js-warp` e esta camada sai. -->
+    <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
     <div class="aurora" aria-hidden="true"></div>
     <div class="estrelas" aria-hidden="true"></div>
 
-    <!-- Todo CTA abre na MESMA aba: a página existe para converter. -->
     <header class="cabecalho">
       <div class="envelope cabecalho__linha">
-        <a class="marca" href="#topo" aria-label="Dinno App — ir para o topo">
+        <a class="marca" href="#topo" aria-label="Dinno App, ir para o topo">
           <picture>
             <source srcset="assets/img/logo-marca.webp" type="image/webp" />
-            <img src="assets/img/logo-marca.png" alt="" width="160" height="134" fetchpriority="high" />
+            <img src="assets/img/logo-marca.png" alt="" width="160" height="134" />
           </picture>
-          <span class="wordmark" aria-hidden="true">
-            <span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span>
-          </span>
+          <span class="wordmark" aria-hidden="true"><span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span></span>
         </a>
+        <nav class="cabecalho__nav" aria-label="Seções da página">
+          <ul>
+            <li><a href="#como-funciona">Como funciona</a></li>
+            <li><a href="#missoes">Missões</a></li>
+            <li><a href="#dinheiro">Dinheiro</a></li>
+            <li><a href="#crianca">Criança</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="#perguntas">Perguntas</a></li>
+          </ul>
+        </nav>
         <a class="botao botao--principal" href="https://dinno-app.vercel.app/" rel="noopener">Entrar</a>
       </div>
     </header>
 
-    <main id="topo">
-      <!-- =================================================================
-           Herói
-           ================================================================= -->
-      <section class="ceu heroi">
+    <main id="conteudo">
+      <section class="heroi" id="topo" data-secao="missoes" aria-labelledby="titulo-heroi">
         <div class="envelope heroi__grade">
-          <div>
-            <span class="etiqueta">
-              <span class="material-symbols-rounded" aria-hidden="true">rocket_launch</span>
-              Mesada com propósito
-            </span>
-            <h1>A mesada virou missão espacial.</h1>
+          <div class="chapa">
+            <p class="selo"><span class="icone" aria-hidden="true">rocket_launch</span>App de mesada para famílias</p>
+            <h1 id="titulo-heroi">A mesada virou missão espacial.</h1>
             <p class="heroi__sub">
-              Você cria a missão com prazo e valor em Starcoin. Seu filho cumpre e manda a foto. Você
-              aprova, e a recompensa cai na carteira dele na hora. Sem cobrança, sem discussão.
+              Você cria a missão e diz quanto ela vale em Starcoin. A criança cumpre, manda a foto e
+              você aprova. O saldo sobe na hora, e o pagamento continua com você, fora do app.
             </p>
             <div class="heroi__acoes">
-              <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">
-                Criar a primeira missão
-              </a>
+              <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">Criar a primeira missão</a>
               <a class="botao botao--secundario botao--grande" href="#como-funciona">Ver como funciona</a>
             </div>
-            <ul class="heroi__selos">
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                Grátis para começar
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                Sem anúncios
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                Instala como app em 30 segundos
-              </li>
+            <ul class="fatos">
+              <li><span class="icone" aria-hidden="true">check_circle</span>Abre no navegador, sem loja de aplicativos</li>
+              <li><span class="icone" aria-hidden="true">check_circle</span>Até dois responsáveis por criança</li>
+              <li><span class="icone" aria-hidden="true">check_circle</span>Nenhum dinheiro passa pelo app</li>
             </ul>
           </div>
 
-          <!-- `sizes` segue os tetos reais de `.heroi__arte` no CSS: 26rem até
-               1024px, 32rem acima disso. -->
-          <picture class="heroi__arte">
-            <source
-              type="image/webp"
-              srcset="assets/img/mascote-moeda@560.webp 560w, assets/img/mascote-moeda.webp 1000w"
-              sizes="(min-width: 1024px) 512px, (min-width: 500px) 416px, 100vw"
-            />
-            <source
-              type="image/png"
-              srcset="assets/img/mascote-moeda@560.png 560w, assets/img/mascote-moeda.png 1000w"
-              sizes="(min-width: 1024px) 512px, (min-width: 500px) 416px, 100vw"
-            />
-            <img
-              src="assets/img/mascote-moeda.png"
-              alt="Dinno, o dinossauro astronauta azul de traje branco, saindo de um planeta roxo e erguendo uma moeda Starcoin dourada."
-              width="1000"
-              height="885"
-              fetchpriority="high"
-            />
-          </picture>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           Prova social — números estáticos, atualizados à mão
-           ================================================================= -->
-      <section class="secao" aria-labelledby="titulo-numeros">
-        <div class="envelope">
-          <h2 class="secao__titulo" id="titulo-numeros">Já tem gente em órbita</h2>
-          <p class="secao__intro">Números de quem está usando o Dinno App agora.</p>
-
-          <div class="numeros">
-            <div class="painel numero revela">
-              <span class="material-symbols-rounded" aria-hidden="true">group</span>
-              <span class="numero__valor">38</span>
-              <span class="numero__rotulo">usuários</span>
+          <figure class="tela painel-elevado" aria-label="Exemplo com dados fictícios: a tela de missões da criança">
+            <div class="tela__barra">
+              <span class="tela__marca">
+                <span class="icone" aria-hidden="true">menu</span>
+                <span class="avatar avatar--patente-explorador" aria-hidden="true">N</span>
+                <span class="tela__nome-app">Dinno</span>
+              </span>
+              <span class="pilula-moeda"><span class="starcoin">1240<span class="icone" aria-hidden="true">stars</span></span></span>
             </div>
-            <div class="painel numero revela">
-              <span class="material-symbols-rounded" aria-hidden="true">verified</span>
-              <span class="numero__valor">+300</span>
-              <span class="numero__rotulo">tarefas criadas por semana</span>
+            <div class="abas painel">
+              <span class="aba aba--ativa">Em aberto</span>
+              <span class="aba">Em andamento</span>
+              <span class="aba">Concluídas</span>
             </div>
-            <div class="painel painel-moeda numero numero--moeda revela">
-              <span class="material-symbols-rounded" aria-hidden="true">stars</span>
-              <span class="numero__valor">4.500</span>
-              <span class="numero__rotulo">Starcoin gerados nos últimos 30 dias</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           Como funciona
-           ================================================================= -->
-      <section class="secao" id="como-funciona">
-        <div class="envelope">
-          <h2 class="secao__titulo">Como funciona</h2>
-          <p class="secao__intro">
-            Quatro passos, do combinado ao pagamento. Você manda em todos eles.
-          </p>
-
-          <div class="grade grade--3">
-            <article class="painel peca pressavel revela">
-              <span class="passo__numero" aria-hidden="true">1</span>
-              <h3>Você cria a missão</h3>
-              <p>
-                Arrumar a cama, estudar, passear com o cachorro. Você escreve, escolhe o prazo e
-                define quanto vale em Starcoin. Dá para repetir nos dias da semana que quiser.
-              </p>
-            </article>
-            <article class="painel peca pressavel revela">
-              <span class="passo__numero" aria-hidden="true">2</span>
-              <h3>Seu filho aceita e cumpre</h3>
-              <p>
-                A missão aparece na tela dele com o prazo correndo. Ao terminar, ele manda a foto do
-                que fez — nada de "já fiz, pode confiar".
-              </p>
-            </article>
-            <article class="painel peca pressavel revela">
-              <span class="passo__numero" aria-hidden="true">3</span>
-              <h3>Você aprova — ou não</h3>
-              <p>
-                Você recebe a foto e decide. Aprovou, a recompensa cai na carteira dele na hora. Não
-                ficou bom, você reprova dizendo o motivo, e ele sabe o que refazer.
-              </p>
-            </article>
-            <article class="painel peca pressavel revela">
-              <span class="passo__numero" aria-hidden="true">4</span>
-              <h3>O saque é pedido, o Pix é seu</h3>
-              <p>
-                Quando ele quiser sacar, o pedido chega para você com o valor já em reais. Você
-                decide quando e como pagar: o Dinno organiza, você transfere.
-              </p>
-            </article>
-          </div>
-
-          <p class="painel nota revela">
-            <strong>Para ficar claro:</strong> o Dinno App não é banco, não é investimento e não
-            movimenta dinheiro nenhum. Não existe conta, cartão ou saldo real dentro do app — ele
-            registra o combinado e organiza a conta. A transferência acontece fora, entre você e seu
-            filho.
-          </p>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           Recursos
-           ================================================================= -->
-      <section class="secao" id="recursos">
-        <div class="envelope">
-          <h2 class="secao__titulo">O que já está pronto</h2>
-          <p class="secao__intro">
-            Tudo aqui funciona hoje, no app que abre pelo botão lá em cima.
-          </p>
-
-          <div class="grade grade--6">
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">verified</span>
-              </span>
-              <h3>Missões com prazo e valor</h3>
-              <p>
-                Avulsas ou recorrentes, com data e valor em Starcoin definidos por você. Sem prazo
-                cumprido, sem recompensa.
-              </p>
-            </article>
-
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">photo_camera</span>
-              </span>
-              <h3>Comprovante em foto</h3>
-              <p>
-                Cada missão concluída chega com a foto do que foi feito. Você vê antes de aprovar, de
-                onde estiver.
-              </p>
-            </article>
-
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">thumb_up</span>
-              </span>
-              <h3>Aprovação com motivo</h3>
-              <p>
-                Aprove num toque ou reprove explicando o que faltou. O retorno é parte do
-                aprendizado, não uma punição silenciosa.
-              </p>
-            </article>
-
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">gavel</span>
-              </span>
-              <h3>Multas quando o combinado quebra</h3>
-              <p>
-                Aplique um desconto com o motivo registrado. Fica no extrato, à vista dos dois — sem
-                discussão sobre o que foi dito.
-              </p>
-            </article>
-
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">account_balance_wallet</span>
-              </span>
-              <h3>Carteira com extrato</h3>
-              <p>
-                Saldo em Starcoin já convertido em reais — 100 Starcoin = R$&nbsp;10,00 — com o
-                histórico de tudo que entrou e saiu.
-              </p>
-            </article>
-
-            <article class="painel peca pressavel revela">
-              <span class="recurso__icone" aria-hidden="true">
-                <span class="material-symbols-rounded">savings</span>
-              </span>
-              <h3>Saque pedido por ele</h3>
-              <p>
-                Ele pede, você recebe o aviso com o valor em reais e marca como pago quando fizer a
-                transferência. Nada sai da sua mão.
-              </p>
-            </article>
-          </div>
-
-          <ul class="miudos">
-            <li>
-              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-              Até dois responsáveis, com os mesmos poderes
-            </li>
-            <li>
-              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-              Notificação no celular a cada missão enviada
-            </li>
-            <li>
-              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-              Ranking de amigos por missões aprovadas
-            </li>
-            <li>
-              <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-              Entrada com Google, em um toque
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           Para a criança
-           ================================================================= -->
-      <section class="secao" id="para-a-crianca">
-        <div class="envelope dupla">
-          <div>
-            <span class="etiqueta">
-              <span class="material-symbols-rounded" aria-hidden="true">military_tech</span>
-              Do outro lado da tela
-            </span>
-            <h2 class="secao__titulo">Aqui a tarefa vira conquista</h2>
-            <p class="secao__intro">
-              Nada de lista de afazeres. Do lado da criança, o Dinno App é uma tripulação, uma
-              patente para subir e uma turma para acompanhar.
-            </p>
-            <ul class="lista-marcada">
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">stars</span>
-                <span><strong>Junte Starcoin</strong> a cada missão aprovada e veja o saldo subir na tela.</span>
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">bolt</span>
-                <span><strong>Mantenha a ofensiva</strong> de dias seguidos e suba de patente, de tripulante a almirante.</span>
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">group</span>
-                <span><strong>Escolha seu apelido</strong> — é por ele que seus amigos te acham no Dinno, sem ninguém precisar saber seu e-mail.</span>
-              </li>
-            </ul>
-          </div>
-
-          <picture class="dupla__arte">
-            <source
-              type="image/webp"
-              srcset="assets/img/mascote-dupla@520.webp 520w, assets/img/mascote-dupla.webp 900w"
-              sizes="(min-width: 1024px) 384px, (min-width: 420px) 352px, 100vw"
-            />
-            <source
-              type="image/png"
-              srcset="assets/img/mascote-dupla@520.png 520w, assets/img/mascote-dupla.png 900w"
-              sizes="(min-width: 1024px) 384px, (min-width: 420px) 352px, 100vw"
-            />
-            <img
-              src="assets/img/mascote-dupla.png"
-              alt="Dois mascotes Dinno de traje espacial pulando juntos e batendo as mãos."
-              width="900"
-              height="673"
-              loading="lazy"
-            />
-          </picture>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           Instalar na tela inicial
-           ================================================================= -->
-      <section class="secao" id="instalar">
-        <div class="envelope">
-          <span class="etiqueta">
-            <span class="material-symbols-rounded" aria-hidden="true">install_mobile</span>
-            Sem loja de aplicativos
-          </span>
-          <h2 class="secao__titulo">Coloque o Dinno na tela inicial</h2>
-          <p class="secao__intro">
-            O Dinno App abre direto no navegador. Instalar é opcional, leva meio minuto e deixa o
-            ícone na tela inicial com notificação funcionando — igual a qualquer app.
-          </p>
-
-          <div class="instalar__abas">
-            <article class="painel navegador revela">
-              <div class="navegador__cabeca">
-                <h3>Google Chrome</h3>
+            <div class="missao painel super-missao">
+              <span class="sr-only">Super Missão</span>
+              <span class="icone super-missao__foguete" aria-hidden="true">rocket_launch</span>
+              <div class="missao__topo super-missao__reserva">
+                <p class="missao__titulo">Ler um capítulo do livro</p>
+                <span class="pilula-valor"><span class="starcoin">120<span class="icone" aria-hidden="true">stars</span></span></span>
               </div>
+              <span class="botao-app">Aceitar missão</span>
+            </div>
+            <div class="missao painel">
+              <div class="missao__topo">
+                <div>
+                  <p class="missao__titulo">Arrumar o quarto</p>
+                  <p class="missao__descricao">Cama feita e roupa no cesto.</p>
+                </div>
+                <span class="pilula-valor"><span class="starcoin">50<span class="icone" aria-hidden="true">stars</span></span></span>
+              </div>
+              <span class="botao-app">Aceitar missão</span>
+            </div>
+          </figure>
+        </div>
+      </section>
 
-              <!-- Mockup esquemático e original: um telefone genérico com a
-                   barra de endereço e o menu de três pontos no ALTO, que é
-                   onde o Chrome para Android põe o menu. Não é captura de
-                   tela nem reprodução de marca de terceiro. -->
-              <svg
-                class="mockup"
-                viewBox="0 0 320 150"
-                role="img"
-                aria-label="Desenho de um celular com a barra de endereço no topo e o botão de menu de três pontos no canto superior direito."
-              >
-                <rect x="8" y="8" width="304" height="134" rx="18" fill="var(--color-surface)" stroke="var(--color-outline)" stroke-width="2" />
-                <rect x="24" y="26" width="228" height="26" rx="13" fill="var(--color-surface-sunken)" stroke="var(--color-outline)" stroke-width="2" />
-                <text x="40" y="44" font-family="inherit" font-size="13" font-weight="600" fill="var(--color-on-surface-variant)">dinno-app.vercel.app</text>
-                <circle cx="278" cy="31" r="3" fill="var(--color-accent)" />
-                <circle cx="278" cy="39" r="3" fill="var(--color-accent)" />
-                <circle cx="278" cy="47" r="3" fill="var(--color-accent)" />
-                <rect x="266" y="20" width="24" height="39" rx="12" fill="none" stroke="var(--color-accent)" stroke-width="2" />
-                <rect x="24" y="70" width="180" height="10" rx="5" fill="var(--color-outline)" />
-                <rect x="24" y="90" width="256" height="10" rx="5" fill="var(--color-outline)" />
-                <rect x="24" y="110" width="128" height="10" rx="5" fill="var(--color-outline)" />
+      <section class="secao" id="como-funciona" data-secao="aprovacoes" aria-labelledby="titulo-funciona">
+        <div class="envelope funciona">
+          <div class="chapa">
+            <div class="secao__cabeca">
+              <h2 id="titulo-funciona">Como funciona do seu lado</h2>
+              <p class="secao__intro">Você combina, a criança cumpre, você confere. Cada passo fica registrado.</p>
+            </div>
+            <ol class="trilha">
+              <li>
+                <span class="trilha__numero" aria-hidden="true">1</span>
+                <div>
+                  <h3>Você cria a missão</h3>
+                  <p>Escreve o que precisa ser feito, escolhe o valor em Starcoin e, se quiser, um prazo. Serve para uma criança ou para todas.</p>
+                </div>
+              </li>
+              <li>
+                <span class="trilha__numero" aria-hidden="true">2</span>
+                <div>
+                  <h3>A criança cumpre e manda a foto</h3>
+                  <p>O comprovante entra na sua fila de aprovações. Nada de "já fiz, pode confiar".</p>
+                </div>
+              </li>
+              <li>
+                <span class="trilha__numero" aria-hidden="true">3</span>
+                <div>
+                  <h3>Você aprova ou reprova</h3>
+                  <p>Aprovou, o Starcoin entra na carteira da criança na hora. Faltou algo, você reprova e escreve o motivo.</p>
+                </div>
+              </li>
+              <li>
+                <span class="trilha__numero" aria-hidden="true">4</span>
+                <div>
+                  <h3>O pagamento é com você</h3>
+                  <p>O pedido de saque chega com o valor em reais. Você paga por fora e marca como pago.</p>
+                </div>
+              </li>
+            </ol>
+            <p class="nota painel">
+              <span class="icone" aria-hidden="true">info</span>
+              <span><strong>O Dinno App não é banco nem investimento e não movimenta dinheiro.</strong> Ele registra o combinado e calcula o saldo. A transferência acontece fora do app, do jeito que a família preferir.</span>
+            </p>
+          </div>
+
+          <div class="demo" data-demo="aprovacao">
+            <figure class="aprovacao painel" data-entra aria-label="Demonstração com dados fictícios: aprovar a missão de uma criança">
+              <div class="aprovacao__cabeca">
+                <div class="aprovacao__quem">
+                  <span class="avatar avatar--patente-explorador" aria-hidden="true">N</span>
+                  <div>
+                    <p class="aprovacao__titulo">Arrumar o quarto</p>
+                    <p class="rotulo">Enviado por Nina</p>
+                  </div>
+                </div>
+                <span class="comprovante" role="img" aria-label="Comprovante"><span class="icone" aria-hidden="true">photo_camera</span></span>
+              </div>
+              <span class="valor-caixa"><span class="starcoin starcoin--media">+50<span class="icone" aria-hidden="true">stars</span></span></span>
+              <div class="aprovacao__acoes" data-demo-acoes>
+                <button type="button" class="botao botao--perigo" data-acao="reprovar"><span class="icone" aria-hidden="true">close</span>Reprovar</button>
+                <button type="button" class="botao botao--principal" data-acao="aprovar"><span class="icone" aria-hidden="true">check</span>Aprovar</button>
+              </div>
+              <div class="aprovacao__resultado" data-demo-resultado hidden>
+                <span class="status status--aprovada" data-demo-aprovada hidden>Aprovada</span>
+                <span class="status status--reprovada" data-demo-reprovada hidden>Reprovada</span>
+                <p class="motivo" data-demo-motivo hidden>Motivo: Faltou arrumar a cama</p>
+              </div>
+            </figure>
+
+            <figure class="carteira painel painel-moeda" data-entra aria-label="Exemplo com dados fictícios: a carteira da criança">
+              <span class="rotulo">Carteira Starcoin</span>
+              <span class="starcoin starcoin--grande"><span class="contador" data-contador data-valor="1240">1240</span><span class="icone" aria-hidden="true">stars</span></span>
+              <span class="taxa">100 Starcoin = R$ 10,00</span>
+            </figure>
+
+            <p class="sr-only" role="status" aria-live="polite" data-demo-anuncio></p>
+            <button type="button" class="botao botao--secundario demo__repetir" data-acao="repetir"><span class="icone" aria-hidden="true">replay</span>Repetir demonstração</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="missoes" data-secao="missoes" aria-labelledby="titulo-missoes">
+        <div class="envelope missoes-grade">
+          <div class="chapa">
+            <div class="secao__cabeca">
+              <h2 id="titulo-missoes">Missões do jeito que a sua casa funciona</h2>
+              <p class="secao__intro">Uma para cada criança ou uma aberta para todas. Com prazo ou sem, todo dia ou uma vez só.</p>
+            </div>
+            <ul class="recursos">
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">groups</span></span>
+                <div>
+                  <h3>Para uma ou para todas</h3>
+                  <p>Em "Só a primeira que aceitar", quem pega primeiro fica com a missão. Em "Todas as crianças", cada uma faz a sua e ganha o valor inteiro.</p>
+                </div>
+              </li>
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">timer_off</span></span>
+                <div>
+                  <h3>Prazo que vale</h3>
+                  <p>O prazo segue a hora de Brasília. Passou sem envio, a missão avulsa expira e não volta.</p>
+                </div>
+              </li>
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">local_fire_department</span></span>
+                <div>
+                  <h3>Super Missão</h3>
+                  <p>Até 3 por semana para cada responsável. Na tela da criança, ela ganha contorno de fogo e um foguete.</p>
+                </div>
+              </li>
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">event_repeat</span></span>
+                <div>
+                  <h3>Rotinas da semana</h3>
+                  <p>Escolha os dias e a missão aparece sozinha, sempre para a mesma criança, com aviso das missões do dia às 07:30.</p>
+                </div>
+              </li>
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">done_all</span></span>
+                <div>
+                  <h3>Aprovação em lote</h3>
+                  <p>Marque até 50 envios e aprove de uma vez. Cada um cai na carteira certa.</p>
+                </div>
+              </li>
+              <li>
+                <span class="recursos__icone" aria-hidden="true"><span class="icone">edit_note</span></span>
+                <div>
+                  <h3>Reprovação com motivo</h3>
+                  <p>Sem motivo, não tem reprovação. A criança vê o que faltou e sabe o que ajustar.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="formulario-coluna">
+            <figure class="formulario painel" data-entra aria-label="Exemplo com dados fictícios: o formulário de criar missão do responsável">
+              <div>
+                <p class="formulario__titulo">Missões</p>
+                <p class="missao__descricao">Crie missões para as crianças e acompanhe cada uma até a aprovação.</p>
+              </div>
+              <div class="campo">
+                <span class="rotulo">Título da missão</span>
+                <span class="campo__entrada">Arrumar o quarto</span>
+              </div>
+              <div class="campo">
+                <span class="rotulo">Recompensa em Starcoin</span>
+                <span class="campo__entrada"><span class="starcoin">50<span class="icone" aria-hidden="true">stars</span></span><span class="campo__sufixo">≈ R$ 5,00</span></span>
+                <span class="campo__ajuda">100 Starcoin = R$ 10,00</span>
+              </div>
+              <div class="campo">
+                <span class="rotulo">Para quem</span>
+                <span class="chips">
+                  <span class="chip chip--ativo">Aberta</span>
+                  <span class="chip">Nina</span>
+                  <span class="chip">Davi</span>
+                </span>
+                <span class="campo__ajuda">Missão aberta: aparece para as crianças vinculadas a você.</span>
+              </div>
+              <div class="campo">
+                <span class="rotulo">Quem pode pegar</span>
+                <span class="opcao">
+                  <span class="opcao__marca" aria-hidden="true"></span>
+                  <span class="opcao__texto">
+                    <span class="opcao__nome">Só a primeira que aceitar</span>
+                    <span class="campo__ajuda">A primeira criança que aceitar fica com a missão. Ela some da lista das outras.</span>
+                  </span>
+                </span>
+                <span class="opcao opcao--ativa">
+                  <span class="opcao__marca" aria-hidden="true"></span>
+                  <span class="opcao__texto">
+                    <span class="opcao__nome">Todas as crianças</span>
+                    <span class="campo__ajuda">Cada criança que aceitar faz a sua e ganha o valor inteiro.</span>
+                  </span>
+                </span>
+              </div>
+              <div class="campo">
+                <span class="rotulo">Prazo (opcional)</span>
+                <span class="campo__entrada campo__entrada--foco" aria-hidden="true"></span>
+                <span class="campo__ajuda">Hora de Brasília. Passou do prazo sem envio, a missão expira e ninguém mais pega.</span>
+              </div>
+              <span class="opcao">
+                <span class="opcao__caixa" aria-hidden="true"><span class="icone">check</span></span>
+                <span class="opcao__texto">
+                  <span class="opcao__nome"><span class="icone" aria-hidden="true">local_fire_department</span>Super Missão</span>
+                  <span class="campo__ajuda">Aparece com contorno de fogo e um foguete na tela da criança.</span>
+                </span>
+              </span>
+              <span class="campo__ajuda">Você já criou 1 de 3 super missões nesta semana.</span>
+              <span class="botao-app">Criar missão</span>
+            </figure>
+
+            <figure class="lote painel" data-entra aria-label="Exemplo com dados fictícios: a barra de aprovação em lote">
+              <span class="lote__todas"><span class="opcao__caixa" aria-hidden="true"><span class="icone">check</span></span>Selecionar todas</span>
+              <span class="botao-app"><span class="icone" aria-hidden="true">done_all</span>Aprovar selecionadas (3)</span>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="dinheiro" data-secao="carteira" aria-labelledby="titulo-dinheiro">
+        <div class="envelope">
+          <div class="chapa secao__cabeca">
+            <h2 id="titulo-dinheiro">Um saldo que a criança entende</h2>
+            <p class="secao__intro">Cada Starcoin tem valor em reais: 100 Starcoin = R$ 10,00. A carteira mostra o que entrou, o que saiu e o que já dá para sacar.</p>
+          </div>
+
+          <div class="zigue">
+            <div class="zigue__linha">
+              <div class="zigue__texto chapa">
+                <h3>Carteira e extrato</h3>
+                <p>O saldo aparece em Starcoin e em reais, separado entre o que está livre e o que já está reservado num saque pendente.</p>
+                <p>No extrato, a criança escolhe este mês, o mês passado ou as datas que quiser e vê com quanto começou e com quanto terminou.</p>
+              </div>
+              <div class="zigue__pecas">
+                <figure class="linhas painel" data-entra aria-label="Exemplo com dados fictícios: o saldo da carteira">
+                  <div class="linhas__item">
+                    <span class="linhas__rotulo">Saldo total</span>
+                    <span class="linhas__valor"><span class="starcoin">1290<span class="icone" aria-hidden="true">stars</span></span><span class="reais">R$ 129,00</span></span>
+                  </div>
+                  <div class="linhas__item">
+                    <span class="linhas__rotulo">Bloqueado em saque pendente</span>
+                    <span class="linhas__valor"><span class="starcoin">500<span class="icone" aria-hidden="true">stars</span></span><span class="reais">R$ 50,00</span></span>
+                  </div>
+                  <div class="linhas__item">
+                    <span class="linhas__rotulo linhas__rotulo--forte">Disponível para saque</span>
+                    <span class="linhas__valor"><span class="starcoin">790<span class="icone" aria-hidden="true">stars</span></span><span class="reais">R$ 79,00</span></span>
+                  </div>
+                </figure>
+                <figure class="extrato painel encaixe" data-entra aria-label="Exemplo com dados fictícios: o extrato por período">
+                  <p class="extrato__titulo">Meu extrato</p>
+                  <span class="chips">
+                    <span class="chip chip--ativo">Este mês</span>
+                    <span class="chip">Mês passado</span>
+                    <span class="chip">Personalizado</span>
+                  </span>
+                  <div class="resumo">
+                    <span class="resumo__item"><span class="rotulo">Você começou com</span><span class="starcoin">820<span class="icone" aria-hidden="true">stars</span></span></span>
+                    <span class="resumo__item"><span class="rotulo">Entrou</span><span class="starcoin">570<span class="icone" aria-hidden="true">stars</span></span></span>
+                    <span class="resumo__item"><span class="rotulo">Saiu</span><span class="starcoin">100<span class="icone" aria-hidden="true">stars</span></span></span>
+                    <span class="resumo__item"><span class="rotulo">Você terminou com</span><span class="starcoin">1290<span class="icone" aria-hidden="true">stars</span></span></span>
+                  </div>
+                </figure>
+              </div>
+            </div>
+
+            <div class="zigue__linha">
+              <div class="zigue__texto chapa">
+                <h3>Mesada do seu jeito</h3>
+                <p>No modo livre, a criança pede o saque quando quiser, dentro do saldo. No modo mensal, o saldo fecha sozinho no dia que você escolher, de 1 a 28, e vira um pedido para você.</p>
+                <p>A mesada fixa soma um valor toda semana ou todo mês, creditado sozinho às 08:00 de Brasília. Multa também existe: sai do saldo com o motivo registrado no extrato.</p>
+              </div>
+              <div class="zigue__pecas">
+                <figure class="mesada painel painel-moeda" data-entra aria-label="Exemplo com dados fictícios: a mesada fixa de uma criança">
+                  <p class="extrato__titulo">Mesada fixa de Nina</p>
+                  <span class="alternador">
+                    <span class="alternador__texto">
+                      <span class="alternador__nome">Mesada fixa ligada</span>
+                      <span class="campo__ajuda">Desligada, nenhum crédito novo cai. O que já caiu fica.</span>
+                    </span>
+                    <span class="opcao__caixa" aria-hidden="true"><span class="icone">check</span></span>
+                  </span>
+                  <span class="campo">
+                    <span class="rotulo">Quanto cai para Nina</span>
+                    <span class="campo__entrada"><span class="starcoin">70<span class="icone" aria-hidden="true">stars</span></span><span class="campo__sufixo">≈ R$ 7,00</span></span>
+                  </span>
+                  <span class="campo">
+                    <span class="rotulo">Com que frequência</span>
+                    <span class="chips">
+                      <span class="chip chip--ativo">Toda semana</span>
+                      <span class="chip">Todo mês</span>
+                    </span>
+                  </span>
+                  <span class="botao-app"><span class="icone" aria-hidden="true">event_available</span>Salvar mesada fixa</span>
+                </figure>
+              </div>
+            </div>
+
+            <div class="zigue__linha">
+              <div class="zigue__texto chapa">
+                <h3>Loja de recompensas</h3>
+                <p>Você cadastra a recompensa com foto, preço em Starcoin e estoque. A criança compra com o saldo livre e você recebe o aviso da compra.</p>
+                <p>Sem saldo, a tela mostra quanto falta e quais missões cobrem a diferença.</p>
+              </div>
+              <div class="zigue__pecas">
+                <figure class="linhas painel painel-moeda" data-entra aria-label="Exemplo com dados fictícios: o topo da loja">
+                  <div class="linhas__item">
+                    <span class="linhas__rotulo linhas__rotulo--forte">Você pode gastar</span>
+                    <span class="starcoin starcoin--media">790<span class="icone" aria-hidden="true">stars</span></span>
+                  </div>
+                </figure>
+                <figure class="loja-item painel encaixe" data-entra aria-label="Exemplo com dados fictícios: uma recompensa da loja">
+                  <span class="loja-item__foto" aria-hidden="true"><span class="icone icone--vazado">redeem</span></span>
+                  <div class="missao__topo">
+                    <p class="missao__titulo">Jogo novo</p>
+                    <span class="pilula-valor"><span class="starcoin">850<span class="icone" aria-hidden="true">stars</span></span></span>
+                  </div>
+                  <span class="rotulo">Última unidade</span>
+                  <div class="falta">
+                    <p>Faltam <span class="starcoin">60<span class="icone" aria-hidden="true">stars</span></span></p>
+                    <p class="rotulo">Estas missões cobrem a diferença:</p>
+                    <ul>
+                      <li><span>Arrumar o quarto</span><span class="starcoin">50<span class="icone" aria-hidden="true">stars</span></span></li>
+                      <li><span>Levar o lixo para fora</span><span class="starcoin">20<span class="icone" aria-hidden="true">stars</span></span></li>
+                    </ul>
+                  </div>
+                </figure>
+              </div>
+            </div>
+
+            <div class="zigue__linha">
+              <div class="zigue__texto chapa">
+                <h3>Meta para guardar</h3>
+                <p>Com a Meta ligada por você, a criança escolhe um alvo e guarda de 10% a 50% de cada missão aprovada até chegar lá.</p>
+                <p>Quando a meta é batida, o valor guardado entra na carteira. Se você quiser, soma um bônus em cima.</p>
+              </div>
+              <div class="zigue__pecas">
+                <figure class="meta painel" data-entra aria-label="Exemplo com dados fictícios: a meta da criança">
+                  <span class="meta__pista" aria-hidden="true">
+                    <span class="meta__trilho"></span>
+                    <span class="meta__chama" style="height: 60%"></span>
+                    <span class="meta__foguete" style="bottom: calc(60% - 10px)"><span class="icone">rocket_launch</span></span>
+                  </span>
+                  <span class="meta__dados">
+                    <span>
+                      <span class="rotulo">Já guardado</span><br />
+                      <span class="starcoin starcoin--grande">180<span class="icone" aria-hidden="true">stars</span></span>
+                    </span>
+                    <span class="meta__linhas">
+                      <span><span class="icone" aria-hidden="true">flag</span>Alvo: <span class="starcoin">300<span class="icone" aria-hidden="true">stars</span></span></span>
+                      <span><span class="icone" aria-hidden="true">trending_up</span>Faltam <span class="starcoin">120<span class="icone" aria-hidden="true">stars</span></span> para bater a meta</span>
+                      <span><span class="icone" aria-hidden="true">savings</span>20% de cada missão aprovada vem para cá</span>
+                    </span>
+                    <span class="rotulo">60% do caminho percorrido.</span>
+                  </span>
+                </figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="crianca" data-secao="amigos" aria-labelledby="titulo-crianca">
+        <div class="envelope">
+          <div class="chapa secao__cabeca">
+            <p class="selo"><span class="icone" aria-hidden="true">military_tech</span>Do outro lado da tela</p>
+            <h2 id="titulo-crianca">Na tela da criança, missão vira conquista</h2>
+            <p class="secao__intro">Ofensiva, patente, emblemas e amigos. E o ranking conta o que importa: missões aprovadas. Saldo não aparece para ninguém de fora.</p>
+          </div>
+
+          <div class="crianca-grade">
+            <div class="crianca-coluna">
+              <figure class="ofensiva painel" data-entra aria-label="Exemplo com dados fictícios: o cartão de ofensiva">
+                <div class="ofensiva__cabeca">
+                  <div class="ofensiva__patente">
+                    <span class="bolha" aria-hidden="true"><span class="icone">explore</span></span>
+                    <div>
+                      <p class="ranking__titulo">Explorador</p>
+                      <p class="rotulo">3 dias seguidos</p>
+                    </div>
+                  </div>
+                  <p class="rotulo ofensiva__recorde">Recorde<br /><strong>5</strong></p>
+                </div>
+                <ul class="semana" aria-label="Últimos 7 dias">
+                  <li><span class="dia"><span class="sr-only">sem envio</span></span><span class="rotulo" aria-hidden="true">D</span></li>
+                  <li><span class="dia"><span class="sr-only">sem envio</span></span><span class="rotulo" aria-hidden="true">S</span></li>
+                  <li><span class="dia dia--ativo"><span class="icone" aria-hidden="true">check</span><span class="sr-only">missão enviada</span></span><span class="rotulo" aria-hidden="true">T</span></li>
+                  <li><span class="dia"><span class="sr-only">sem envio</span></span><span class="rotulo" aria-hidden="true">Q</span></li>
+                  <li><span class="dia dia--ativo"><span class="icone" aria-hidden="true">check</span><span class="sr-only">missão enviada</span></span><span class="rotulo" aria-hidden="true">Q</span></li>
+                  <li><span class="dia dia--ativo"><span class="icone" aria-hidden="true">check</span><span class="sr-only">missão enviada</span></span><span class="rotulo" aria-hidden="true">S</span></li>
+                  <li><span class="dia dia--ativo dia--hoje"><span class="icone" aria-hidden="true">check</span><span class="sr-only">missão enviada</span></span><span class="rotulo" aria-hidden="true">S</span></li>
+                </ul>
+                <p class="rotulo">Falta 1 dia para Oficial.</p>
+              </figure>
+              <div class="chapa">
+                <p>A ofensiva conta os dias seguidos com missão enviada, não aprovada. Quanto mais dias, maior a patente:</p>
+                <ol class="escala" aria-label="Patentes por dias seguidos">
+                  <li>Tripulante</li>
+                  <li>Cadete <small>2 dias</small></li>
+                  <li>Explorador <small>3</small></li>
+                  <li>Oficial <small>4</small></li>
+                  <li>Comandante <small>5</small></li>
+                  <li>Capitão <small>6</small></li>
+                  <li>Almirante <small>7</small></li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="crianca-coluna crianca-coluna--alta">
+              <figure class="conquistas painel" data-entra aria-label="Exemplo com dados fictícios: a linha do tempo de conquistas">
+                <p class="conquistas__titulo">Suas conquistas</p>
+                <ol class="marcos">
+                  <li class="marco" data-entra="marco" style="--i: 0">
+                    <span class="bolha bolha--accent" aria-hidden="true"><span class="icone">explore</span></span>
+                    <span class="marco__texto">
+                      <span class="marco__selo">Nova patente</span>
+                      <span class="marco__titulo">Patente Explorador</span>
+                      <span class="rotulo"><time datetime="2026-09-24">24/09/2026</time></span>
+                    </span>
+                  </li>
+                  <li class="marco" data-entra="marco" style="--i: 1">
+                    <span class="bolha bolha--accent" aria-hidden="true"><span class="icone">military_tech</span></span>
+                    <span class="marco__texto">
+                      <span class="marco__selo">Emblema</span>
+                      <span class="marco__titulo">Dez missões</span>
+                      <span class="rotulo"><time datetime="2026-09-20">20/09/2026</time></span>
+                    </span>
+                  </li>
+                  <li class="marco" data-entra="marco" style="--i: 2">
+                    <span class="bolha bolha--accent" aria-hidden="true"><span class="icone">flag</span></span>
+                    <span class="marco__texto">
+                      <span class="marco__selo">Meta</span>
+                      <span class="marco__titulo">Meta de 300 Starcoin batida</span>
+                      <span class="rotulo"><time datetime="2026-09-12">12/09/2026</time></span>
+                    </span>
+                  </li>
+                </ol>
+              </figure>
+              <div class="chapa">
+                <p>Cada emblema tem a própria página, com o botão "Compartilhe sua conquista" que abre a gaveta do celular com a imagem pronta.</p>
+              </div>
+            </div>
+
+            <div class="crianca-coluna">
+              <figure class="ranking painel" data-entra aria-label="Exemplo com dados fictícios: o ranking entre amigos">
+                <div class="ranking__cabeca">
+                  <p class="ranking__titulo">Ranking entre amigos</p>
+                  <span class="rotulo">Missões aprovadas</span>
+                </div>
+                <ol>
+                  <li class="ranking__linha">
+                    <span class="ranking__pessoa">
+                      <span class="ranking__posicao ranking__posicao--ouro" aria-hidden="true"><span class="icone">military_tech</span></span>
+                      <span class="sr-only">1º</span>
+                      <span class="avatar avatar--patente-oficial" aria-hidden="true">B</span>
+                      <span class="ranking__nome"><span>Bia</span><span class="ranking__apelido">@bia_estrela</span></span>
+                    </span>
+                    <span class="ranking__contagem">42<span class="icone" aria-hidden="true">rocket_launch</span></span>
+                  </li>
+                  <li class="ranking__linha ranking__linha--voce">
+                    <span class="ranking__pessoa">
+                      <span class="ranking__posicao" aria-hidden="true"><span class="icone">military_tech</span></span>
+                      <span class="sr-only">2º</span>
+                      <span class="avatar avatar--patente-explorador" aria-hidden="true">N</span>
+                      <span class="ranking__nome"><span class="voce">Você</span><span class="ranking__apelido">@nina_astro</span></span>
+                    </span>
+                    <span class="ranking__contagem voce">37<span class="icone" aria-hidden="true">rocket_launch</span></span>
+                  </li>
+                  <li class="ranking__linha">
+                    <span class="ranking__pessoa">
+                      <span class="ranking__posicao" aria-hidden="true"><span class="icone">military_tech</span></span>
+                      <span class="sr-only">3º</span>
+                      <span class="avatar avatar--patente-cadete" aria-hidden="true">D</span>
+                      <span class="ranking__nome"><span>Davi</span><span class="ranking__apelido">@davi_orbita</span></span>
+                    </span>
+                    <span class="ranking__contagem">29<span class="icone" aria-hidden="true">rocket_launch</span></span>
+                  </li>
+                </ol>
+              </figure>
+              <div class="chapa">
+                <p>Amizade é por apelido: ninguém precisa passar o e-mail para ser encontrado.</p>
+              </div>
+              <picture class="crianca-arte">
+                <source type="image/webp" srcset="assets/img/mascote-dupla@520.webp 520w, assets/img/mascote-dupla.webp 900w" sizes="(min-width: 1024px) 352px, (min-width: 420px) 352px, 100vw" />
+                <source type="image/png" srcset="assets/img/mascote-dupla@520.png 520w, assets/img/mascote-dupla.png 900w" sizes="(min-width: 1024px) 352px, (min-width: 420px) 352px, 100vw" />
+                <img src="assets/img/mascote-dupla.png" alt="Dois mascotes Dinno de traje espacial pulando juntos e batendo as mãos." width="900" height="673" loading="lazy" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="seguranca" data-secao="dashboard" aria-labelledby="titulo-seguranca">
+        <div class="envelope seguranca-grade">
+          <div class="chapa">
+            <div class="secao__cabeca">
+              <h2 id="titulo-seguranca">Família no comando, dados no lugar</h2>
+              <p class="secao__intro">É a rotina e o dinheiro de uma criança. As regras ficam onde não dá para contornar.</p>
+            </div>
+            <ul class="garantias">
+              <li>
+                <span class="icone" aria-hidden="true">group</span>
+                <div>
+                  <h3>Dois responsáveis, os mesmos poderes</h3>
+                  <p>Até dois por criança. Um convida o outro por link, e os dois criam, aprovam e pagam do mesmo jeito. A troca de responsável é pedida pela criança e aprovada por quem já está.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">shield_person</span>
+                <div>
+                  <h3>Autorização antes de começar</h3>
+                  <p>O painel do responsável só abre depois da autorização de uso pela criança, como pede a LGPD no art. 14. Até lá, a criança vê um aviso de que a autorização está pendente.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">lock</span>
+                <div>
+                  <h3>Comprovantes privados</h3>
+                  <p>As fotos das missões ficam num arquivo privado. Só a própria criança e quem é responsável por ela abrem, por um link que expira em 10 minutos.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">visibility_off</span>
+                <div>
+                  <h3>Ranking sem saldo</h3>
+                  <p>Amigos veem nome, foto, apelido, ofensiva e missões aprovadas. Saldo, extrato e comprovante, nunca.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">database</span>
+                <div>
+                  <h3>Regras no banco de dados</h3>
+                  <p>Quem vê o quê é decidido pelas regras do banco de dados, não só pelo que a tela deixa de mostrar.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">person_remove</span>
+                <div>
+                  <h3>Conta excluída pelo próprio app</h3>
+                  <p>Em Perfil, com a senha, você exclui a conta. Saem o perfil, a foto de perfil e os comprovantes enviados. Quem é o único responsável de uma criança adiciona outro antes, e a criança com saque pendente resolve o saque primeiro.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">notifications</span>
+                <div>
+                  <h3>Avisos no celular</h3>
+                  <p>Com as notificações ativadas, chegam missão nova, missão aprovada, saque pedido e compra na loja.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">login</span>
+                <div>
+                  <h3>Entrada com Google</h3>
+                  <p>Crie a conta com e-mail e senha ou entre com a sua conta Google.</p>
+                </div>
+              </li>
+              <li>
+                <span class="icone" aria-hidden="true">tour</span>
+                <div>
+                  <h3>Começo guiado</h3>
+                  <p>Na primeira vez, um tutorial curto mostra onde fica cada coisa. Dá para pular.</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="seguranca-lado">
+            <figure class="autorizacao painel-elevado" data-entra aria-label="Exemplo com dados fictícios: o pedido de autorização no painel do responsável">
+              <div class="autorizacao__cabeca">
+                <span class="bolha bolha--accent" aria-hidden="true"><span class="icone">shield_person</span></span>
+                <p class="autorizacao__titulo">Autorização para o uso do Dinno pela criança</p>
+              </div>
+              <p>Antes de continuar, confirme que você autoriza Nina a usar o Dinno. A lei pede essa autorização de quem é responsável pela criança.</p>
+              <span class="caixa-marcada"><span class="opcao__caixa" aria-hidden="true"><span class="icone">check</span></span>Li e autorizo</span>
+              <span class="botao-app">Autorizar</span>
+            </figure>
+            <picture class="seguranca-arte">
+              <source srcset="assets/img/mascote-em-pe.webp" type="image/webp" />
+              <img src="assets/img/mascote-em-pe.png" alt="O mascote Dinno de traje espacial, em pé, com a mão no queixo em pose pensativa." width="535" height="1043" loading="lazy" />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <section class="secao" id="instalar" data-secao="missoes" aria-labelledby="titulo-instalar">
+        <div class="envelope">
+          <div class="chapa secao__cabeca">
+            <p class="selo"><span class="icone" aria-hidden="true">install_mobile</span>Sem loja de aplicativos</p>
+            <h2 id="titulo-instalar">Coloque o Dinno na tela inicial</h2>
+            <p class="secao__intro">O Dinno App abre direto no navegador. Instalar é opcional: o ícone fica na tela inicial e o app abre em tela cheia.</p>
+          </div>
+
+          <div class="instalar">
+            <article class="navegador painel" data-entra aria-labelledby="titulo-chrome">
+              <h3 id="titulo-chrome">Google Chrome no Android</h3>
+              <svg class="mockup" viewBox="0 0 320 150" role="img" aria-label="Desenho de um celular com a barra de endereço no topo e o botão Mais, de três pontos, à direita da barra.">
+                <rect class="m-tela" x="8" y="8" width="304" height="134" rx="18" />
+                <rect class="m-barra" x="24" y="26" width="228" height="26" rx="13" />
+                <text class="m-texto" x="40" y="44">dinno-app.vercel.app</text>
+                <circle class="m-ponto" cx="278" cy="31" r="3" />
+                <circle class="m-ponto" cx="278" cy="39" r="3" />
+                <circle class="m-ponto" cx="278" cy="47" r="3" />
+                <rect class="m-alvo" x="266" y="20" width="24" height="39" rx="12" />
+                <rect class="m-linha" x="24" y="70" width="180" height="10" rx="5" />
+                <rect class="m-linha" x="24" y="90" width="256" height="10" rx="5" />
+                <rect class="m-linha" x="24" y="110" width="128" height="10" rx="5" />
               </svg>
-
               <ol class="passos">
                 <li>Abra <strong>dinno-app.vercel.app</strong> no Chrome.</li>
-                <li>Toque no menu de <strong>três pontos</strong>, no canto superior direito.</li>
-                <li>
-                  Toque em <strong>Instalar app</strong>. Dependendo da versão do Chrome, a opção
-                  aparece como <strong>Adicionar à tela inicial</strong>.
-                </li>
-                <li>Confirme em <strong>Instalar</strong>. O ícone aparece junto dos seus outros apps.</li>
+                <li>À direita da barra de endereço, toque em <strong>Mais</strong>, o botão de três pontos.</li>
+                <li>Toque em <strong>Instalar e criar atalho</strong>.</li>
+                <li>Toque em <strong>Instalar</strong> e siga as instruções na tela.</li>
               </ol>
             </article>
 
-            <article class="painel navegador revela">
-              <div class="navegador__cabeca">
-                <h3>Microsoft Edge</h3>
-              </div>
-
-              <!-- Mesmo desenho esquemático, com o menu embaixo: é onde o Edge
-                   para Android põe a barra de navegação. -->
-              <svg
-                class="mockup"
-                viewBox="0 0 320 150"
-                role="img"
-                aria-label="Desenho de um celular com a barra de endereço no topo e o botão de menu de três pontos na barra inferior, à direita."
-              >
-                <rect x="8" y="8" width="304" height="134" rx="18" fill="var(--color-surface)" stroke="var(--color-outline)" stroke-width="2" />
-                <rect x="24" y="24" width="272" height="24" rx="12" fill="var(--color-surface-sunken)" stroke="var(--color-outline)" stroke-width="2" />
-                <text x="40" y="41" font-family="inherit" font-size="13" font-weight="600" fill="var(--color-on-surface-variant)">dinno-app.vercel.app</text>
-                <rect x="24" y="62" width="180" height="10" rx="5" fill="var(--color-outline)" />
-                <rect x="24" y="82" width="230" height="10" rx="5" fill="var(--color-outline)" />
-                <line x1="8" y1="108" x2="312" y2="108" stroke="var(--color-outline)" stroke-width="2" />
-                <circle cx="60" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
-                <circle cx="120" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
-                <circle cx="180" cy="125" r="7" fill="none" stroke="var(--color-outline)" stroke-width="2" />
-                <circle cx="256" cy="125" r="3" fill="var(--color-accent)" />
-                <circle cx="266" cy="125" r="3" fill="var(--color-accent)" />
-                <circle cx="276" cy="125" r="3" fill="var(--color-accent)" />
-                <rect x="244" y="113" width="44" height="24" rx="12" fill="none" stroke="var(--color-accent)" stroke-width="2" />
+            <article class="navegador painel" data-entra aria-labelledby="titulo-edge">
+              <h3 id="titulo-edge">Microsoft Edge no Android</h3>
+              <svg class="mockup" viewBox="0 0 320 150" role="img" aria-label="Desenho de um celular com a barra de endereço no topo e o botão de menu de três pontos na barra inferior, à direita.">
+                <rect class="m-tela" x="8" y="8" width="304" height="134" rx="18" />
+                <rect class="m-barra" x="24" y="24" width="272" height="24" rx="12" />
+                <text class="m-texto" x="40" y="41">dinno-app.vercel.app</text>
+                <rect class="m-linha" x="24" y="62" width="180" height="10" rx="5" />
+                <rect class="m-linha" x="24" y="82" width="230" height="10" rx="5" />
+                <line class="m-traco" x1="8" y1="108" x2="312" y2="108" />
+                <circle class="m-traco" cx="60" cy="125" r="7" />
+                <circle class="m-traco" cx="120" cy="125" r="7" />
+                <circle class="m-traco" cx="180" cy="125" r="7" />
+                <circle class="m-ponto" cx="256" cy="125" r="3" />
+                <circle class="m-ponto" cx="266" cy="125" r="3" />
+                <circle class="m-ponto" cx="276" cy="125" r="3" />
+                <rect class="m-alvo" x="244" y="113" width="44" height="24" rx="12" />
               </svg>
-
               <ol class="passos">
                 <li>Abra <strong>dinno-app.vercel.app</strong> no Edge.</li>
                 <li>Toque no menu de <strong>três pontos</strong>, na barra de baixo, à direita.</li>
@@ -486,217 +946,124 @@
         </div>
       </section>
 
-      <!-- =================================================================
-           Privacidade
-           ================================================================= -->
-      <section class="secao" id="privacidade">
-        <div class="envelope dupla dupla--invertida">
-          <div>
-            <h2 class="secao__titulo">Privacidade que dá para conferir</h2>
-            <p class="secao__intro">É a vida financeira de uma criança. A gente trata assim.</p>
-            <ul class="lista-marcada">
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                <span>O ranking mostra <strong>só quantas missões</strong> cada amigo concluiu. Saldo e extrato não aparecem para ninguém.</span>
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                <span>Cada família enxerga <strong>apenas os próprios dados</strong>. Missão, carteira e extrato não atravessam a porta de casa.</span>
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">lock</span>
-                <span>A proteção está <strong>nas regras do banco de dados</strong>, não só no que a tela deixa de mostrar.</span>
-              </li>
-              <li>
-                <span class="material-symbols-rounded" aria-hidden="true">check_circle</span>
-                <span><strong>Você apaga a conta quando quiser</strong>, pelo próprio app, com senha. Some o perfil, o histórico e as fotos.</span>
-              </li>
-            </ul>
-          </div>
-
-          <picture class="dupla__arte">
-            <source srcset="assets/img/mascote-em-pe.webp" type="image/webp" />
-            <img
-              src="assets/img/mascote-em-pe.png"
-              alt="O mascote Dinno de traje espacial, em pé, com a mão no queixo em pose pensativa."
-              width="535"
-              height="1043"
-              loading="lazy"
-            />
-          </picture>
-        </div>
-      </section>
-
-      <!-- =================================================================
-           FAQ — <details> nativo, sem JavaScript
-           ================================================================= -->
-      <section class="secao" id="perguntas">
+      <section class="secao" id="perguntas" data-secao="missoes" aria-labelledby="titulo-perguntas">
         <div class="envelope">
-          <h2 class="secao__titulo">Perguntas que todo pai faz</h2>
-          <p class="secao__intro">As respostas curtas, sem rodeio.</p>
+          <div class="chapa secao__cabeca">
+            <h2 id="titulo-perguntas">Perguntas de quem está começando</h2>
+            <p class="secao__intro">Respostas curtas e diretas.</p>
+          </div>
 
           <div class="faq">
             <details>
-              <summary>O Dinno mexe no meu dinheiro?</summary>
-              <p>
-                Não. O Dinno App não é banco, não é investimento e não movimenta um centavo. Ele
-                registra as missões, calcula o saldo e avisa quando seu filho pede um saque. A
-                transferência você faz por fora, por Pix ou como preferir.
-              </p>
+              <summary>O Dinno mexe no meu dinheiro?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Não. O Dinno App não é banco nem investimento e não movimenta nenhum centavo. Ele registra as missões, calcula o saldo e avisa quando a criança pede um saque. A transferência você faz por fora, por Pix ou como preferir.</p>
             </details>
-
             <details>
-              <summary>Quanto vale um Starcoin?</summary>
-              <p>
-                100 Starcoin = R$&nbsp;10,00. É a taxa que o app usa para mostrar o saldo da carteira
-                já convertido em reais, para a criança entender o que aquele número significa.
-              </p>
+              <summary>Quanto vale um Starcoin?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>100 Starcoin = R$ 10,00. É a taxa que o app usa para mostrar o saldo da carteira em reais e o valor de cada saque.</p>
             </details>
-
             <details>
-              <summary>Preciso instalar alguma coisa?</summary>
-              <p>
-                Não. O Dinno App abre direto no navegador do celular ou do computador. Se quiser
-                deixar o ícone na tela inicial e receber notificação, o passo a passo está aqui em
-                cima — e não passa por loja nenhuma.
-              </p>
+              <summary>Preciso instalar alguma coisa?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Não. O Dinno App abre no navegador do celular ou do computador. Se quiser o ícone na tela inicial, o passo a passo está logo acima e não passa por loja nenhuma.</p>
             </details>
-
             <details>
-              <summary>Podem existir dois responsáveis?</summary>
-              <p>
-                Podem, até dois, com exatamente os mesmos poderes: os dois criam missões, aprovam,
-                aplicam multas e marcam saques como pagos. Um convida o outro por link.
-              </p>
+              <summary>Podem existir dois responsáveis?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Podem, até dois por criança, com os mesmos poderes: os dois criam missões, aprovam, aplicam multas e marcam saques como pagos. Um convida o outro por link.</p>
             </details>
-
             <details>
-              <summary>Meu filho vê o saldo dos amigos?</summary>
-              <p>
-                Não. O ranking mostra apenas quantas missões cada um teve aprovadas. Saldo, extrato e
-                transações são visíveis só dentro da própria família.
-              </p>
+              <summary>Dá para mandar a mesma missão para várias crianças?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Dá. Crie a missão como aberta e escolha quem pode pegar. Em "Só a primeira que aceitar", a primeira criança fica com ela. Em "Todas as crianças", cada uma faz a sua e ganha o valor inteiro.</p>
             </details>
-
             <details>
-              <summary>Como uma criança encontra a outra?</summary>
-              <p>
-                Pelo apelido que ela mesma escolhe. Ninguém precisa saber o e-mail de ninguém, e quem
-                ainda não escolheu um apelido simplesmente não aparece em busca nenhuma.
-              </p>
+              <summary>O que acontece quando o prazo vence?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>O prazo é opcional e segue a hora de Brasília. Se ele passar sem envio, a missão avulsa expira: sai da lista e ninguém mais pega. O que já foi enviado antes do prazo continua esperando a sua aprovação.</p>
             </details>
-
             <details>
-              <summary>Dá para apagar a conta depois?</summary>
-              <p>
-                Dá, pelo próprio app, em Perfil. Você confirma com a senha e a conta some junto com o
-                perfil, o histórico e as fotos. Duas travas protegem a família: quem é o único
-                responsável de uma criança precisa adicionar outro antes, e quem tem saque pendente
-                resolve o saque primeiro.
-              </p>
+              <summary>Como funciona a mesada fixa?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Você define o valor e a frequência, toda semana ou todo mês. O crédito entra sozinho na carteira às 08:00 de Brasília, no dia escolhido. Dá para desligar quando quiser, e o que já caiu fica.</p>
             </details>
-
             <details>
-              <summary>Serve para qual idade?</summary>
-              <p>
-                Foi pensado para a faixa de 10 a 13 anos, que já entende prazo, combinado e valor.
-                Nada impede usar antes ou depois — quem conhece a criança é você.
-              </p>
+              <summary>Como funciona a loja de recompensas?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Você cadastra a recompensa com foto, preço em Starcoin e estoque. A criança compra com o saldo livre, e você recebe o aviso da compra. Sem saldo, a tela mostra quanto falta e sugere missões para chegar lá.</p>
+            </details>
+            <details>
+              <summary>O que é a Meta?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>É o cofrinho da criança. Com a Meta ligada por você, a criança escolhe um alvo em Starcoin e guarda de 10% a 50% de cada missão aprovada. Quando chega lá, o valor guardado entra na carteira, com um bônus se você tiver ligado essa opção.</p>
+            </details>
+            <details>
+              <summary>A criança vê o saldo dos amigos?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Não. O ranking mostra só quantas missões cada um teve aprovadas. Saldo, extrato e comprovantes ficam dentro da família.</p>
+            </details>
+            <details>
+              <summary>Como uma criança encontra a outra?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Pelo apelido que cada uma escolhe. Ninguém precisa saber o e-mail de ninguém, e quem ainda não tem apelido não aparece na busca.</p>
+            </details>
+            <details>
+              <summary>Dá para apagar a conta depois?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Dá, pelo próprio app, em Perfil, confirmando com a senha. Saem o perfil, a foto de perfil e os comprovantes enviados. Duas travas protegem a família: quem é o único responsável de uma criança precisa adicionar outro antes, e quem tem saque pendente resolve o saque primeiro.</p>
+            </details>
+            <details>
+              <summary>Serve para qual idade?<span class="icone" aria-hidden="true">expand_more</span></summary>
+              <p>Foi pensado para a faixa de 10 a 13 anos, que já entende prazo, combinado e valor. Quem conhece a criança é você.</p>
             </details>
           </div>
         </div>
       </section>
 
-      <!-- =================================================================
-           Chamada final
-           ================================================================= -->
-      <section class="final ceu">
-        <div class="envelope final__grade">
+      <section class="secao" id="comecar" data-secao="missoes" aria-labelledby="titulo-final">
+        <div class="envelope final">
           <picture class="final__arte">
-            <source srcset="assets/img/mascote-sentada.webp" type="image/webp" />
-            <img
-              src="assets/img/mascote-sentada.png"
-              alt="O mascote Dinno sentado, segurando uma moeda Starcoin."
-              width="640"
-              height="877"
-              loading="lazy"
-            />
+            <source type="image/webp" srcset="assets/img/mascote-moeda@560.webp 560w, assets/img/mascote-moeda.webp 1000w" sizes="(min-width: 1024px) 320px, (min-width: 420px) 320px, 100vw" />
+            <source type="image/png" srcset="assets/img/mascote-moeda@560.png 560w, assets/img/mascote-moeda.png 1000w" sizes="(min-width: 1024px) 320px, (min-width: 420px) 320px, 100vw" />
+            <img src="assets/img/mascote-moeda.png" alt="Dinno, o dinossauro astronauta azul de traje branco, saindo de um planeta roxo e erguendo uma moeda Starcoin dourada." width="1000" height="885" loading="lazy" />
           </picture>
-          <h2>Mande a primeira missão hoje.</h2>
-          <p>
-            Criar a conta e combinar a primeira tarefa leva menos de cinco minutos. Amanhã já tem
-            foto de comprovante esperando sua aprovação.
-          </p>
-          <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">
-            Criar minha conta grátis
-          </a>
+          <div>
+            <div class="chapa final__texto">
+              <h2 id="titulo-final">Hora de lançar a primeira missão!</h2>
+              <p>Crie a conta, combine a primeira tarefa e espere a foto chegar. O resto é aprovar.</p>
+              <a class="botao botao--principal botao--grande" href="https://dinno-app.vercel.app/" rel="noopener">Criar a primeira missão</a>
+            </div>
+            <div class="numeros">
+              <p class="numero painel">
+                <span class="numero__valor">+10</span>
+                <span class="rotulo">contas de responsáveis e crianças</span>
+              </p>
+              <p class="numero numero--moeda painel painel-moeda">
+                <span class="numero__valor">+1.300<span class="icone" aria-hidden="true">stars</span></span>
+                <span class="rotulo">Starcoin ganhos em missões aprovadas nos últimos 30 dias</span>
+              </p>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
-    <footer class="rodape">
-      <div class="envelope">
-        <div class="rodape__linha">
-          <a class="marca" href="#topo" aria-label="Dinno App — ir para o topo">
+    <footer>
+      <div class="rodape">
+        <div class="envelope rodape__linha">
+          <a class="marca" href="#topo" aria-label="Dinno App, ir para o topo">
             <picture>
               <source srcset="assets/img/logo-marca.webp" type="image/webp" />
               <img src="assets/img/logo-marca.png" alt="" width="160" height="134" loading="lazy" />
             </picture>
-            <span class="wordmark" aria-hidden="true">
-              <span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span>
-            </span>
+            <span class="wordmark" aria-hidden="true"><span class="wm-d">Dinno</span> <span class="wm-a">A</span><span class="wm-p1">p</span><span class="wm-p2">p</span></span>
           </a>
-          <a href="https://dinno-app.vercel.app/" rel="noopener">Abrir o app</a>
+          <nav class="rodape__links" aria-label="Documentos legais e acesso ao app">
+            <a href="https://dinno-app.vercel.app/" rel="noopener">Abrir o app</a>
+            <a href="https://rodprado128.github.io/dinno-privacy-policy/">Política de Privacidade</a>
+            <a href="https://rodprado128.github.io/dinno-terms-of-service/">Termos de Serviço</a>
+          </nav>
           <span>© <time datetime="2026">2026</time> Dinno App</span>
         </div>
-
-        <nav class="rodape__legal" aria-label="Documentos legais">
-          <a href="https://rodprado128.github.io/dinno-privacy-policy/">Política de Privacidade</a>
-          <a href="https://rodprado128.github.io/dinno-terms-of-service/">Termos de Serviço</a>
-        </nav>
-
-        <!-- Crédito de desenvolvimento. O símbolo é a marca da ForjaDev e
-             segue o guia dela: versão reduzida de 2 faíscas (a única
-             autorizada abaixo de 32px), faísca laranja intocada. Sem rotação,
-             sombra ou contorno. -->
-        <div class="rodape__credito">
-          <a class="forjadev" href="https://forjadev.app.br/" rel="noopener">
-            <svg
-              class="forjadev__icone"
-              viewBox="0 0 512 512"
-              width="28"
-              height="28"
-              fill="none"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path
-                class="forjadev__corpo"
-                d="M20.48 162.71 L34.18 137.72 L243.14 69.83 L268.91 81.99 L294.19 159.77 L280.49 184.75 L71.52 252.65 L45.75 240.49 Z"
-              />
-              <path
-                class="forjadev__corpo"
-                d="M140.86 221.14 L205.87 200.01 L272.66 401.63 L269.38 427.09 L222.95 442.17 L205.33 423.51 Z"
-              />
-              <path
-                class="forjadev__faisca"
-                d="M324.70 201.65 L372.23 220.85 L412.93 120.13 L365.40 100.92 Z"
-              />
-              <path
-                class="forjadev__faisca"
-                d="M413.81 161.37 L461.34 180.57 L491.52 105.88 L443.99 86.67 Z"
-              />
-            </svg>
-            <span>Desenvolvido por <strong>ForjaDev</strong></span>
-          </a>
-          <p class="rodape__local">Orgulhosamente feito em Maringá.</p>
+      </div>
+      <div class="forjadev-bloco">
+        <div class="envelope forjadev-bloco__linha">
+          <a class="forjadev" href="https://forjadev.app.br/" rel="noopener"><span>Desenvolvido por</span><svg class="forjadev__logo" viewBox="0 0 1083.86 200" width="174" height="32" fill="none" role="img" aria-labelledby="forjadev-nome" focusable="false"><title id="forjadev-nome">ForjaDev</title><path class="forjadev__corpo" d="M0.00 49.89 L7.36 36.47 L119.60 0.00 L133.44 6.53 L147.02 48.31 L139.66 61.73 L27.42 98.20 L13.57 91.67 Z"/><path class="forjadev__corpo" d="M64.66 81.27 L99.58 69.93 L135.45 178.22 L133.69 191.90 L108.75 200.00 L99.29 189.98 Z"/><path class="forjadev__faisca" d="M165.44 71.83 L184.28 79.44 L204.55 29.29 L185.70 21.68 Z"/><path class="forjadev__faisca" d="M202.15 54.78 L221.00 62.40 L237.21 22.27 L218.36 14.66 Z"/><path class="forjadev__faisca" d="M238.87 37.74 L257.71 45.35 L270.00 14.95 L251.15 7.34 Z"/><path class="forjadev__corpo" d="M334.04 44.00H424.55V70.86H370.02V90.07H416.90V115.79H370.02V156.00H334.04Z M529.72 113.02Q529.72 135.00 516.77 146.48Q503.83 157.95 481.20 157.95Q458.58 157.95 445.72 146.56Q432.86 135.16 432.86 113.02Q432.86 90.88 445.72 79.49Q458.58 68.09 481.20 68.09Q503.83 68.09 516.77 79.57Q529.72 91.05 529.72 113.02ZM465.25 108.47V117.74Q465.25 135.98 481.20 135.98Q497.32 135.98 497.32 117.74V108.47Q497.32 90.07 481.20 90.07Q465.25 90.07 465.25 108.47Z M603.62 69.88V97.07H593.20Q583.11 97.07 578.63 102.28Q574.16 107.49 574.16 117.74V156.00H541.76V70.05H568.30L570.41 83.07Q573.34 75.58 579.69 71.76Q586.04 67.93 594.02 67.93Q597.76 67.93 600.69 68.83Q603.62 69.72 603.62 69.88Z M611.60 59.95V37.98H644.00V59.95ZM614.20 190.19Q609.97 190.19 603.79 189.37Q597.60 188.56 594.02 187.26V167.88H602.48Q611.60 167.88 611.60 157.47V70.05H644.00V160.72Q644.00 176.35 636.91 183.27Q629.83 190.19 614.20 190.19Z M748.02 96.09V129.63Q748.02 132.40 749.32 134.19Q750.62 135.98 753.23 135.98H759.09V154.70Q758.60 155.02 756.57 155.76Q754.53 156.49 750.79 157.22Q747.04 157.95 742.16 157.95Q732.72 157.95 726.61 155.10Q720.51 152.26 718.23 147.21Q712.04 152.09 704.39 155.02Q696.74 157.95 686.48 157.95Q656.20 157.95 656.20 133.86Q656.20 121.33 662.96 114.73Q669.72 108.14 682.41 105.70Q695.11 103.26 715.62 103.26V99.02Q715.62 93.98 712.12 91.37Q708.62 88.77 703.09 88.77Q698.04 88.77 694.38 90.56Q690.72 92.35 690.72 96.26V96.91H658.81Q658.65 96.09 658.65 94.63Q658.65 82.42 670.29 75.26Q681.93 68.09 703.58 68.09Q723.27 68.09 735.65 74.69Q748.02 81.28 748.02 96.09ZM688.60 129.63Q688.60 137.77 699.67 137.77Q706.02 137.77 710.82 134.35Q715.62 130.93 715.62 125.88V118.56Q701.79 118.56 695.19 121.57Q688.60 124.58 688.60 129.63Z M875.65 100.00Q875.65 156.00 816.88 156.00H768.37V44.00H816.88Q875.65 44.00 875.65 100.00ZM804.34 129.14H816.23Q838.86 129.14 838.86 104.88V95.12Q838.86 70.86 816.23 70.86H804.34Z M982.11 113.02V118.56H917.65Q917.65 127.84 921.80 132.56Q925.95 137.28 934.90 137.28Q943.04 137.28 946.87 133.86Q950.69 130.44 950.69 124.74H982.11Q982.11 140.37 970.23 149.16Q958.34 157.95 935.55 157.95Q911.62 157.95 898.44 146.80Q885.25 135.65 885.25 113.02Q885.25 90.88 898.11 79.49Q910.97 68.09 933.60 68.09Q957.20 68.09 969.66 79.16Q982.11 90.23 982.11 113.02ZM917.81 103.26H949.39Q949.39 96.58 945.57 92.67Q941.74 88.77 934.90 88.77Q919.60 88.77 917.81 103.26Z M1016.95 156.00 984.39 70.05H1019.23L1035.02 123.60H1036.16L1051.95 70.05H1083.86L1050.97 156.00Z"/></svg></a>
+          <p>Orgulhosamente feito em Maringá.</p>
         </div>
       </div>
     </footer>
 
-    <!-- Único JavaScript da página: o campo de estrelas em warp e a revelação
-         no scroll. `defer` porque ele mede seções já montadas, e a página
-         inteira funciona sem ele. -->
     <script src="assets/js/main.js" defer></script>
   </body>
 </html>

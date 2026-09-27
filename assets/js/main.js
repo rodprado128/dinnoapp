@@ -1,224 +1,324 @@
 /* ==========================================================================
-   Dinno App — landing: revelação no scroll + campo de estrelas em warp
+   Dinno App: landing. Único JavaScript da página, sem dependência e sem build.
    ==========================================================================
 
-   Único JavaScript da página. Sem dependência, sem build step.
+   O que mora aqui, e de onde cada efeito vem no app:
+     1. Um único requestAnimationFrame para tudo que anima por quadro (warp e
+        contador), parado com a aba oculta.
+     2. Warp: reimplementação de components/login/fundo-warp.tsx, com os
+        parâmetros da landing decididos em 16/09/2026.
+     3. Entrada das peças: .entra-item (260ms, 10px, 60ms por índice) e
+        .entra-marco (320ms, -8px, 70ms por índice) de app/globals.css.
+     4. Contador: components/ui/valor-animado.tsx (easeOutCubic, 700ms).
+     5. Confete: components/ui/confete.tsx (52 peças, 1200ms, largada em até
+        160ms, limpeza em 1200 + 160 + 80ms).
+     6. Demonstração de aprovação: os botões Aprovar, Reprovar e Repetir.
+
+   Com prefers-reduced-motion: reduce, nada disso anima. Sem canvas, sem rAF,
+   sem confete, sem entrada; o contador mostra o valor final. Sem JavaScript,
+   a página inteira aparece com os números finais que já estão no HTML.
+
+   Nenhum hex aqui: toda cor é lida das custom properties do :root.
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. Revelação no scroll — leve, uma vez por elemento.
-   --------------------------------------------------------------------------
-   A marca `.js-revela` é o contrato com o CSS: só com ela o estado escondido
-   existe. Sem JavaScript, sem `IntersectionObserver` ou com
-   `prefers-reduced-motion`, a classe nunca entra e a página nasce visível.
-   -------------------------------------------------------------------------- */
 (function () {
   "use strict";
 
+  var raiz = document.documentElement;
   var reduzido =
     typeof window.matchMedia === "function" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var temObservador = typeof window.IntersectionObserver === "function";
 
-  if (reduzido || typeof window.IntersectionObserver !== "function") return;
-
-  var alvos = document.querySelectorAll(".revela");
-  if (!alvos.length) return;
-
-  document.documentElement.classList.add("js-revela");
-
-  var observador = new IntersectionObserver(
-    function (entradas) {
-      for (var i = 0; i < entradas.length; i++) {
-        if (!entradas[i].isIntersecting) continue;
-        entradas[i].target.classList.add("visivel");
-        observador.unobserve(entradas[i].target);
-      }
-    },
-    { rootMargin: "0px 0px -10% 0px", threshold: 0.1 }
-  );
-
-  for (var j = 0; j < alvos.length; j++) observador.observe(alvos[j]);
-})();
-
-/* --------------------------------------------------------------------------
-   2. Campo de estrelas em warp — o parabrisa da nave
-   --------------------------------------------------------------------------
-   Mesma ideia do fundo da tela de login do app
-   (`components/login/fundo-warp.tsx`): projeção em perspectiva, rastro ligando
-   a posição anterior à atual, Canvas 2D. O app e a landing são repositórios
-   separados, sem build compartilhado — isto é reimplementação, não import.
-   Mexeu num, confira o outro.
-
-   DIFERENÇA DELIBERADA EM RELAÇÃO À VERSÃO ANTERIOR DESTA PÁGINA: antes eram
-   dois canvas presos ao herói e à chamada final, com 400 estrelas por milhão
-   de pixels, teto de 300, velocidade 7,5 e opacidade 0,55. O resto da página
-   não tinha céu, e o efeito passava despercebido. Agora é UM canvas fixo atrás
-   da página inteira, com o dobro da densidade, teto maior, velocidade maior e
-   estrela maior e mais brilhante. O que protege a leitura não é apagar o
-   efeito — é o `.scrim` atrás do texto.
-
-   O que este arquivo TEM de manter:
-     - `prefers-reduced-motion: reduce` não inicializa nada. Nem canvas, nem
-       rAF, nem listener. A página fica com o campo ESTÁTICO em CSS, que já
-       está no HTML. Não é opcional.
-     - loop parado quando a aba está oculta (`visibilitychange`);
-     - devicePixelRatio respeitado, com teto de 2;
-     - teto de estrelas, para não custar caro em tela grande nem em Android
-       médio;
-     - cor lida de `--cor-estrela` no `:root`. Nenhum hex solto aqui.
-   -------------------------------------------------------------------------- */
-(function () {
-  "use strict";
-
-  /** Plano mais distante. A projeção multiplica por PROFUNDIDADE / z. */
-  var PROFUNDIDADE = 1400;
-  /** Densidade e teto. O dobro da versão anterior: é o pedido de "mais evidente". */
-  var ESTRELAS_POR_MILHAO_DE_PX = 800;
-  var MAXIMO_ESTRELAS = 460;
-  var VELOCIDADE = 12;
-  var COR_PADRAO = "#f2edff";
-
-  var reduzido =
-    typeof window.matchMedia === "function" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  if (reduzido) return;
-  if (!document.createElement("canvas").getContext) return;
-
-  var cor =
-    getComputedStyle(document.documentElement).getPropertyValue("--cor-estrela").trim() ||
-    COR_PADRAO;
-
-  var canvas = document.createElement("canvas");
-  canvas.className = "estrelas-warp";
-  canvas.setAttribute("aria-hidden", "true");
-  var ctx = canvas.getContext("2d");
-  if (!ctx) return;
-
-  document.body.appendChild(canvas);
-  // Só agora o campo estático sai: se o canvas não tivesse entrado, a página
-  // continuaria com as estrelas de radial-gradient.
-  document.documentElement.classList.add("js-warp");
-
-  var largura = 0;
-  var altura = 0;
-  var estrelas = [];
-  var frame = null;
-  var timerResize = null;
-
-  /** Uma estrela em coordenadas de câmera; z é a profundidade. */
-  function sortear(z) {
-    var zi = typeof z === "number" ? z : Math.random() * PROFUNDIDADE;
-    return {
-      // Faixa de exatamente uma tela no plano do fundo: como k vale 1 lá e
-      // cresce à medida que a estrela se aproxima, tudo que vem para a frente
-      // se espalha para fora do quadro.
-      x: (Math.random() - 0.5) * largura,
-      y: (Math.random() - 0.5) * altura,
-      z: zi,
-      zAnterior: zi,
-    };
+  function token(nome) {
+    return getComputedStyle(raiz).getPropertyValue(nome).trim();
   }
 
-  function dimensionar() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
-    largura = window.innerWidth;
-    altura = window.innerHeight;
-    canvas.width = Math.floor(largura * dpr);
-    canvas.height = Math.floor(altura * dpr);
-    canvas.style.width = largura + "px";
-    canvas.style.height = altura + "px";
-    // Desenha em pixels CSS; o dpr entra só na escala.
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  /* ------------------------------------------------------------------------
+     1. Agenda: um rAF só
+     ------------------------------------------------------------------------ */
+  var tarefas = [];
+  var quadro = null;
 
-    var quantidade = Math.min(
-      MAXIMO_ESTRELAS,
-      Math.round((largura * altura * ESTRELAS_POR_MILHAO_DE_PX) / 1000000)
-    );
-    estrelas = [];
-    for (var i = 0; i < quantidade; i++) estrelas.push(sortear());
+  function laco(agora) {
+    quadro = null;
+    var vivas = [];
+    for (var i = 0; i < tarefas.length; i++) {
+      if (tarefas[i](agora) !== false) vivas.push(tarefas[i]);
+    }
+    tarefas = vivas;
+    if (tarefas.length && !document.hidden) quadro = window.requestAnimationFrame(laco);
   }
 
-  function desenhar(comRastro) {
-    var cx = largura / 2;
-    var cy = altura / 2;
+  function agendar(tarefa) {
+    tarefas.push(tarefa);
+    if (quadro === null && !document.hidden) quadro = window.requestAnimationFrame(laco);
+  }
 
-    ctx.clearRect(0, 0, largura, altura);
-    ctx.strokeStyle = cor;
-    ctx.fillStyle = cor;
-    ctx.lineCap = "round";
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      if (quadro !== null) window.cancelAnimationFrame(quadro);
+      quadro = null;
+    } else if (tarefas.length && quadro === null) {
+      quadro = window.requestAnimationFrame(laco);
+    }
+  });
 
-    for (var i = 0; i < estrelas.length; i++) {
-      var e = estrelas[i];
-      var k = PROFUNDIDADE / e.z;
-      var x = cx + e.x * k;
-      var y = cy + e.y * k;
-      if (x < -60 || x > largura + 60 || y < -60 || y > altura + 60) continue;
+  /* ------------------------------------------------------------------------
+     2. Warp: o parabrisa da nave, atrás da página inteira
+     ------------------------------------------------------------------------
+     Mesma projeção do login do app (profundidade 1400, rastro da posição
+     anterior à atual). Parâmetros da landing, de 16/09/2026: 800 estrelas por
+     milhão de px, teto de 460, velocidade 12, raio até 3,2px, alpha
+     0,45 + proximidade x 0,9 e opacidade 0,9 no canvas (no CSS). O canvas só
+     entra se der para desenhar; aí o <html> ganha `js-warp` e o céu estático
+     sai. */
+  (function warp() {
+    if (reduzido) return;
+    var PROFUNDIDADE = 1400;
+    var ESTRELAS_POR_MILHAO_DE_PX = 800;
+    var MAXIMO_ESTRELAS = 460;
+    var VELOCIDADE = 12;
 
-      // Perto = maior e mais opaca. Maior e mais brilhante que antes.
-      var proximidade = 1 - e.z / PROFUNDIDADE;
-      var raio = Math.max(0.6, proximidade * 3.2);
+    var canvas = document.createElement("canvas");
+    if (!canvas.getContext) return;
+    var ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    var cor = token("--cor-estrela");
+    if (!cor) return;
 
-      ctx.globalAlpha = Math.min(1, 0.45 + proximidade * 0.9);
+    canvas.className = "estrelas-warp";
+    canvas.setAttribute("aria-hidden", "true");
+    document.body.appendChild(canvas);
+    raiz.classList.add("js-warp");
 
-      if (comRastro) {
+    var largura = 0;
+    var altura = 0;
+    var estrelas = [];
+    var espera = null;
+
+    function sortear(z) {
+      var zi = typeof z === "number" ? z : Math.random() * PROFUNDIDADE;
+      return { x: (Math.random() - 0.5) * largura, y: (Math.random() - 0.5) * altura, z: zi, zAnterior: zi };
+    }
+
+    function dimensionar() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      largura = window.innerWidth;
+      altura = window.innerHeight;
+      canvas.width = Math.floor(largura * dpr);
+      canvas.height = Math.floor(altura * dpr);
+      canvas.style.width = largura + "px";
+      canvas.style.height = altura + "px";
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var quantidade = Math.min(MAXIMO_ESTRELAS, Math.round((largura * altura * ESTRELAS_POR_MILHAO_DE_PX) / 1000000));
+      estrelas = [];
+      for (var i = 0; i < quantidade; i++) estrelas.push(sortear());
+    }
+
+    function desenhar() {
+      var cx = largura / 2;
+      var cy = altura / 2;
+      ctx.clearRect(0, 0, largura, altura);
+      ctx.strokeStyle = cor;
+      ctx.lineCap = "round";
+      for (var i = 0; i < estrelas.length; i++) {
+        var e = estrelas[i];
+        e.zAnterior = e.z;
+        e.z -= VELOCIDADE;
+        if (e.z <= 1) {
+          estrelas[i] = e = sortear(PROFUNDIDADE);
+        }
+        var k = PROFUNDIDADE / e.z;
+        var x = cx + e.x * k;
+        var y = cy + e.y * k;
+        if (x < -60 || x > largura + 60 || y < -60 || y > altura + 60) continue;
+        var proximidade = 1 - e.z / PROFUNDIDADE;
         var kAnterior = PROFUNDIDADE / e.zAnterior;
-        ctx.lineWidth = raio;
+        ctx.globalAlpha = Math.min(1, 0.45 + proximidade * 0.9);
+        ctx.lineWidth = Math.max(0.6, proximidade * 3.2);
         ctx.beginPath();
         ctx.moveTo(cx + e.x * kAnterior, cy + e.y * kAnterior);
         ctx.lineTo(x, y);
         ctx.stroke();
-      } else {
-        ctx.beginPath();
-        ctx.arc(x, y, raio, 0, Math.PI * 2);
-        ctx.fill();
       }
+      ctx.globalAlpha = 1;
+      return true;
     }
 
-    ctx.globalAlpha = 1;
+    dimensionar();
+    agendar(desenhar);
+
+    function aoRedimensionar() {
+      if (espera) clearTimeout(espera);
+      espera = setTimeout(dimensionar, 150);
+    }
+    window.addEventListener("resize", aoRedimensionar);
+    window.addEventListener("orientationchange", aoRedimensionar);
+  })();
+
+  /* ------------------------------------------------------------------------
+     4. Contador (usado pela entrada e pela demonstração)
+     ------------------------------------------------------------------------ */
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
   }
 
-  function passo() {
-    for (var i = 0; i < estrelas.length; i++) {
-      var e = estrelas[i];
-      e.zAnterior = e.z;
-      e.z -= VELOCIDADE;
-      // Renasce no fundo, em outro ponto.
-      if (e.z <= 1) estrelas[i] = sortear(PROFUNDIDADE);
-    }
-    desenhar(true);
-
-    if (document.hidden) {
-      frame = null;
+  function contar(el, de, ate) {
+    el.setAttribute("data-valor", String(ate));
+    if (reduzido || de === ate) {
+      el.textContent = String(ate);
       return;
     }
-    frame = window.requestAnimationFrame(passo);
+    var inicio = null;
+    agendar(function (agora) {
+      if (inicio === null) inicio = agora;
+      var t = Math.min((agora - inicio) / 700, 1);
+      el.textContent = String(Math.round(de + (ate - de) * easeOutCubic(t)));
+      return t < 1;
+    });
   }
 
-  function iniciar() {
-    if (frame !== null || document.hidden) return;
-    frame = window.requestAnimationFrame(passo);
+  /* ------------------------------------------------------------------------
+     3. Entrada das peças + pausa da brasa fora da tela
+     ------------------------------------------------------------------------ */
+  if (temObservador && !reduzido) {
+    var pecas = document.querySelectorAll("[data-entra]");
+    raiz.classList.add("js-entra");
+
+    var entrada = new IntersectionObserver(
+      function (itens) {
+        var ordem = 0;
+        for (var i = 0; i < itens.length; i++) {
+          if (!itens[i].isIntersecting) continue;
+          var alvo = itens[i].target;
+          entrada.unobserve(alvo);
+          if (alvo.getAttribute("data-entra") !== "marco") {
+            // Só as 8 primeiras de uma leva escalonam (indiceDeEntrada do app).
+            alvo.style.setProperty("--i", String(ordem < 8 ? ordem : 0));
+            ordem++;
+          }
+          alvo.classList.add("entrando");
+          var contador = alvo.querySelector("[data-contador]");
+          if (contador) {
+            var final = Number(contador.getAttribute("data-valor")) || 0;
+            contar(contador, 0, final);
+          }
+        }
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+    );
+
+    for (var p = 0; p < pecas.length; p++) entrada.observe(pecas[p]);
+
+    // Ao terminar, sai a classe da animação e fica o estado normal.
+    document.addEventListener("animationend", function (ev) {
+      var el = ev.target;
+      if (!el.classList || !el.classList.contains("entrando")) return;
+      if (ev.animationName !== "entra-item" && ev.animationName !== "entra-marco") return;
+      el.classList.remove("entrando");
+      el.classList.add("entrou");
+      el.style.removeProperty("--i");
+    });
   }
 
-  function parar() {
-    if (frame !== null) {
-      window.cancelAnimationFrame(frame);
-      frame = null;
+  if (temObservador) {
+    var brasas = document.querySelectorAll(".super-missao");
+    var vigia = new IntersectionObserver(function (itens) {
+      for (var i = 0; i < itens.length; i++) {
+        itens[i].target.classList.toggle("pausado", !itens[i].isIntersecting);
+      }
+    });
+    for (var b = 0; b < brasas.length; b++) vigia.observe(brasas[b]);
+  }
+
+  /* ------------------------------------------------------------------------
+     5. Confete
+     ------------------------------------------------------------------------ */
+  var CORES_CONFETE = [
+    "--missoes-accent",
+    "--carteira-accent",
+    "--amigos-accent",
+    "--perfil-accent",
+    "--dashboard-accent",
+    "--aprovacoes-accent",
+    "--multas-accent",
+    "--saques-accent",
+  ];
+
+  function confete() {
+    if (reduzido) return;
+    var cores = [];
+    for (var c = 0; c < CORES_CONFETE.length; c++) {
+      var valor = token(CORES_CONFETE[c]);
+      if (valor) cores.push(valor);
     }
+    if (!cores.length) return;
+    var camada = document.createElement("div");
+    camada.className = "confete";
+    camada.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < 52; i++) {
+      var peca = document.createElement("span");
+      peca.className = "confete-peca";
+      peca.style.left = Math.random() * 100 + "%";
+      peca.style.width = 6 + Math.random() * 6 + "px";
+      peca.style.height = 8 + Math.random() * 10 + "px";
+      peca.style.background = cores[Math.floor(Math.random() * cores.length)];
+      peca.style.borderRadius = Math.random() < 0.35 ? "9999px" : "2px";
+      peca.style.animationDelay = Math.random() * 160 + "ms";
+      peca.style.setProperty("--desvio", (Math.random() - 0.5) * 220 + "px");
+      peca.style.setProperty("--giro", 360 + Math.random() * 720 + "deg");
+      camada.appendChild(peca);
+    }
+    document.body.appendChild(camada);
+    setTimeout(function () {
+      camada.remove();
+    }, 1200 + 160 + 80);
   }
 
-  function aoRedimensionar() {
-    if (timerResize) clearTimeout(timerResize);
-    timerResize = setTimeout(dimensionar, 150);
+  /* ------------------------------------------------------------------------
+     6. Demonstração de aprovação
+     ------------------------------------------------------------------------ */
+  var demo = document.querySelector("[data-demo='aprovacao']");
+  if (demo) {
+    var acoes = demo.querySelector("[data-demo-acoes]");
+    var resultado = demo.querySelector("[data-demo-resultado]");
+    var aprovada = demo.querySelector("[data-demo-aprovada]");
+    var reprovada = demo.querySelector("[data-demo-reprovada]");
+    var motivo = demo.querySelector("[data-demo-motivo]");
+    var saldo = demo.querySelector("[data-contador]");
+    var anuncio = demo.querySelector("[data-demo-anuncio]");
+    var SALDO_INICIAL = 1240;
+    var VALOR_MISSAO = 50;
+
+    demo.addEventListener("click", function (ev) {
+      var botao = ev.target.closest("[data-acao]");
+      if (!botao) return;
+      var acao = botao.getAttribute("data-acao");
+      if (acao === "aprovar") {
+        acoes.hidden = true;
+        resultado.hidden = false;
+        aprovada.hidden = false;
+        reprovada.hidden = true;
+        motivo.hidden = true;
+        confete();
+        contar(saldo, Number(saldo.getAttribute("data-valor")) || SALDO_INICIAL, SALDO_INICIAL + VALOR_MISSAO);
+        anuncio.textContent = "Aprovada. Saldo da carteira: " + (SALDO_INICIAL + VALOR_MISSAO) + " Starcoin.";
+      } else if (acao === "reprovar") {
+        acoes.hidden = true;
+        resultado.hidden = false;
+        aprovada.hidden = true;
+        reprovada.hidden = false;
+        motivo.hidden = false;
+        anuncio.textContent = "Reprovada. Motivo: Faltou arrumar a cama";
+      } else if (acao === "repetir") {
+        acoes.hidden = false;
+        resultado.hidden = true;
+        aprovada.hidden = true;
+        reprovada.hidden = true;
+        motivo.hidden = true;
+        contar(saldo, Number(saldo.getAttribute("data-valor")) || SALDO_INICIAL, SALDO_INICIAL);
+        anuncio.textContent = "";
+      }
+    });
   }
-
-  dimensionar();
-  iniciar();
-
-  window.addEventListener("resize", aoRedimensionar);
-  window.addEventListener("orientationchange", aoRedimensionar);
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) parar();
-    else iniciar();
-  });
 })();

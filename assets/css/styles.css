@@ -1,115 +1,193 @@
 /* ==========================================================================
-   Dinno App — landing de conversão
+   Dinno App: landing de conversão
    ==========================================================================
 
-   FONTE DE VERDADE VISUAL: `BRANDING_DINNO.md`. Todo token aqui é cópia literal
-   do guia — não há hex inventado nesta folha, e onde um material antigo
-   divergir, o guia manda.
+   Fonte de verdade da marca: BRANDING_DINNO.md (prescritivo). Valores dos
+   tokens: app/globals.css e DESIGN.md do repositório do app (descritivos). A
+   identidade é definitiva desde 26/09/2026; os tokens moram no :root porque é
+   assim que a folha fica coerente com o app, não porque a marca vá mudar.
 
-   O conceito é "brinquedo de plástico injetado no espaço": peça sólida, borda
-   de 2px, sombra DURA deslocada para baixo, raio generoso. Nada de vidro,
-   blur, backdrop-filter ou gradiente como fundo de card — a versão anterior
-   desta página tinha essa estética e ela saiu por inteiro.
+   Conceito: "brinquedo de plástico injetado no espaço". Peça sólida, borda de
+   2px, sombra DURA deslocada para baixo, raio de 32px em card, pílula em
+   botão. Nada de vidro, blur, backdrop-filter, sombra difusa, brilho ou
+   gradiente como fundo de card.
 
-   ACCENT DA PEÇA: `missoes` (#9A6BFF). Uma peça = uma seção = um accent,
-   conforme o guia. A missão é a metáfora central do produto, então é o accent
-   que a landing inteira usa. O dourado do Starcoin (#FFC93C) é a única
-   exceção: ele convive com qualquer accent e aparece sempre que a moeda é
-   citada.
+   Accent por seção, como no app: cada <section> declara `data-secao` e os
+   quatro tokens de accent são trocados ali. Nenhuma regra escreve cor de
+   seção na mão. O dourado da moeda convive com qualquer accent.
 
-   TEMA ESCURO E SÓ ELE. O escuro é o rosto da marca, e uma peça de marketing
-   não precisa acompanhar a preferência de tema do sistema — ver o bloco no
-   `:root` abaixo, que conta por que o tema claro saiu daqui.
+   Tema escuro e só ele (decisão de 16/09/2026). `color-scheme: dark` também
+   impede o escurecimento forçado do navegador de reprocessar as cores.
    ========================================================================== */
 
 :root {
-  /* --- Superfície — tema escuro (padrão da marca) ----------------------- */
+  color-scheme: dark;
+
+  /* --- Base, tema escuro (app/globals.css, bloco .dark) ----------------- */
   --color-background: #140f26;
   --color-surface: #211a38;
   --color-surface-elevated: #2c2350;
   --color-surface-sunken: #0e0a1c;
   --color-on-surface: #f2edff;
-  --color-on-surface-variant: #b9afd6;
+  --color-on-surface-variant: #cbc2e4;
   --color-outline: #3d3363;
   --color-shadow-hard: #0a0716;
-  --color-error: #ff6b6b;
+  --color-error: #ffb4ab;
+  --color-error-fill: #ff6b6b;
   --color-on-error: #2b0505;
   --color-success: #6fe9a9;
+  --color-preto: #000000;
 
-  /* --- Moeda — Starcoin, livre em qualquer seção ------------------------ */
+  /* --- Moeda: Starcoin, livre em qualquer seção -------------------------- */
   --color-moeda: #ffc93c;
   --color-moeda-on: #2a1f00;
   --color-moeda-shadow: #c4900a;
+  --color-moeda-text: #ffc93c;
 
-  /* --- Accent da peça: seção `missoes` ---------------------------------- */
-  --color-accent: #9a6bff;
-  --color-accent-on: #1e0b45;
-  --color-accent-shadow: #5c33c4;
-  --color-accent-text: #d0bcff;
+  /* --- Fogo: só no contorno da Super Missão e na chama da Meta ----------- */
+  --color-fogo-amarelo: #ffd24a;
+  --color-fogo-laranja: #ff8a1f;
+  --color-fogo-vermelho: #e02a12;
+  --color-destaque-brasa-text: #ff8a1f;
 
-  /* --- Wordmark: quatro fills FIXOS, não seguem o accent ---------------- */
+  /* --- As oito seções do app (DESIGN.md §2, accent-text do escuro) ------- */
+  --missoes-accent: #9a6bff;
+  --missoes-on: #1e0b45;
+  --missoes-shadow: #5c33c4;
+  --missoes-text: #d0bcff;
+  --carteira-accent: #ffc93c;
+  --carteira-on: #2a1f00;
+  --carteira-shadow: #c4900a;
+  --carteira-text: #ffc93c;
+  --amigos-accent: #35e0e8;
+  --amigos-on: #05282a;
+  --amigos-shadow: #128f96;
+  --amigos-text: #35e0e8;
+  --perfil-accent: #ff7ba9;
+  --perfil-on: #33091b;
+  --perfil-shadow: #c43d71;
+  --perfil-text: #ffb3cc;
+  --dashboard-accent: #5b8cff;
+  --dashboard-on: #071433;
+  --dashboard-shadow: #2b54c4;
+  --dashboard-text: #b3c9ff;
+  --aprovacoes-accent: #a6f03c;
+  --aprovacoes-on: #14240a;
+  --aprovacoes-shadow: #6daf15;
+  --aprovacoes-text: #a6f03c;
+  --multas-accent: #ff7a5c;
+  --multas-on: #2b0c05;
+  --multas-shadow: #c4432b;
+  --multas-text: #ffb8a5;
+  --saques-accent: #3be08a;
+  --saques-on: #052a17;
+  --saques-shadow: #12a05c;
+  --saques-text: #3be08a;
+
+  /* Accent da raiz: missoes (o fundo, a aurora e o cabeçalho). */
+  --color-accent: var(--missoes-accent);
+  --color-accent-on: var(--missoes-on);
+  --color-accent-shadow: var(--missoes-shadow);
+  --color-accent-text: var(--missoes-text);
+
+  /* --- Wordmark: quatro fills FIXOS, não seguem o accent ----------------- */
   --wm-dinno: #88ff55;
   --wm-a: #0088ff;
   --wm-p1: #6e52ff;
   --wm-p2: #c1f120;
 
-  /* --- Estrelas do campo em warp (assets/js/main.js) -------------------- */
+  /* --- Estrela do warp (lida por main.js) --------------------------------- */
   --cor-estrela: #f2edff;
 
-  /* --- Marca de quem desenvolve. NÃO é paleta do Dinno: um rebranding do
-         Dinno não reescreve estas duas. ---------------------------------- */
+  /* --- Marca de quem desenvolve: NÃO é paleta do Dinno. Valores do
+         FORJADEV-BRAND-GUIDE, tabela "Variações de Cor dos Assets", linha
+         "Fundo aço escuro", e cores da paleta de suporte. ------------------ */
   --cor-forjadev-corpo: #ffffff;
   --cor-forjadev-faisca: #ff6a00;
+  --cor-forjadev-aco: #141a20;
+  --cor-forjadev-bigorna: #f4f5f6;
+  --cor-forjadev-filete: rgb(255 255 255 / 0.08);
 
-  /* --- Forma ------------------------------------------------------------ */
+  /* --- Forma ------------------------------------------------------------- */
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-2xl: 2rem;
   --radius-full: 9999px;
   --borda: 2px;
   --sombra-painel: 0 5px 0 0 var(--color-shadow-hard);
-  --sombra-painel-elevado: 0 8px 0 0 var(--color-shadow-hard), 0 16px 32px -8px rgb(0 0 0 / 0.45);
-  --sombra-botao: 0 4px 0 0 var(--color-accent-shadow);
+  --sombra-painel-elevado: 0 8px 0 0 var(--color-shadow-hard);
+  --sombra-perigo: color-mix(in srgb, var(--color-error-fill) 55%, var(--color-preto));
 
-  /* --- Tipografia — Baloo 2, sem itálico, sentence case ----------------- */
-  --fonte: "Baloo 2", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* --- Tipografia: Baloo 2, sem itálico, sentence case ------------------- */
+  --fonte: "Baloo 2", "Baloo 2 Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  /* --- Ritmo ------------------------------------------------------------ */
+  /* --- Ritmo -------------------------------------------------------------- */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
   --spacing-lg: 24px;
   --spacing-xl: 32px;
   --spacing-2xl: 56px;
+  --secao-respiro: 56px;
   --gutter: 20px;
-  --largura-max: 68rem;
-
-  /* --- Alvo de toque mínimo (guia: 44px) -------------------------------- */
+  --largura-max: 72rem;
   --toque: 44px;
+  --altura-cabecalho: 64px;
 
-  /* --- Aurora: 10–14% no escuro --------------------------------------- */
+  /* --- Aurora: 12% no escuro, 78s (DESIGN.md §6) -------------------------- */
   --aurora-opacidade: 0.12;
+}
 
-  /* No escuro, dourado como texto é o próprio dourado. */
-  --color-moeda-text: #ffc93c;
+/* Fallback com a métrica da Baloo 2: os mesmos valores que o next/font gera
+   para o app (lidos do CSS do build do app, .next/static/chunks/*.css). Com
+   ele, a troca da fonte do sistema pela Baloo 2 não mexe na altura das linhas
+   e a página não pula (CLS). */
+@font-face {
+  font-family: "Baloo 2 Fallback";
+  src: local(Arial);
+  ascent-override: 112.55%;
+  descent-override: 54.71%;
+  line-gap-override: 0%;
+  size-adjust: 95.78%;
+}
 
-  /* ESCURO E SÓ ESCURO.
-   *
-   * A versão anterior desta folha trazia os dois temas: estes tokens no
-   * `:root` e um `@media (prefers-color-scheme: light)` logo abaixo, com os
-   * valores claros do guia. O bloco funcionava bem demais — em qualquer
-   * visitante com o sistema no claro, ele vencia e a landing inteira
-   * renderizava clara. A causa nunca foi especificidade nem ordem: era a
-   * consulta de mídia fazendo exatamente o que consulta de mídia faz.
-   *
-   * Uma peça de marketing não precisa acompanhar a preferência do sistema. O
-   * escuro é o rosto da marca, então ele é o ÚNICO tema daqui. `color-scheme`
-   * declara só `dark` para o navegador não pintar formulário nem barra de
-   * rolagem em claro por conta própria.
-   *
-   * O tema claro do guia continua existindo — no APP, onde o usuário escolhe.
-   */
-  color-scheme: dark;
+/* Accent por seção. Só troca os quatro tokens: nenhum componente sabe em que
+   seção está. */
+[data-secao="missoes"] {
+  --color-accent: var(--missoes-accent);
+  --color-accent-on: var(--missoes-on);
+  --color-accent-shadow: var(--missoes-shadow);
+  --color-accent-text: var(--missoes-text);
+}
+[data-secao="carteira"] {
+  --color-accent: var(--carteira-accent);
+  --color-accent-on: var(--carteira-on);
+  --color-accent-shadow: var(--carteira-shadow);
+  --color-accent-text: var(--carteira-text);
+}
+[data-secao="amigos"] {
+  --color-accent: var(--amigos-accent);
+  --color-accent-on: var(--amigos-on);
+  --color-accent-shadow: var(--amigos-shadow);
+  --color-accent-text: var(--amigos-text);
+}
+[data-secao="perfil"] {
+  --color-accent: var(--perfil-accent);
+  --color-accent-on: var(--perfil-on);
+  --color-accent-shadow: var(--perfil-shadow);
+  --color-accent-text: var(--perfil-text);
+}
+[data-secao="dashboard"] {
+  --color-accent: var(--dashboard-accent);
+  --color-accent-on: var(--dashboard-on);
+  --color-accent-shadow: var(--dashboard-shadow);
+  --color-accent-text: var(--dashboard-text);
+}
+[data-secao="aprovacoes"] {
+  --color-accent: var(--aprovacoes-accent);
+  --color-accent-on: var(--aprovacoes-on);
+  --color-accent-shadow: var(--aprovacoes-shadow);
+  --color-accent-text: var(--aprovacoes-text);
 }
 
 /* ==========================================================================
@@ -123,7 +201,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5.5rem;
+  scroll-padding-top: calc(var(--altura-cabecalho) + 16px);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -144,9 +222,10 @@ img {
   display: block;
 }
 
-/* Escala tipográfica do guia. Peso 800 nos displays, 700 nos títulos,
-   500 no corpo, 600 no label. Sentence case em tudo — a marca não tem
-   uppercase. */
+figure {
+  margin: 0;
+}
+
 h1,
 h2,
 h3 {
@@ -179,9 +258,20 @@ p {
   text-wrap: pretty;
 }
 
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
 a {
   color: var(--color-accent-text);
   text-underline-offset: 3px;
+}
+
+strong {
+  font-weight: 700;
+  color: var(--color-on-surface);
 }
 
 :focus-visible {
@@ -190,65 +280,87 @@ a {
   border-radius: 4px;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link de pular: fora da tela até receber foco. */
+.pular {
+  position: absolute;
+  left: var(--spacing-md);
+  top: -80px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+  padding: 0 var(--spacing-md);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-elevated);
+  border: var(--borda) solid var(--color-outline);
+  color: var(--color-on-surface);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.pular:focus-visible {
+  top: var(--spacing-sm);
+}
+
 /* ==========================================================================
-   Ícones — Material Symbols Rounded, FILL 1 / wght 600 (guia)
+   Ícones: Material Symbols Rounded, FILL 1 / wght 600 (DESIGN.md §4)
    ========================================================================== */
-.material-symbols-rounded {
+.icone {
   font-family: "Material Symbols Rounded";
   font-weight: normal;
   font-style: normal;
+  font-size: 24px;
   line-height: 1;
   letter-spacing: normal;
   white-space: nowrap;
   direction: ltr;
-  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 48;
+  display: inline-block;
+  flex: none;
+  font-variation-settings: "FILL" 1, "wght" 600, "GRAD" 0, "opsz" 24;
   -webkit-font-feature-settings: "liga";
   -webkit-font-smoothing: antialiased;
-  font-size: 24px;
-  display: inline-block;
-  vertical-align: middle;
+  /* Reserva a caixa do glifo antes de a fonte chegar: sem isso a ligadura
+     aparece como palavra e empurra a linha (CLS). */
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+}
+
+.icone--vazado {
+  font-variation-settings: "FILL" 0, "wght" 600, "GRAD" 0, "opsz" 24;
 }
 
 /* ==========================================================================
-   Envelope e ritmo de seção
-   ========================================================================== */
-.envelope {
-  width: 100%;
-  max-width: var(--largura-max);
-  margin: 0 auto;
-  padding-inline: var(--gutter);
-}
-
-.secao {
-  padding-block: var(--spacing-2xl);
-  position: relative;
-}
-
-.secao__titulo {
-  margin-bottom: var(--spacing-sm);
-}
-
-.secao__intro {
-  color: var(--color-on-surface-variant);
-  font-size: 18px;
-  line-height: 26px;
-  max-width: 46rem;
-  margin-bottom: var(--spacing-xl);
-}
-
-/* ==========================================================================
-   Aurora — a única animação que não responde a uma ação do usuário
+   Fundo: aurora + céu. As três camadas são fixas, sem interação, atrás de
+   tudo.
+     .aurora         único movimento que não responde ao usuário (78s).
+     .estrelas       campo ESTÁTICO em CSS: é o céu sem JavaScript, sem canvas
+                     e sob prefers-reduced-motion.
+     .estrelas-warp  canvas em warp criado por main.js; quando ele entra, o
+                     <html> ganha `js-warp` e o estático sai.
    ========================================================================== */
 .aurora {
   position: fixed;
-  inset: -10%;
+  inset: -20%;
   z-index: -2;
   pointer-events: none;
   opacity: var(--aurora-opacidade);
   background:
-    radial-gradient(38rem 38rem at 18% 12%, var(--color-accent), transparent 65%),
+    radial-gradient(38rem 38rem at 18% 12%, var(--missoes-accent), transparent 65%),
     radial-gradient(32rem 32rem at 82% 28%, var(--color-moeda), transparent 62%),
-    radial-gradient(44rem 44rem at 50% 96%, var(--color-accent), transparent 68%);
+    radial-gradient(44rem 44rem at 50% 96%, var(--missoes-accent), transparent 68%);
   animation: aurora-deriva 78s ease-in-out infinite alternate;
 }
 
@@ -259,29 +371,6 @@ a {
   to {
     transform: translate3d(2%, 2%, 0) scale(1.06);
   }
-}
-
-/* ==========================================================================
-   Céu — agora atrás da PÁGINA INTEIRA, não só do herói
-   ==========================================================================
-
-   Antes eram dois campos de estrelas presos às seções `.ceu` (herói e chamada
-   final), cada um com seu canvas. O resto da página não tinha céu nenhum, e o
-   efeito passava despercebido.
-
-   Agora são duas camadas fixas, cobrindo tudo:
-
-     .estrelas       campo ESTÁTICO em CSS. Existe sempre no HTML, então é o
-                     que aparece sem JavaScript e sob `prefers-reduced-motion`.
-     .estrelas-warp  canvas 2D em warp, criado por `main.js`. Quando ele entra,
-                     marca o <html> com `js-warp` e o estático sai.
-
-   Os dois nunca convivem. E a queda nunca é "nenhum céu": é o céu parado.
-   ========================================================================== */
-.ceu {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
 }
 
 .estrelas,
@@ -295,31 +384,19 @@ a {
 .estrelas {
   background-image:
     radial-gradient(1.8px 1.8px at 12% 18%, var(--cor-estrela), transparent 100%),
-    radial-gradient(1.8px 1.8px at 78% 12%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1.8px 1.8px at 78% 12%, var(--missoes-text), transparent 100%),
     radial-gradient(1.2px 1.2px at 33% 62%, var(--cor-estrela), transparent 100%),
     radial-gradient(1.8px 1.8px at 62% 78%, var(--color-moeda), transparent 100%),
     radial-gradient(1.2px 1.2px at 88% 55%, var(--cor-estrela), transparent 100%),
-    radial-gradient(1.2px 1.2px at 5% 82%, var(--color-accent-text), transparent 100%),
+    radial-gradient(1.2px 1.2px at 5% 82%, var(--missoes-text), transparent 100%),
     radial-gradient(1.8px 1.8px at 45% 28%, var(--cor-estrela), transparent 100%);
   background-size: 14rem 14rem;
-  opacity: 0.72;
-  animation: cintila 9s ease-in-out infinite alternate;
-}
-
-@keyframes cintila {
-  from {
-    opacity: 0.5;
-  }
-  to {
-    opacity: 0.85;
-  }
+  opacity: 0.7;
 }
 
 .estrelas-warp {
   width: 100%;
   height: 100%;
-  /* Alto de propósito: o pedido é que o fundo SEJA percebido. O que protege a
-     leitura não é apagar as estrelas, é o scrim atrás do texto (abaixo). */
   opacity: 0.9;
 }
 
@@ -328,73 +405,90 @@ a {
 }
 
 /* --------------------------------------------------------------------------
-   Scrim — o que segura o contraste
+   Chapa: o que segura o contraste do texto solto sobre o céu.
    --------------------------------------------------------------------------
-   Com o céu forte atrás da página inteira, texto solto (fora de card) passa a
-   ter estrela por trás. A saída NÃO é baixar a evidência do efeito: é uma
-   chapa suave da cor de fundo atrás do bloco de texto, que apaga as estrelas
-   exatamente onde elas atrapalhariam e deixa o resto do quadro intacto.
+   Chapa SÓLIDA da cor do fundo, com o próprio background do elemento: sem
+   pseudo-elemento, sem position, sem isolation, sem opacidade e sem sombra.
 
-   Medido sob os glifos, quadro a quadro: sem scrim, o CONTRASTE MÉDIO já
-   passava com folga (9:1 a 16:1) — é o que o olho integra dentro da letra.
-   Mas o PIOR PIXEL, uma estrela cheia bem atrás de um glifo, caía para 1,2:1.
-   O scrim resolve o pior caso sem tocar na evidência do efeito.
+   A versão anterior (.scrim, 16/09) era um ::before posicionado, a 92%, com
+   sombra difusa de até 1,3em de espalhamento. Cada bloco com scrim virava um
+   contexto de empilhamento pintado na ordem do documento, e o scrim de um
+   bloco POSTERIOR pintava por cima do texto do bloco anterior: apagava o chip
+   do herói, a segunda linha do <h1> e a linha "Grátis para começar".
 
-   Ele cobre só o texto que fica SOLTO na página. Texto dentro de `.painel` já
-   tem fundo opaco por cima do canvas e não precisa de nada. */
-.scrim,
-.secao__titulo,
-.secao__intro,
-.heroi__sub,
-.heroi__selos li,
-.miudos li,
-.lista-marcada li,
-.final h2,
-.final p,
-.rodape__linha,
-.rodape__legal,
-.rodape__credito,
-.heroi h1 {
-  position: relative;
-  isolation: isolate;
-}
-
-.scrim::before,
-.secao__titulo::before,
-.secao__intro::before,
-.heroi__sub::before,
-.heroi__selos li::before,
-.miudos li::before,
-.lista-marcada li::before,
-.final h2::before,
-.final p::before,
-.rodape__linha::before,
-.rodape__legal::before,
-.rodape__credito::before,
-.heroi h1::before {
-  content: "";
-  position: absolute;
-  inset: -0.35em -0.6em;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: var(--radius-lg);
-  /* Chapa SÓLIDA a 92%, com a borda desmanchada por uma sombra difusa da mesma
-     cor. Não é gradiente radial de propósito: a primeira versão era, e as
-     QUINAS da caixa caíam fora do raio da elipse — ficavam transparentes, e
-     era exatamente ali que a letra do começo e do fim da linha estava. Com
-     chapa, a cobertura é uniforme sobre o glifo inteiro e a conta fecha:
-     8% de estrela branca sobre o fundo dá ~#252231, que segura 11:1 para o
-     texto principal e 6,9:1 para o secundário.
-
-     A estrela volta inteira a um centímetro dali — o céu só perde força
-     debaixo da letra. */
+   Aqui não há como isso se repetir: o fundo de um bloco não posicionado é
+   sempre pintado ANTES de todo o texto em fluxo, então chapa nenhuma cobre
+   texto nenhum, nem a vizinha. */
+.chapa {
   background: var(--color-background);
-  box-shadow: 0 0 1.7em 1.3em var(--color-background);
-  opacity: 0.92;
+  border-radius: var(--radius-xl);
+  padding: 12px 14px;
+  margin-inline: -14px;
 }
 
 /* ==========================================================================
-   Peças sólidas — borda 2px + sombra dura. A sombra É a espessura.
+   Envelope e seções
+   ========================================================================== */
+/* Filho de grid não força a trilha além da tela (min-width: auto do grid). */
+.heroi__grade > *,
+.funciona > *,
+.missoes-grade > *,
+.zigue__linha > *,
+.crianca-grade > *,
+.seguranca-grade > *,
+.instalar > *,
+.final > * {
+  min-width: 0;
+}
+
+.envelope {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+.secao {
+  padding-block: var(--secao-respiro);
+}
+
+.secao__cabeca {
+  max-width: 46rem;
+  margin-bottom: var(--spacing-xl);
+}
+
+.secao__cabeca h2 {
+  margin-bottom: var(--spacing-sm);
+}
+
+.secao__intro {
+  color: var(--color-on-surface-variant);
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.selo {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-accent-shadow);
+  background: var(--color-surface);
+  color: var(--color-accent-text);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  padding: 6px 14px 6px 10px;
+  margin-bottom: var(--spacing-md);
+}
+
+.selo .icone {
+  font-size: 18px;
+}
+
+/* ==========================================================================
+   Peças sólidas: borda 2px + sombra dura. A sombra É a espessura.
    ========================================================================== */
 .painel {
   background: var(--color-surface);
@@ -410,17 +504,15 @@ a {
   box-shadow: var(--sombra-painel-elevado);
 }
 
-.painel-accent {
-  border-color: var(--color-accent-shadow);
-}
-
 .painel-moeda {
   border-color: var(--color-moeda-shadow);
 }
 
-/* Press 3D do guia: translateY(3px) scale(.985) em 90ms. */
+/* Press 3D: translateY(3px) scale(.985) em 90ms (BRANDING, tabela Movimento). */
 .pressavel {
-  transition: transform 90ms ease-out, box-shadow 90ms ease-out;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
 }
 
 .pressavel:active {
@@ -428,7 +520,8 @@ a {
 }
 
 /* ==========================================================================
-   Botões — pílula, mesma mecânica do app
+   Botões: pílula, mesma mecânica do app (.btn-jogo / .btn-secundario /
+   .btn-moeda / .btn-perigo de app/globals.css)
    ========================================================================== */
 .botao {
   display: inline-flex;
@@ -438,39 +531,58 @@ a {
   min-height: var(--toque);
   padding: 10px var(--spacing-lg);
   border-radius: var(--radius-full);
+  font-family: inherit;
   font-size: 13px;
   line-height: 16px;
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: none;
   cursor: pointer;
-  transition: transform 90ms ease-out, box-shadow 90ms ease-out;
+  border: var(--borda) solid transparent;
+  transition:
+    transform 90ms ease-out,
+    box-shadow 90ms ease-out;
+}
+
+.botao .icone {
+  font-size: 20px;
 }
 
 .botao--principal {
   background: var(--color-accent);
   color: var(--color-accent-on);
-  border: var(--borda) solid var(--color-accent-shadow);
-  box-shadow: var(--sombra-botao);
-}
-
-.botao--principal:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 0 0 var(--color-accent-shadow);
-}
-
-.botao--secundario {
-  /* O guia pede fundo transparente. Sobre o céu estrelado isso põe estrela
-     atrás do rótulo, então aqui ele recebe a própria cor de fundo da página:
-     visualmente idêntico onde não há céu, legível onde há. */
-  background: var(--color-background);
-  color: var(--color-accent-text);
-  border: var(--borda) solid var(--color-accent-text);
+  border-color: var(--color-accent-shadow);
   box-shadow: 0 4px 0 0 var(--color-accent-shadow);
 }
 
-.botao--secundario:active {
+.botao--secundario {
+  /* O app usa fundo transparente. Sobre o céu, isso põe estrela atrás do
+     rótulo; aqui a peça recebe a cor do fundo da página. */
+  background: var(--color-background);
+  color: var(--color-accent-text);
+  border-color: var(--color-accent-text);
+  box-shadow: 0 4px 0 0 var(--color-accent-shadow);
+}
+
+.botao--moeda {
+  background: var(--color-moeda);
+  color: var(--color-moeda-on);
+  border-color: var(--color-moeda-shadow);
+  box-shadow: 0 4px 0 0 var(--color-moeda-shadow);
+}
+
+.botao--perigo {
+  background: var(--color-error-fill);
+  color: var(--color-on-error);
+  border-color: var(--color-error-fill);
+  box-shadow: 0 4px 0 0 var(--sombra-perigo);
+}
+
+.botao--principal:active,
+.botao--secundario:active,
+.botao--moeda:active,
+.botao--perigo:active {
   transform: translateY(4px);
-  box-shadow: 0 0 0 0 var(--color-accent-shadow);
+  box-shadow: none;
 }
 
 .botao--grande {
@@ -480,16 +592,19 @@ a {
   min-height: 56px;
 }
 
+.botao--largo {
+  width: 100%;
+}
+
 /* ==========================================================================
-   Cabeçalho
+   Cabeçalho: opaco, sticky
    ========================================================================== */
 .cabecalho {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   background: var(--color-background);
   border-bottom: var(--borda) solid var(--color-outline);
-  padding-block: var(--spacing-sm);
 }
 
 .cabecalho__linha {
@@ -497,6 +612,7 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: var(--spacing-md);
+  min-height: var(--altura-cabecalho);
 }
 
 .marca {
@@ -513,14 +629,36 @@ a {
   object-fit: contain;
 }
 
-/* Wordmark: quatro fills fixos. É a única peça da marca que não troca de cor
-   por contexto — nem pelo accent, nem pelo tema. */
+/* Cada bloco tem a caixa com a largura medida na Baloo 2 800 (a 22px, com o
+   tracking de -0.03em): quando a fonte chega, nenhum bloco muda de lugar. O
+   espaço entre "Dinno" e "App" vira margem, porque o flex ignora o espaço em
+   branco entre os itens. */
 .wordmark {
+  display: inline-flex;
+  align-items: center;
+  height: 1em;
   font-weight: 800;
   letter-spacing: -0.03em;
   line-height: 1;
   font-size: 22px;
   white-space: nowrap;
+}
+
+.wordmark > span {
+  display: block;
+  overflow: visible;
+}
+
+.wordmark .wm-d {
+  width: 2.5504em;
+}
+.wordmark .wm-a {
+  width: 0.5973em;
+  margin-left: 0.1705em;
+}
+.wordmark .wm-p1,
+.wordmark .wm-p2 {
+  width: 0.5554em;
 }
 
 .wm-d {
@@ -536,11 +674,38 @@ a {
   color: var(--wm-p2);
 }
 
+.cabecalho__nav {
+  display: none;
+}
+
+.cabecalho__nav ul {
+  list-style: none;
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.cabecalho__nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+  padding: 0 12px;
+  border-radius: var(--radius-full);
+  color: var(--color-on-surface-variant);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cabecalho__nav a:hover {
+  color: var(--color-on-surface);
+  background: var(--color-surface);
+}
+
 /* ==========================================================================
    Herói
    ========================================================================== */
 .heroi {
-  padding-block: var(--spacing-2xl) var(--spacing-2xl);
+  padding-block: var(--spacing-xl) var(--secao-respiro);
 }
 
 .heroi__grade {
@@ -549,134 +714,364 @@ a {
   align-items: center;
 }
 
-.etiqueta {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  border-radius: var(--radius-full);
-  border: var(--borda) solid var(--color-accent-shadow);
-  background: color-mix(in srgb, var(--color-accent) 15%, var(--color-surface));
-  color: var(--color-accent-text);
-  font-size: 13px;
-  line-height: 16px;
-  font-weight: 600;
-  padding: 6px 14px;
-  margin-bottom: var(--spacing-md);
-}
-
 .heroi__sub {
   color: var(--color-on-surface-variant);
   font-size: 18px;
   line-height: 26px;
   margin-top: var(--spacing-md);
-  max-width: 34rem;
+  max-width: 36rem;
 }
 
 .heroi__acoes {
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-md);
-  margin-top: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
 }
 
-.heroi__selos {
+.fatos {
   list-style: none;
-  padding: 0;
-  margin: var(--spacing-lg) 0 0;
   display: flex;
   flex-wrap: wrap;
   gap: var(--spacing-sm) var(--spacing-lg);
+  margin-top: var(--spacing-lg);
   color: var(--color-on-surface-variant);
   font-size: 13px;
   line-height: 16px;
   font-weight: 600;
 }
 
-.heroi__selos li {
+.fatos li {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);
 }
 
-.heroi__selos .material-symbols-rounded {
+.fatos .icone {
   font-size: 18px;
   color: var(--color-accent-text);
 }
 
-.heroi__arte {
-  justify-self: center;
-  max-width: 26rem;
+/* --- A tela de exemplo do herói -------------------------------------------
+   Recriação em HTML/CSS da tela /missoes da criança. Texto copiado do app;
+   dados fictícios. */
+.tela {
   width: 100%;
-}
-
-/* ==========================================================================
-   Prova social — três números, estáticos
-   ========================================================================== */
-.numeros {
-  display: grid;
+  max-width: 27rem;
+  justify-self: center;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
-  grid-template-columns: 1fr;
 }
 
-.numero {
-  padding: var(--spacing-lg);
-  text-align: center;
+.tela__barra {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding-bottom: var(--spacing-md);
+  border-bottom: var(--borda) solid var(--color-outline);
 }
 
-.numero__valor {
-  display: block;
-  font-size: 40px;
-  line-height: 44px;
-  letter-spacing: -0.02em;
-  font-weight: 800;
+.tela__marca {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.tela__nome-app {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
   color: var(--color-accent-text);
 }
 
-.numero--moeda .numero__valor {
-  color: var(--color-moeda-text);
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface-sunken);
+  border: 3px solid var(--color-accent);
+  color: var(--color-on-surface);
+  font-size: 16px;
+  font-weight: 800;
+  flex: none;
 }
 
-.numero__rotulo {
-  display: block;
-  margin-top: var(--spacing-xs);
+.avatar--patente-explorador {
+  border-color: var(--color-accent-text);
+}
+
+.avatar--patente-oficial {
+  border-color: var(--color-moeda-shadow);
+}
+
+.avatar--patente-cadete {
+  border-color: var(--color-on-surface-variant);
+}
+
+/* Pílula de valor em Starcoin: número + estrela dourada (StarcoinAmount). */
+.starcoin {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-moeda-text);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.starcoin .icone {
+  font-size: 16px;
+}
+
+.starcoin--grande {
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.starcoin--grande .icone {
+  font-size: 32px;
+}
+
+.starcoin--media {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.starcoin--media .icone {
+  font-size: 20px;
+}
+
+.pilula-moeda {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-moeda-shadow);
+  background: var(--color-surface);
+  padding: 4px var(--spacing-sm);
+}
+
+.pilula-valor {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid color-mix(in srgb, var(--color-moeda-shadow) 60%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-moeda) 15%, var(--color-surface));
+  padding: 4px var(--spacing-sm);
+}
+
+.abas {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-full);
+}
+
+.aba {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 var(--spacing-sm);
+  border-radius: var(--radius-full);
   color: var(--color-on-surface-variant);
   font-size: 13px;
   line-height: 16px;
   font-weight: 600;
+  text-align: center;
 }
 
-.numero .material-symbols-rounded {
-  font-size: 32px;
-  color: var(--color-accent-text);
-  margin-bottom: var(--spacing-xs);
+.aba--ativa {
+  background: var(--color-accent);
+  color: var(--color-accent-on);
 }
 
-.numero--moeda .material-symbols-rounded {
-  color: var(--color-moeda);
-}
-
-/* ==========================================================================
-   Grades de card
-   ========================================================================== */
-.grade {
-  display: grid;
+/* Card de missão da criança. */
+.missao {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
   gap: var(--spacing-md);
-  grid-template-columns: 1fr;
 }
 
-.peca {
-  padding: var(--spacing-lg);
+.missao__topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
 }
 
-.peca h3 {
-  margin-bottom: var(--spacing-sm);
+.missao__titulo {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+  color: var(--color-on-surface);
 }
 
-.peca p {
+.missao__descricao {
+  margin-top: var(--spacing-xs);
   color: var(--color-on-surface-variant);
 }
 
-.passo__numero {
+.linha-miuda {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.linha-miuda .icone {
+  font-size: 16px;
+}
+
+/* Botão desenhado dentro de uma peça de exemplo: mesma forma do botão real,
+   sem ser um controle (é um <span>). */
+.botao-app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  min-height: var(--toque);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-accent-shadow);
+  background: var(--color-accent);
+  color: var(--color-accent-on);
+  box-shadow: 0 4px 0 0 var(--color-accent-shadow);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.botao-app .icone {
+  font-size: 20px;
+}
+
+.botao-app--moeda {
+  border-color: var(--color-moeda-shadow);
+  background: var(--color-moeda);
+  color: var(--color-moeda-on);
+  box-shadow: 0 4px 0 0 var(--color-moeda-shadow);
+}
+
+/* --- Super Missão (app/globals.css, .super-missao) -------------------------
+   1. Contorno de brasa: ::before com conic-gradient girando pela propriedade
+      registrada --angulo-brasa (brasa-gira, 3200ms linear).
+   2. Respiro: `scale` de 1 a 1.015 (brasa-respira, 3000ms).
+   O ::after tampa o miolo e deixa à vista só os 3px de contorno: o respiro
+   cria contexto de empilhamento, e sem a tampa o gradiente cobriria o card.
+   Diferença deliberada do app: sem o box-shadow de brilho de 20px nem o pulso
+   de opacidade (brasa-brilho). A landing não usa brilho nem sombra difusa. */
+@property --angulo-brasa {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.super-missao {
+  position: relative;
+  animation: brasa-respira 3000ms ease-in-out infinite;
+}
+
+.super-missao::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angulo-brasa),
+    var(--color-fogo-vermelho),
+    var(--color-fogo-laranja) 25%,
+    var(--color-fogo-amarelo) 50%,
+    var(--color-fogo-laranja) 75%,
+    var(--color-fogo-vermelho)
+  );
+  animation: brasa-gira 3200ms linear infinite;
+}
+
+.super-missao::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--color-surface);
+}
+
+.super-missao.pausado,
+.super-missao.pausado::before {
+  animation-play-state: paused;
+}
+
+.super-missao__foguete {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  font-size: 20px;
+  color: var(--color-destaque-brasa-text);
+  pointer-events: none;
+}
+
+.super-missao__reserva {
+  padding-right: 28px;
+}
+
+@keyframes brasa-gira {
+  to {
+    --angulo-brasa: 360deg;
+  }
+}
+
+@keyframes brasa-respira {
+  0%,
+  100% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.015;
+  }
+}
+
+/* ==========================================================================
+   Como funciona: trilha de passos + demonstração de aprovação
+   ========================================================================== */
+.funciona {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.trilha {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  counter-reset: passo;
+}
+
+.trilha li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--spacing-md);
+}
+
+.trilha__numero {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -689,147 +1084,1122 @@ a {
   box-shadow: 0 3px 0 0 var(--color-accent-shadow);
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: var(--spacing-md);
 }
 
-.recurso__icone {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface));
-  border: var(--borda) solid var(--color-accent-shadow);
-  margin-bottom: var(--spacing-md);
+.trilha h3 {
+  margin: 8px 0 var(--spacing-xs);
 }
 
-.recurso__icone .material-symbols-rounded {
-  color: var(--color-accent-text);
-  font-size: 26px;
+.trilha p {
+  color: var(--color-on-surface-variant);
 }
 
 .nota {
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-lg);
-  color: var(--color-on-surface-variant);
-}
-
-.nota strong {
-  color: var(--color-on-surface);
-}
-
-.miudos {
-  list-style: none;
-  padding: 0;
-  margin: var(--spacing-xl) 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm) var(--spacing-lg);
-  color: var(--color-on-surface-variant);
-  font-size: 13px;
-  line-height: 16px;
-  font-weight: 600;
-}
-
-.miudos li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-}
-
-.miudos .material-symbols-rounded {
-  font-size: 18px;
-  color: var(--color-accent-text);
-}
-
-/* ==========================================================================
-   Blocos de duas colunas
-   ========================================================================== */
-.dupla {
-  display: grid;
-  gap: var(--spacing-xl);
-  align-items: center;
-}
-
-.dupla__arte {
-  justify-self: center;
-  max-width: 22rem;
-  width: 100%;
-}
-
-.lista-marcada {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
-.lista-marcada li {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   gap: var(--spacing-sm);
   color: var(--color-on-surface-variant);
 }
 
-.lista-marcada strong {
+.nota .icone {
+  color: var(--color-accent-text);
+}
+
+.demo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  max-width: 30rem;
+  justify-self: center;
+}
+
+.aprovacao {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.aprovacao__cabeca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.aprovacao__quem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.aprovacao__titulo {
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 500;
   color: var(--color-on-surface);
 }
 
-.lista-marcada .material-symbols-rounded {
+.comprovante {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+  color: var(--color-on-surface-variant);
+}
+
+.comprovante .icone {
+  font-size: 28px;
+}
+
+.valor-caixa {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-lg);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+}
+
+.aprovacao__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  min-height: var(--toque);
+}
+
+.aprovacao__acoes .botao {
+  flex: 1 1 8rem;
+  padding-inline: var(--spacing-md);
+}
+
+.aprovacao__resultado {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-height: var(--toque);
+  justify-content: center;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  width: fit-content;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.status--aprovada {
+  color: var(--color-success);
+  border-color: color-mix(in srgb, var(--color-success) 50%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-success) 15%, var(--color-surface));
+}
+
+.status--reprovada {
+  color: var(--color-error);
+  border-color: color-mix(in srgb, var(--color-error) 50%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-error) 15%, var(--color-surface));
+}
+
+.status--aguardando {
+  color: var(--color-moeda-text);
+  border-color: color-mix(in srgb, var(--color-moeda-shadow) 60%, var(--color-surface));
+  background: color-mix(in srgb, var(--color-moeda) 15%, var(--color-surface));
+}
+
+.motivo {
+  color: var(--color-error);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+/* Vem depois das regras de display da demonstração: com a mesma
+   especificidade, a ordem decide. */
+[hidden] {
+  display: none;
+}
+
+/* Carteira (/carteira): rótulo, saldo em destaque e a taxa. */
+.carteira {
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-align: center;
+}
+
+.rotulo {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+/* O número do contador reserva a própria largura: a estrela não anda e a
+   linha não muda de tamanho enquanto conta. */
+.contador {
+  display: inline-block;
+  min-width: 4.6ch;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.taxa {
+  display: inline-flex;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-moeda-shadow);
+  background: var(--color-surface);
+  color: var(--color-moeda-text);
+  padding: var(--spacing-xs) var(--spacing-md);
+}
+
+.demo__repetir {
+  align-self: center;
+}
+
+/* ==========================================================================
+   Missões: o formulário real recriado + lista de recursos
+   ========================================================================== */
+.missoes-grade {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.formulario {
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.formulario__titulo {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.campo__entrada {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+  color: var(--color-on-surface);
+}
+
+.campo__entrada--foco {
+  border-color: var(--color-accent);
+}
+
+.campo__sufixo {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-accent-text);
+}
+
+.campo__ajuda {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.chip--ativo {
+  background: var(--color-accent);
+  border-color: var(--color-accent-shadow);
+  color: var(--color-accent-on);
+}
+
+.opcao {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-xl);
+  border: var(--borda) solid var(--color-outline);
+}
+
+.opcao--ativa {
+  border-color: var(--color-accent);
+}
+
+.opcao__marca {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-on-surface-variant);
+  background: var(--color-surface-sunken);
+}
+
+.opcao--ativa .opcao__marca {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  box-shadow: inset 0 0 0 3px var(--color-surface-sunken);
+}
+
+.opcao__caixa {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  border-radius: 5px;
+  background: var(--color-accent);
+  color: var(--color-accent-on);
+}
+
+.opcao__caixa .icone {
+  font-size: 16px;
+}
+
+.opcao__texto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.opcao__nome {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.opcao__nome .icone {
+  color: var(--color-fogo-vermelho);
+}
+
+.lote {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.lote__todas {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-height: 44px;
+  padding: 0 var(--spacing-sm);
+  color: var(--color-on-surface);
+}
+
+.recursos {
+  list-style: none;
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.recursos li {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--spacing-md);
+  align-items: start;
+}
+
+.recursos__icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-accent-on);
+  border: var(--borda) solid var(--color-accent-shadow);
+}
+
+.recursos__icone .icone {
   font-size: 22px;
+}
+
+.recursos h3 {
+  font-size: 18px;
+  line-height: 26px;
+  margin-bottom: 2px;
+}
+
+.recursos p {
+  color: var(--color-on-surface-variant);
+}
+
+/* ==========================================================================
+   Dinheiro: linhas em zigue-zague, texto de um lado e a peça do outro
+   ========================================================================== */
+.zigue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2xl);
+}
+
+.zigue__linha {
+  display: grid;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.zigue__texto h3 {
+  font-size: 26px;
+  line-height: 32px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.zigue__texto p + p {
+  margin-top: var(--spacing-sm);
+}
+
+.zigue__texto p {
+  color: var(--color-on-surface-variant);
+}
+
+.zigue__pecas {
+  width: 100%;
+  max-width: 28rem;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Duas peças encaixadas: a de baixo sobe 12px por cima da margem interna da
+   de cima, que tem 20px. Nenhum texto fica na faixa coberta. */
+.encaixe {
+  margin-top: -12px;
+  margin-left: var(--spacing-xl);
+}
+
+.linhas {
+  padding: var(--spacing-sm) var(--spacing-md) 20px;
+}
+
+.linhas__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding-block: var(--spacing-sm);
+}
+
+.linhas__item + .linhas__item {
+  border-top: var(--borda) solid var(--color-outline);
+}
+
+.linhas__rotulo {
+  color: var(--color-on-surface-variant);
+}
+
+.linhas__rotulo--forte {
+  color: var(--color-on-surface);
+}
+
+.linhas__valor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: none;
+}
+
+.reais {
+  color: var(--color-on-surface);
+}
+
+.pilula-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+  color: var(--color-on-surface);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.pilula-link .icone {
+  font-size: 18px;
+}
+
+.extrato {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.extrato__titulo {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.resumo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}
+
+.resumo__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-sm) 12px;
+  border-radius: var(--radius-lg);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+}
+
+.mesada {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.alternador {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-xl);
+  border: var(--borda) solid var(--color-outline);
+}
+
+.alternador__texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.alternador__nome {
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.loja-item {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.loja-item__foto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  border-radius: var(--radius-xl);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+  color: var(--color-on-surface-variant);
+}
+
+.loja-item__foto .icone {
+  font-size: 48px;
+}
+
+.falta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-xl);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+}
+
+.falta ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-xs);
+}
+
+.falta li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.meta {
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* A barra vertical da Meta (components/meta/barra-meta.tsx): trilho
+   afundado, chama de baixo para cima e o foguete no topo da chama. Parada:
+   a animação do fogo e o tremor do foguete ficam só no app. */
+.meta__pista {
+  position: relative;
+  flex: none;
+  width: 56px;
+  height: 188px;
+  overflow: hidden;
+}
+
+.meta__trilho {
+  position: absolute;
+  inset: 0;
+  background: var(--color-surface-sunken);
+  border: var(--borda) solid var(--color-outline);
+  border-radius: var(--radius-full);
+}
+
+.meta__chama {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    to top,
+    var(--color-fogo-vermelho) 0%,
+    var(--color-fogo-laranja) 45%,
+    var(--color-fogo-amarelo) 75%,
+    var(--color-fogo-laranja) 100%
+  );
+}
+
+.meta__foguete {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-fogo-vermelho);
+  background: var(--color-surface);
+  color: var(--color-fogo-vermelho);
+}
+
+.meta__foguete .icone {
+  font-size: 24px;
+}
+
+.meta__dados {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.meta__linhas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  color: var(--color-on-surface-variant);
+}
+
+.meta__linhas span {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.meta__linhas .icone {
+  font-size: 18px;
   color: var(--color-accent-text);
 }
 
 /* ==========================================================================
-   Instalar na tela inicial — abas por navegador
+   Criança
    ========================================================================== */
-.instalar__abas {
+.crianca-grade {
   display: grid;
   gap: var(--spacing-lg);
-  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+.crianca-coluna {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.crianca-arte {
+  width: 100%;
+  max-width: 22rem;
+  justify-self: center;
+}
+
+.ofensiva {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.ofensiva__cabeca {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.ofensiva__patente {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.bolha {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-text);
+  color: var(--color-on-surface);
+}
+
+.bolha--accent {
+  color: var(--color-accent-on);
+  width: 48px;
+  height: 48px;
+  background: var(--color-accent);
+  border: var(--borda) solid var(--color-accent-shadow);
+}
+
+.ofensiva__recorde {
+  text-align: right;
+}
+
+.semana {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+}
+
+.semana li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.dia {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-sunken);
+}
+
+.dia--ativo {
+  background: var(--color-accent);
+  border-color: var(--color-accent-shadow);
+  color: var(--color-accent-on);
+}
+
+.dia--hoje {
+  border-color: var(--color-accent);
+}
+
+.dia .icone {
+  font-size: 14px;
+}
+
+.escala {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  margin-top: var(--spacing-md);
+}
+
+.escala li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.escala small {
+  font-size: 13px;
+  color: var(--color-on-surface-variant);
+}
+
+.conquistas {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.conquistas__titulo {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 700;
+}
+
+.marcos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-left: 11px;
+  padding-left: var(--spacing-md);
+  border-left: var(--borda) solid var(--color-outline);
+}
+
+.marco {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-2xl);
+  background: var(--color-surface-elevated);
+  border: var(--borda) solid var(--color-outline);
+  box-shadow: 0 5px 0 0 var(--color-shadow-hard);
+}
+
+.marco__texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.marco__selo {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-accent-text);
+}
+
+.marco__titulo {
+  font-size: 18px;
+  line-height: 26px;
+  color: var(--color-on-surface);
+}
+
+.ranking {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.ranking__cabeca {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ranking__titulo {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.ranking ol {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.ranking__linha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  padding: 12px var(--spacing-md);
+  border-radius: var(--radius-2xl);
+  border: var(--borda) solid var(--color-outline);
+  background: var(--color-surface-elevated);
+}
+
+.ranking__linha--voce {
+  border-color: var(--color-moeda-shadow);
+}
+
+.ranking__pessoa {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.ranking__posicao {
+  display: inline-flex;
+  justify-content: center;
+  width: 28px;
+  flex: none;
+  color: var(--color-on-surface-variant);
+}
+
+.ranking__posicao--ouro {
+  color: var(--color-moeda-text);
+}
+
+.ranking__nome {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ranking__apelido {
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.ranking__contagem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: 700;
+}
+
+.ranking__contagem .icone {
+  font-size: 18px;
+  color: var(--color-accent-text);
+}
+
+.voce {
+  color: var(--color-moeda-text);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Família e segurança
+   ========================================================================== */
+.seguranca-grade {
+  display: grid;
+  gap: var(--spacing-xl);
+  align-items: start;
+}
+
+.garantias {
+  list-style: none;
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.garantias li {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+}
+
+.garantias .icone {
+  color: var(--color-accent-text);
+  margin-top: 2px;
+}
+
+.garantias h3 {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.garantias p {
+  color: var(--color-on-surface-variant);
+}
+
+.seguranca-lado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.autorizacao {
+  width: 100%;
+  max-width: 28rem;
+  padding: var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.autorizacao__cabeca {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.autorizacao__titulo {
+  font-size: 20px;
+  line-height: 26px;
+  font-weight: 700;
+}
+
+.caixa-marcada {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  min-height: 44px;
+  color: var(--color-on-surface);
+}
+
+.seguranca-arte {
+  width: 100%;
+  max-width: 12rem;
+}
+
+/* ==========================================================================
+   Instalar
+   ========================================================================== */
+.instalar {
+  display: grid;
+  gap: var(--spacing-lg);
 }
 
 .navegador {
   padding: var(--spacing-lg);
 }
 
-.navegador__cabeca {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+.navegador h3 {
   margin-bottom: var(--spacing-md);
 }
 
-.navegador__cabeca h3 {
-  margin: 0;
-}
-
-/* Mockup esquemático e ORIGINAL de barra de navegador. Não é captura de tela
-   nem reprodução de logo de terceiro — é um desenho genérico, rotulado por
-   texto, só para situar onde fica o menu. */
 .mockup {
   width: 100%;
   height: auto;
+  display: block;
   border-radius: var(--radius-lg);
   border: var(--borda) solid var(--color-outline);
   background: var(--color-surface-sunken);
   margin-bottom: var(--spacing-md);
 }
 
+.mockup .m-tela {
+  fill: var(--color-surface);
+  stroke: var(--color-outline);
+  stroke-width: 2;
+}
+
+.mockup .m-barra {
+  fill: var(--color-surface-sunken);
+  stroke: var(--color-outline);
+  stroke-width: 2;
+}
+
+.mockup .m-texto {
+  fill: var(--color-on-surface-variant);
+  font-family: var(--fonte);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mockup .m-linha {
+  fill: var(--color-outline);
+}
+
+.mockup .m-traco {
+  stroke: var(--color-outline);
+  stroke-width: 2;
+  fill: none;
+}
+
+.mockup .m-ponto {
+  fill: var(--color-accent);
+}
+
+.mockup .m-alvo {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2;
+}
+
 .passos {
-  margin: 0;
   padding-left: 1.25rem;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
   color: var(--color-on-surface-variant);
-}
-
-.passos strong {
-  color: var(--color-on-surface);
 }
 
 .passos li::marker {
@@ -838,12 +2208,13 @@ a {
 }
 
 /* ==========================================================================
-   FAQ — <details> nativo, sem JavaScript
+   FAQ: <details> nativo
    ========================================================================== */
 .faq {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-md);
+  max-width: 50rem;
 }
 
 .faq details {
@@ -851,7 +2222,7 @@ a {
   border: var(--borda) solid var(--color-outline);
   border-radius: var(--radius-xl);
   box-shadow: var(--sombra-painel);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-xs) var(--spacing-lg);
 }
 
 .faq summary {
@@ -859,7 +2230,7 @@ a {
   font-weight: 700;
   font-size: 18px;
   line-height: 26px;
-  min-height: var(--toque);
+  min-height: 56px;
   display: flex;
   align-items: center;
   gap: var(--spacing-sm);
@@ -870,61 +2241,87 @@ a {
   display: none;
 }
 
-.faq summary::after {
-  content: "expand_more";
-  font-family: "Material Symbols Rounded";
-  font-variation-settings: "FILL" 1, "wght" 600;
+.faq summary .icone {
   margin-left: auto;
   color: var(--color-accent-text);
   transition: transform 150ms ease-out;
 }
 
-.faq details[open] summary::after {
+.faq details[open] summary .icone {
   transform: rotate(180deg);
 }
 
-.faq p {
+.faq details p {
   color: var(--color-on-surface-variant);
-  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-md);
 }
 
 /* ==========================================================================
    Chamada final
    ========================================================================== */
 .final {
-  padding-block: var(--spacing-2xl);
-  text-align: center;
-}
-
-.final__grade {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: var(--spacing-xl);
   align-items: center;
-  gap: var(--spacing-md);
 }
 
 .final__arte {
-  max-width: 13rem;
   width: 100%;
+  max-width: 20rem;
+  justify-self: center;
 }
 
-.final p {
+.final__texto p {
+  margin-top: var(--spacing-sm);
   color: var(--color-on-surface-variant);
   font-size: 18px;
   line-height: 26px;
-  max-width: 34rem;
 }
 
-.final .botao {
-  margin-top: var(--spacing-sm);
+.final__texto .botao {
+  margin-top: var(--spacing-lg);
+}
+
+.numeros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+}
+
+.numero {
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.numero__valor {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 32px;
+  line-height: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-accent-text);
+}
+
+.numero--moeda .numero__valor {
+  color: var(--color-moeda-text);
+}
+
+.numero__valor .icone {
+  font-size: 26px;
 }
 
 /* ==========================================================================
-   Rodapé
+   Rodapé do Dinno
    ========================================================================== */
 .rodape {
-  padding-block: var(--spacing-xl);
+  background: var(--color-background);
   border-top: var(--borda) solid var(--color-outline);
+  padding-block: var(--spacing-xl);
   color: var(--color-on-surface-variant);
   font-size: 13px;
   line-height: 16px;
@@ -936,61 +2333,72 @@ a {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm) var(--spacing-lg);
 }
 
-.rodape a {
-  min-height: var(--toque);
-  display: inline-flex;
-  align-items: center;
-}
-
-.rodape__legal {
+.rodape__links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--spacing-xs) var(--spacing-lg);
-  margin-top: var(--spacing-sm);
+  gap: 0 var(--spacing-lg);
 }
 
-/* --- Crédito de desenvolvimento e localização --------------------------
-   O símbolo abaixo é a marca de OUTRA empresa e segue o guia dela, não este
-   arquivo: versão reduzida de 2 faíscas (a única autorizada abaixo de 32px),
-   corpo claro sobre fundo escuro (escuro sobre fundo claro), faísca laranja
-   intocada, sem sombra, contorno, rotação ou distorção. */
-.rodape__credito {
-  margin-top: var(--spacing-lg);
-  padding-top: var(--spacing-md);
-  border-top: var(--borda) solid var(--color-outline);
+.rodape a:not(.marca) {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--toque);
+}
+
+/* --------------------------------------------------------------------------
+   Crédito de desenvolvimento: bloco da ForjaDev
+   --------------------------------------------------------------------------
+   Separado do Dinno por faixa própria, divisória e respiro, sem nenhum token,
+   raio, sombra dura ou accent do Dinno. Segue o FORJADEV-BRAND-GUIDE:
+   - assinatura horizontal (símbolo de 3 faíscas + wordmark) na versão de
+     fundo aço escuro: corpo e wordmark brancos, faísca laranja intocada;
+   - 32px de altura: acima do mínimo de 24px da assinatura e sem levar a
+     versão de 3 faíscas para baixo de 32px;
+   - área de respiro igual à altura da cabeça do martelo (16px a 32px de
+     altura) nos quatro lados;
+   - sem rotação, sombra, brilho, contorno ou gradiente sobre o logo;
+   - foco em 2px laranja, que é o foco do sistema da ForjaDev. */
+.forjadev-bloco {
+  background: var(--cor-forjadev-aco);
+  border-top: 1px solid var(--cor-forjadev-filete);
+  color: var(--cor-forjadev-bigorna);
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: 600;
+  padding-block: var(--spacing-lg);
+}
+
+.forjadev-bloco__linha {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--spacing-xs) var(--spacing-lg);
+  gap: var(--spacing-sm) var(--spacing-lg);
 }
 
 .forjadev {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-sm);
-  color: var(--color-on-surface);
+  gap: 16px;
+  padding: 16px 16px 16px 0;
+  color: var(--cor-forjadev-bigorna);
   text-decoration: none;
 }
 
-.forjadev span {
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 3px;
-  transition: text-decoration-color 120ms ease-out;
+.forjadev:focus-visible {
+  outline: 2px solid var(--cor-forjadev-faisca);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-.forjadev:hover span {
-  text-decoration-color: currentColor;
-}
-
-.forjadev__icone {
+.forjadev__logo {
+  display: block;
   flex: none;
-  width: 28px;
-  height: 28px;
+  width: 174px;
+  height: 32px;
 }
 
 .forjadev__corpo {
@@ -1001,94 +2409,208 @@ a {
   fill: var(--cor-forjadev-faisca);
 }
 
-.rodape__local {
-  margin: 0;
-}
-
 /* ==========================================================================
-   Revelação no scroll — leve, e só uma vez por elemento
-   ========================================================================== */
-/* O estado escondido só existe quando o JS está no ar e vai mesmo revelar:
-   `main.js` marca o <html> com `.js-revela` antes de qualquer pintura. Sem
-   JavaScript, ou se o script falhar, o conteúdo nasce visível — esconder
-   conteúdo esperando um script que pode não rodar é como se perde uma página
-   inteira. */
-.js-revela .revela {
+   Entrada das peças (.entra-item e .entra-marco do app)
+   ==========================================================================
+   O estado escondido só existe quando main.js marcou o <html> com `js-entra`,
+   o que ele só faz com IntersectionObserver disponível e sem pedido de menos
+   movimento. Ao terminar, a classe da animação sai e fica `entrou`, que é o
+   estado normal (opacidade 1, sem transform). O herói não entra: é o LCP. */
+.js-entra [data-entra]:not(.entrou) {
   opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 420ms ease-out, transform 420ms ease-out;
 }
 
-.js-revela .revela.visivel {
-  opacity: 1;
-  transform: none;
+.js-entra [data-entra].entrando {
+  animation: entra-item 260ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+.js-entra [data-entra="marco"].entrando {
+  animation: entra-marco 320ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+@keyframes entra-item {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes entra-marco {
+  from {
+    opacity: 0;
+    transform: translateX(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 /* ==========================================================================
-   Pontos de quebra — mobile primeiro
+   Confete (components/ui/confete.tsx + app/globals.css): 52 peças, 1200ms,
+   queda e sumiço em cronogramas separados.
+   ========================================================================== */
+.confete {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.confete-peca {
+  position: absolute;
+  top: 0;
+  will-change: transform, opacity;
+  animation:
+    confete-cai 1200ms cubic-bezier(0.37, 0.16, 0.63, 0.72) forwards,
+    confete-some 1200ms linear forwards;
+}
+
+@keyframes confete-cai {
+  from {
+    transform: translate3d(0, -8vh, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(var(--desvio, 0px), 106vh, 0) rotate(var(--giro, 720deg));
+  }
+}
+
+@keyframes confete-some {
+  0%,
+  78% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Pontos de quebra: mobile primeiro
    ========================================================================== */
 @media (min-width: 640px) {
   :root {
     --gutter: 24px;
   }
 
-  .numeros {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .grade--2,
-  .grade--3,
-  .grade--6 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .instalar__abas {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   h1 {
     font-size: 48px;
     line-height: 52px;
   }
+
+  .instalar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .recursos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .garantias {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .numeros {
+    max-width: 32rem;
+  }
 }
 
 @media (min-width: 1024px) {
-  .heroi__grade {
-    grid-template-columns: 1.05fr 0.95fr;
-  }
-
-  .heroi__arte {
-    max-width: 32rem;
-  }
-
-  .grade--3 {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .grade--6 {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .dupla {
-    grid-template-columns: 1.1fr 0.9fr;
-  }
-
-  .dupla--invertida .dupla__arte {
-    order: -1;
-  }
-
-  .dupla__arte {
-    max-width: 24rem;
+  :root {
+    --secao-respiro: 96px;
   }
 
   h1 {
     font-size: 56px;
     line-height: 60px;
   }
+
+  h2 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .cabecalho__nav {
+    display: block;
+  }
+
+  .heroi {
+    padding-block: var(--spacing-2xl) var(--secao-respiro);
+  }
+
+  .heroi__grade {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .tela {
+    justify-self: end;
+  }
+
+  .funciona {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .demo {
+    justify-self: end;
+    margin-top: var(--spacing-2xl);
+  }
+
+  .missoes-grade {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .missoes-grade .formulario-coluna {
+    order: -1;
+  }
+
+  .recursos {
+    grid-template-columns: 1fr;
+  }
+
+  .zigue__linha {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .zigue__linha:nth-child(even) .zigue__texto {
+    order: 2;
+  }
+
+  .crianca-grade {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .crianca-coluna--alta {
+    margin-top: var(--spacing-2xl);
+  }
+
+  .seguranca-grade {
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: var(--spacing-2xl);
+  }
+
+  .final {
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: var(--spacing-2xl);
+  }
 }
 
 /* ==========================================================================
-   Menos movimento — obrigatório pelo guia, sem exceção
+   Menos movimento: nada anima (regra guarda-chuva do BRANDING). main.js
+   também não inicia canvas, rAF, confete nem entrada.
    ========================================================================== */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -1104,20 +2626,8 @@ a {
     scroll-behavior: auto !important;
   }
 
-  /* O céu não some — ele só para. */
-  .estrelas {
-    opacity: 0.7;
-  }
-
-  .botao:active,
-  .pressavel:active {
-    transform: none;
-  }
-
-  /* Sem movimento, o conteúdo nasce visível — nunca escondido esperando
-     uma animação que não vai rodar. */
-  .js-revela .revela {
-    opacity: 1;
+  .pressavel:active,
+  .botao:active {
     transform: none;
   }
 }
